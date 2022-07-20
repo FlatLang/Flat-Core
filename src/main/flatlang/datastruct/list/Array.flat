@@ -5,8 +5,6 @@ import "flatlang/datastruct/Comparable"
 import "flatlang/operators/PlusOperator"
 import "flatlang/operators/PlusEqualsOperator"
 
-[AutoFinal]
-[Immutable "ImmutableArray"]
 class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, PlusEqualsOperator<Array<E>, Array<E>> {
     pure external void arrayCopy(E dest[], int dIndex, E src[], int sIndex, int len, int destArrLen)
 
@@ -380,8 +378,6 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     public sort() => mergeSort()
 
     public sort(comparator(E, E) -> Int) => mergeSort(comparator)
-
-    public toImmutable() => new ImmutableArray<E>(this)
 
     override public toString() => this.class.name + " [#{join(", ")}]"
 }

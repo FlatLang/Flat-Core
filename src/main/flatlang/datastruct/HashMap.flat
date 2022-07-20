@@ -5,8 +5,6 @@ import "flatlang/datastruct/list/Iterator"
 import "flatlang/datastruct/list/NoSuchElementException"
 import "flatlang/operators/EqualsOperator"
 
-[AutoFinal]
-[Immutable "ImmutableHashMap"]
 class HashMap<K, V> implements List<Pair<K, V>> {
     Pair<K, V>[][] buckets
 
@@ -208,8 +206,6 @@ class HashMap<K, V> implements List<Pair<K, V>> {
     public containsKey(K key) => key && getPair(key)
 
     public clone() => new HashMap<K, V>(this)
-
-    public toImmutable() => new ImmutableHashMap<K, V>(this)
 
     public toString() => this.class.location + " {" + map(p => { p.key + ": " + p.value }).join(", ") + "}"
 

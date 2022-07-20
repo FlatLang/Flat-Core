@@ -2,15 +2,14 @@ package "flatlang/meta"
 
 import "flatlang/operators/EqualsOperator"
 
-[AutoFinal]
-immutable class Class<Type> implements EqualsOperator<Class> {
+class Class<Type> implements EqualsOperator<Class> {
     visible Bool isInterface
 
     visible String location
     visible String package => location.substring(0, location.lastIndexOf("/", defaultReturnValue: 0))
     visible String name => location.substring(location.lastIndexOf("/") + 1)
 
-    visible static immutable Class[] ALL = new Array()
+    visible static Class[] ALL = new Array()
 
     public construct(
         let visible String location,
