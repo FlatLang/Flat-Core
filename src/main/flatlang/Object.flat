@@ -3,7 +3,7 @@ package "flatlang"
 import "flatlang/NativeObject.h"
 import "flatlang/operators/EqualsOperator"
 
-immutable class Object {
+class Object {
     external char[] hashCode(Object obj)
     /*char** endptr*/
 

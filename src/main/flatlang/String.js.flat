@@ -7,7 +7,7 @@ import "flatlang/operators/EqualsOperator"
 import "flatlang/operators/MultiplyOperator"
 
 [AutoFinal]
-immutable class String {
+class String {
     public construct(Char c) {
         native Char[] chars
 

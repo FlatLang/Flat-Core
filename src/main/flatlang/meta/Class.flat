@@ -47,7 +47,7 @@ class Class<Type> implements EqualsOperator<Class> {
         }
     }
 
-    public immutable getClassesOfType(Class baseType) => ALL.filter({ _.isOfType(baseType) })
+    public getClassesOfType(Class baseType) => ALL.filter({ _.isOfType(baseType) })
 
     public equals(Class another) => this.location.chars.data == another.location.chars.data
     public toString() => "Class \"#location\""

@@ -3,7 +3,7 @@ package "flatlang"
 import "flatlang/datastruct/list/StringCharArray"
 
 class Substring extends String {
-    immutable visible String source
+    visible String source
 
     visible Int start
     visible Int end => start + count

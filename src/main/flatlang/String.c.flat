@@ -11,7 +11,7 @@ import "flatlang/regex/Match"
 import "flatlang/regex/Pattern"
 
 [AutoFinal]
-immutable class String {
+class String {
     external type CharSequence
 
     external type wchar_t
