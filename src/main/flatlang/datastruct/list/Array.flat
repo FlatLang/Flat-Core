@@ -57,7 +57,9 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
         this.count = count
 
-        [Target js] data = new E[count]
+        external js {
+            #{data} = new Array(#{count}).fill(#{null});
+        }
     }
 
     public construct(native E[] data, Int count) {
