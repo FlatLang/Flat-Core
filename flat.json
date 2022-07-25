@@ -7,7 +7,6 @@
   "scripts": {},
   "main": {
     "source": "src/main",
-    "noStd": true,
     "dependencies": {
       "github:FlatLang/Flat": "master"
     }
