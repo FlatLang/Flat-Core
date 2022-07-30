@@ -121,22 +121,6 @@ class String implements Comparable<String>,
             return this
         }
 
-        // native Char[] buf = new Char[end - start + 1]
-
-        // native Char[] arr = chars.data
-
-        // external c {
-        //     memcpy(#{buf}, &#{arr[start]}, #{end - start});
-
-        //     #{buf[end - start] = '\0'};
-        // }
-
-        // external js {
-        //     #{buf} = #{arr}.slice(#{start}, #{end});
-        // }
-
-        // return new String(buf)
-
         return new Substring(this, start, end)
     }
 
