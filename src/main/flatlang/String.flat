@@ -120,8 +120,14 @@ class String implements Comparable<String>,
         } else if (start == 0 && end == count) {
             return this
         }
+        
+        native var Char[] data
+        
+        external {
+          #{data} = #{chars.data}.substring(#{start}, #{end});
+        }
 
-        return new Substring(this, start, end)
+        return new String(data)
     }
 
     public trimStart(Int count) => substring(count)
