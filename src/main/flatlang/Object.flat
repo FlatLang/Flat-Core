@@ -5,7 +5,6 @@ import "flatlang/operators/EqualsOperator"
 
 class Object {
     external char[] hashCode(Object obj)
-    /*char** endptr*/
 
     public static default() => null
 
