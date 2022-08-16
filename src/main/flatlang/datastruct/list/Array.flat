@@ -19,7 +19,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     visible Bool isNotEmpty => !isEmpty
 
     [Override]
-    visible ArrayIterator<E> iterator => new ArrayIterator(this)
+    visible ArrayIterator<E> iterator => ArrayIterator(this)
 
     public E first => count > 0 ? this[0] : null {
         set {
@@ -133,7 +133,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
     public removeAtIndex(Int index) => removeAtIndex(index, 1)[0]
     public removeAtIndex(Int index, Int count = 1) -> E[] {
-        let output = new Array<E>()
+        let output = Array<E>()
 
         for (i in 0..count) {
             output.add(remove(index))
@@ -205,7 +205,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
         capacity = count
 
-        native E[] tmp = new E[capacity]
+        native E[] tmp = Array<E>(capacity)
 
         arrayCopy(tmp, 0, data, 0, capacity - offset, capacity)
 
@@ -217,7 +217,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
 
     public pure native cloneData() -> E[] {
-        native var d = new E[count]
+        native var d = Array<E>(count)
 
         external c {
             memcpy(#{d}, #{data}, sizeof(#{d}) * #{count});
@@ -231,7 +231,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     override public pure toArray() => clone()
 
     override public map<Out>(mapFunc(E, Int, Array<E>) -> Out) -> Out[] {
-        let array = new Out[count]
+        let array = Array<Out>(count)
 
         var Int i = 0
 
@@ -298,7 +298,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
 
     override public pure reverse() -> E[] {
-        let array = new E[count]
+        let array = Array<E>(count)
 
         var Int i = 0
 

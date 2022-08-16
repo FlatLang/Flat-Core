@@ -29,7 +29,7 @@ class String implements Comparable<String>,
     public construct(Char[] chars) {
         count = chars.count
 
-        this.chars = new StringCharArray(chars)
+        this.chars = StringCharArray(chars)
     }
 
     public construct(StringCharArray chars) {
@@ -44,7 +44,7 @@ class String implements Comparable<String>,
     public multiply(Int times) => repeat(times)
 
     public repeat(Int times) =>
-        new String[times].map({ this }).join()
+        Array<String>(times).map({ this }).join()
 
     public equals(Object other) => other && other.class.isOfType(String.class) && equals((String)other)
     public equals(String other) => other && count == other.count && compareTo(other) == 0
@@ -104,7 +104,7 @@ class String implements Comparable<String>,
         if (end - start <= 0) {
             if (end - start < 0) {
                 if (throwException) {
-                    throw new Exception("Substring bounds of [#start, #end] are invalid")
+                    throw Exception("Substring bounds of [#start, #end] are invalid")
                 }
 
                 return false
@@ -120,14 +120,14 @@ class String implements Comparable<String>,
         } else if (start == 0 && end == count) {
             return this
         }
-        
+
         native var Char[] data
-        
+
         external {
           #{data} = #{chars.data}.substring(#{start}, #{end});
         }
 
-        return new String(data)
+        return String(data)
     }
 
     public trimStart(Int count) => substring(count)
@@ -168,7 +168,7 @@ class String implements Comparable<String>,
             newData[i] = transform(chars[i], i)
         }
 
-        return new String(newData)
+        return String(newData)
     }
 
     public getStringBetween(String before, String after, Int start = 0) =>
@@ -196,7 +196,7 @@ class String implements Comparable<String>,
             }
         }
 
-        return new String(reversed)
+        return String(reversed)
     }
 
     public surroundWith(String str, Bool symmetrical = false) =>

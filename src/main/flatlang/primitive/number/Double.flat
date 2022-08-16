@@ -35,7 +35,7 @@ class Double extends Number implements RealNumber {
 
         buffer[lastIndex] = '\0'
 
-        return new String(buffer)
+        return String(buffer)
     }
 
     static native genBuffer(Double value) -> Char[] {
@@ -70,7 +70,7 @@ class Double extends Number implements RealNumber {
     }
 
     [Target js]
-    public static toString(Double value) => new String(toCharArray(value))
+    public static toString(Double value) => String(toCharArray(value))
 
     [Target not js]
     public static toString(Double value) -> String {

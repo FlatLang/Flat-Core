@@ -4,7 +4,7 @@ class IntRange implements List<Int> {
     visible Int size => end - start
 
     [Override]
-    visible IntRangeIterator iterator => new IntRangeIterator(this)
+    visible IntRangeIterator iterator => IntRangeIterator(this)
 
     public Int first <=> start
     public Int last => end - 1 {
@@ -42,7 +42,7 @@ class IntRange implements List<Int> {
 
     // [Override]
     // public map<Out>(mapFunc(Int, Int, IntRange) -> Out) -> Out[] {
-    //     Out[] array = new Array()
+    //     Out[] array = Array()
 
     //     Int i = 0
 
@@ -73,7 +73,7 @@ class IntRange implements List<Int> {
 
     // [Override]
     // public filter(filterFunc(Int, Int, IntRange) -> Bool) -> Int[] {
-    //     Int[] list = new Int[]
+    //     Int[] list = Int[]
 
     //     Int i = 0
 
@@ -88,12 +88,12 @@ class IntRange implements List<Int> {
 
     // [Override]
     // public take(Int howMany) -> IntRange {
-    //     return new IntRange(start, (Int)Math.min(start + howMany, end))
+    //     return IntRange(start, (Int)Math.min(start + howMany, end))
     // }
 
     // [Override]
     // public skip(Int howMany) -> IntRange {
-    //     return new IntRange((Int)Math.min(start + howMany, end), end)
+    //     return IntRange((Int)Math.min(start + howMany, end), end)
     // }
 
     // [Override]
@@ -112,7 +112,7 @@ class IntRange implements List<Int> {
     //clone() -> IntRange
 
     [Override]
-    public reverse() => new IntRange(end, start)
+    public reverse() => IntRange(end, start)
 
     // [Override]
     // public join(String delimiter) -> String {

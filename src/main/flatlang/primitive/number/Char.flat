@@ -76,7 +76,7 @@ class Char extends Number implements Integer {
 
     public toString() => toString(value)
 
-    public static toString(Char c) => new String(c)
+    public static toString(Char c) => String(c)
     public static hashCodeLong(Char value) => Math.abs(value)
     public static plus(Char a, Long b) => a + b
 }

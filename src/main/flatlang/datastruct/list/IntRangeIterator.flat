@@ -12,7 +12,7 @@ class IntRangeIterator implements Iterator<Int> {
                 return position++
             }
 
-            throw new NoSuchElementException()
+            throw NoSuchElementException()
         }
 
         no set

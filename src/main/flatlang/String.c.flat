@@ -44,7 +44,7 @@ class String {
 
     public construct(native Char[] chars, Int count) {
         this.count = count
-        this.chars = new StringCharArray(chars, count)
+        this.chars = StringCharArray(chars, count)
     }
 
     public native toWide() -> wchar_t[] {
@@ -91,11 +91,11 @@ class String {
 
         newData[sz - 1] = '\0'
 
-        return new String(newData, sz - 1)
+        return String(newData, sz - 1)
     }
 
     public split(Pattern regex) -> String[] {
-    	String[] strs = new Array()
+    	String[] strs = Array()
 
     	Int start = 0
 

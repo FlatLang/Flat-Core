@@ -20,13 +20,13 @@ class String {
 
     public construct(native Char[] chars, Int count) {
         this.count = count
-        this.chars = new StringCharArray(chars, count)
+        this.chars = StringCharArray(chars, count)
     }
 
     public construct(native Char[] chars) {
         count = calculateSize(chars)
 
-        this.chars = new StringCharArray(chars, count)
+        this.chars = StringCharArray(chars, count)
     }
 
     public transform(transform(Char, Int) -> Char) -> String {
@@ -42,7 +42,7 @@ class String {
             }
         }
 
-        return new String(newData)
+        return String(newData)
     }
 
     public compareTo(String other) -> Int {
@@ -58,7 +58,7 @@ class String {
             #{buf} = #{this.chars.data} + #{str.chars.data};
         }
 
-        return new String(buf)
+        return String(buf)
     }
 
     calculateSize(native Char[] chars) -> Int {

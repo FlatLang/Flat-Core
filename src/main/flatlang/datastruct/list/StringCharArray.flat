@@ -74,7 +74,7 @@ class StringCharArray {
 
     // [Override]
     public reverse() -> StringCharArray {
-        let array = new StringCharArray(count)
+        let array = StringCharArray(count)
 
         for (i in 0..count) {
             array[count - i - 1] = this[i]
@@ -84,7 +84,7 @@ class StringCharArray {
     }
 
     public toCharArray() -> Char[] {
-        let array = new Char[count]
+        let array = Array<Char>(count)
 
         for (i in 0..count) {
             let c = data[i]
@@ -95,5 +95,5 @@ class StringCharArray {
         return array
     }
 
-    public toString() => new String(this)
+    public toString() => String(this)
 }

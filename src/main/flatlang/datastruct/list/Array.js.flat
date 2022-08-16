@@ -8,14 +8,14 @@ class {
       #{count} = #{value}.length;
     }
 
-    return new Array(count).map((x, i) => {
+    return Array(count).map((x, i) => {
       var native Char[] chars
 
       external {
         #{chars} = #{value}[#{i}];
       }
 
-      return new String(chars)
+      return String(chars)
     })
   }
 }

@@ -29,7 +29,7 @@ class Long extends Number implements Integer {
     }
 
     [Target js]
-    public static toString(Long value) => new String(toCharArray(value))
+    public static toString(Long value) => String(toCharArray(value))
 
     [Native]
     [Target js]
@@ -65,7 +65,7 @@ class Long extends Number implements Integer {
             value = value / 10
         }
 
-        return new String(data)
+        return String(data)
     }
 
     public compareTo(Number other) => other.compareToInteger(value)
