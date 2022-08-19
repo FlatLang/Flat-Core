@@ -3,52 +3,52 @@ package "flatlang/meta"
 import "flatlang/operators/EqualsOperator"
 
 class Class<Type> implements EqualsOperator<Class> {
-    visible Bool isInterface
+  visible Bool isInterface
 
-    visible String location
-    visible String package => location.substring(0, location.lastIndexOf("/", defaultReturnValue: 0))
-    visible String name => location.substring(location.lastIndexOf("/") + 1)
+  visible String location
+  visible String package => location.substring(0, location.lastIndexOf("/", defaultReturnValue: 0))
+  visible String name => location.substring(location.lastIndexOf("/") + 1)
 
-    visible static Class[] ALL = Array()
+  visible static Class[] ALL = Array()
 
-    public construct(
-        let visible String location,
-        let visible Bool isInterface,
-        let visible Class extension,
-        let visible Class[] interfaces
-    ) {}
+  public construct(
+    let visible String location,
+    let visible Bool isInterface,
+    let visible Class extension,
+    let visible Class[] interfaces
+  ) {}
 
-    public pure isOfType(Class other) =>
-        other.isInterface ?
-            isOfTypeInterface(other) || extension && extension.isOfType(other) :
-            isOfTypeClass(other) || interfaces.any({ _.isOfTypeClass(other) })
+  public pure isOfType(Class other) =>
+    other.isInterface ?
+      isOfTypeInterface(other) || extension && extension.isOfType(other) :
+      isOfTypeClass(other) || interfaces.any({ _.isOfTypeClass(other) })
 
-    public pure isOfTypeClass(Class other) => false {
-        var current = this
+  public pure isOfTypeClass(Class other) => false {
+    var current = this
 
-        while (current) {
-            if (current == other) {
-                return true
-            }
+    while (current) {
+      if (current == other) {
+        return true
+      }
 
-            current = current.extension
-        }
+      current = current.extension
     }
+  }
 
-    public pure isOfTypeInterface(Class other) => false {
-        var current = this
+  public pure isOfTypeInterface(Class other) => false {
+    var current = this
 
-        while (current) {
-            if (current.interfaces.any(i => i == other || i.isOfTypeInterface(other))) {
-                return true
-            }
+    while (current) {
+      if (current.interfaces.any(i => i == other || i.isOfTypeInterface(other))) {
+        return true
+      }
 
-            current = current.extension
-        }
+      current = current.extension
     }
+  }
 
-    public getClassesOfType(Class baseType) => ALL.filter({ _.isOfType(baseType) })
+  public getClassesOfType(Class baseType) => ALL.filter({ _.isOfType(baseType) })
 
-    public equals(Class another) => this.location.chars.data == another.location.chars.data
-    public toString() => "Class \"#location\""
+  public equals(Class another) => this.location.chars.data == another.location.chars.data
+  public toString() => "Class \"#location\""
 }

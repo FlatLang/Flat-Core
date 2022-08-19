@@ -2,32 +2,32 @@ package "flatlang/datastruct/list"
 
 [AutoFinal]
 class ArrayIterator<E> implements Iterator<E> {
-    visible var Int position
+  visible var Int position
 
-    visible Bool hasNext => array.count > position
-    visible Bool hasPrevious => position > 0
+  visible Bool hasNext => array.count > position
+  visible Bool hasPrevious => position > 0
 
-    visible E stepNext {
-        get {
-            if (hasNext) {
-                return array.get(position++)
-            }
+  visible E stepNext {
+    get {
+      if (hasNext) {
+        return array.get(position++)
+      }
 
-            throw NoSuchElementException()
-        }
-
-        no set
+      throw NoSuchElementException()
     }
 
-    visible E current => position > 0 ? array.get(position - 1) : null
-    visible E previous => position > 1 ? array.get(position - 2) : null
-    visible E next => hasNext ? array.get(position) : null
+    no set
+  }
 
-    public construct(private E[] array) {
-        reset()
-    }
+  visible E current => position > 0 ? array.get(position - 1) : null
+  visible E previous => position > 1 ? array.get(position - 2) : null
+  visible E next => hasNext ? array.get(position) : null
 
-    public reset() => this {
-        position = 0
-    }
+  public construct(private E[] array) {
+    reset()
+  }
+
+  public reset() => this {
+    position = 0
+  }
 }

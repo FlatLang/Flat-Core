@@ -1,9 +1,9 @@
 package "flatlang/primitive"
 
 class Null extends String {
-    public construct() {}
+  public construct() {}
 
-    public concat(String other) => "null#other"
-    public toString() => "null"
-    public Long hashCodeLong => 0
+  public concat(String other) => "null#other"
+  public toString() => "null"
+  public Long hashCodeLong => 0
 }

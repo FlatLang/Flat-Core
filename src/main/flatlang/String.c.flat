@@ -12,105 +12,105 @@ import "flatlang/regex/Pattern"
 
 [AutoFinal]
 class String {
-    external type CharSequence
+  external type CharSequence
 
-    external type wchar_t
+  external type wchar_t
 
-    external void strcpy(char dst[], char src[])
-    external void strncpy(char dst[], char src[], int count)
-    external void strcat(char dst[], char src[])
-    external void strncat(char dst[], char src[], int count)
-    external int strlen(char chars[])
-    external void memcpy(char dst[], char* src[], int count)
+  external void strcpy(char dst[], char src[])
+  external void strncpy(char dst[], char src[], int count)
+  external void strcat(char dst[], char src[])
+  external void strncat(char dst[], char src[], int count)
+  external int strlen(char chars[])
+  external void memcpy(char dst[], char* src[], int count)
 
-    public construct(Char c) {
-        native Char[] chars = new Char[2]
+  public construct(Char c) {
+    native Char[] chars = new Char[2]
 
-        chars[0] = c
-        chars[1] = '\0'
+    chars[0] = c
+    chars[1] = '\0'
 
-        this(chars)
+    this(chars)
+  }
+
+  public construct(native Char[] chars) {
+    count = calculateSize(chars)
+
+    if (chars[count] != '\0') {
+      chars[count] = '\0'
     }
 
-    public construct(native Char[] chars) {
-        count = calculateSize(chars)
+    this(chars, count)
+  }
 
-        if (chars[count] != '\0') {
-            chars[count] = '\0'
-        }
+  public construct(native Char[] chars, Int count) {
+    this.count = count
+    this.chars = StringCharArray(chars, count)
+  }
 
-        this(chars, count)
+  public native toWide() -> wchar_t[] {
+    external {
+      size_t size = #{count} + 1;
+      wchar_t* wa = (wchar_t*)NOVA_MALLOC(sizeof(wchar_t) * size);
+      mbstowcs(wa, #{chars.data}, size);
+
+      return wa;
+    }
+  }
+
+  public concat(String str) -> String {
+    if (str.count == 0) return this
+
+    Int sz = str.count + count + 1
+
+    var data1 = chars.data
+    var data2 = str.chars.data
+
+    if (this.class.isOfType(Substring)) {
+      external c {
+        char* c = malloc(#{count});
+
+        memcpy(c, #{data1}, #{count});
+
+        #{data1} = c;
+      }
+    }
+    if (str.class.isOfType(Substring)) {
+      external c {
+        char* c = malloc(#{str.count});
+
+        memcpy(c, #{data2}, #{str.count});
+
+        #{data2} = c;
+      }
     }
 
-    public construct(native Char[] chars, Int count) {
-        this.count = count
-        this.chars = StringCharArray(chars, count)
-    }
+    native Char[] newData = new Char[sz]
 
-    public native toWide() -> wchar_t[] {
-        external {
-            size_t size = #{count} + 1;
-            wchar_t* wa = (wchar_t*)NOVA_MALLOC(sizeof(wchar_t) * size);
-            mbstowcs(wa, #{chars.data}, size);
+    strncpy(newData, data1, count)
+    strncat(newData, data2, str.count)
 
-            return wa;
-        }
-    }
+    newData[sz - 1] = '\0'
 
-    public concat(String str) -> String {
-        if (str.count == 0) return this
+    return String(newData, sz - 1)
+  }
 
-        Int sz = str.count + count + 1
+  public split(Pattern regex) -> String[] {
+  	String[] strs = Array()
 
-        var data1 = chars.data
-        var data2 = str.chars.data
+  	Int start = 0
 
-        if (this.class.isOfType(Substring)) {
-            external c {
-                char* c = malloc(#{count});
+  	Regex.getMatches(regex.pattern, this).forEach(match => {
+  		strs.add(substring(start, match.start))
 
-                memcpy(c, #{data1}, #{count});
+  		start = match.end
+  	})
 
-                #{data1} = c;
-            }
-        }
-        if (str.class.isOfType(Substring)) {
-            external c {
-                char* c = malloc(#{str.count});
+  	strs.add(substring(start))
 
-                memcpy(c, #{data2}, #{str.count});
+  	return strs
+  }
 
-                #{data2} = c;
-            }
-        }
-
-        native Char[] newData = new Char[sz]
-
-        strncpy(newData, data1, count)
-        strncat(newData, data2, str.count)
-
-        newData[sz - 1] = '\0'
-
-        return String(newData, sz - 1)
-    }
-
-    public split(Pattern regex) -> String[] {
-    	String[] strs = Array()
-
-    	Int start = 0
-
-    	Regex.getMatches(regex.pattern, this).forEach(match => {
-    		strs.add(substring(start, match.start))
-
-    		start = match.end
-    	})
-
-    	strs.add(substring(start))
-
-    	return strs
-    }
-
-    calculateSize(native Char[] chars) -> Int {
-        return strlen(chars)
-    }
+  calculateSize(native Char[] chars) -> Int {
+    return strlen(chars)
+  }
 }

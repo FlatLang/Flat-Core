@@ -8,62 +8,62 @@ import "flatlang/operators/MultiplyOperator"
 
 [AutoFinal]
 class String {
-    public construct(Char c) {
-        native Char[] chars
+  public construct(Char c) {
+    native Char[] chars
 
-        external {
-            chars = [#{c}];
-        }
-
-        this(chars)
+    external {
+      chars = [#{c}];
     }
 
-    public construct(native Char[] chars, Int count) {
-        this.count = count
-        this.chars = StringCharArray(chars, count)
+    this(chars)
+  }
+
+  public construct(native Char[] chars, Int count) {
+    this.count = count
+    this.chars = StringCharArray(chars, count)
+  }
+
+  public construct(native Char[] chars) {
+    count = calculateSize(chars)
+
+    this.chars = StringCharArray(chars, count)
+  }
+
+  public transform(transform(Char, Int) -> Char) -> String {
+    native Char[] newData
+
+    external {
+      #{newData} = "";
     }
 
-    public construct(native Char[] chars) {
-        count = calculateSize(chars)
-
-        this.chars = StringCharArray(chars, count)
+    for (i in 0..count) {
+      external {
+        #{newData} += #{transform(chars[i], i)};
+      }
     }
 
-    public transform(transform(Char, Int) -> Char) -> String {
-        native Char[] newData
+    return String(newData)
+  }
 
-        external {
-            #{newData} = "";
-        }
+  public compareTo(String other) -> Int {
+    external {
+      return #{chars.data}.localeCompare(#{other.chars.data});
+    }
+  }
 
-        for (i in 0..count) {
-            external {
-                #{newData} += #{transform(chars[i], i)};
-            }
-        }
+  public concat(String str) -> String {
+    native Char[] buf
 
-        return String(newData)
+    external {
+      #{buf} = #{this.chars.data} + #{str.chars.data};
     }
 
-    public compareTo(String other) -> Int {
-        external {
-            return #{chars.data}.localeCompare(#{other.chars.data});
-        }
+    return String(buf)
+  }
+
+  calculateSize(native Char[] chars) -> Int {
+    external js {
+      return #{chars}.length;
     }
-
-    public concat(String str) -> String {
-        native Char[] buf
-
-        external {
-            #{buf} = #{this.chars.data} + #{str.chars.data};
-        }
-
-        return String(buf)
-    }
-
-    calculateSize(native Char[] chars) -> Int {
-        external js {
-            return #{chars}.length;
-        }
-    }
+  }
 }

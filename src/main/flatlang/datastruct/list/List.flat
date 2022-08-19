@@ -4,393 +4,393 @@ import "flatlang/operators/EqualsOperator"
 
 [AutoFinal]
 trait List<Type> implements Iterable<Type> {
-    visible var Int count
+  visible var Int count
 
-    visible Iterator<Type> iterator
+  visible Iterator<Type> iterator
 
-    visible Type first
-    visible Type last
+  visible Type first
+  visible Type last
 
-    visible Bool isEmpty => count == 0
-    visible Bool isNotEmpty => !isEmpty
+  visible Bool isEmpty => count == 0
+  visible Bool isNotEmpty => !isEmpty
 
-    public toArray() -> Type[] {
-        let array = Type[]
+  public toArray() -> Type[] {
+    let array = Type[]
 
-        for (value in this) {
-            array.add(value)
-        }
-
-        return array
+    for (value in this) {
+      array.add(value)
     }
 
-    // public contains(Type value) => any({ _.equals(value) })
+    return array
+  }
 
-    // [RequireGenericType Type implements EqualsOperator]
-    // public contains(EqualsOperator value) => any({ (EqualsOperator)_ == value })
+  // public contains(Type value) => any({ _.equals(value) })
 
-    /// Check whether or not the List contains the given value.
-    ///
-    /// value: The value to search for.
-    /// return: Whether the List contains it.
-//    public contains(Type value) => any(x => {
-//        value.class.isOfType(EqualsOperator) && x.class.isOfType(EqualsOperator) ?
-//            ((EqualsOperator)x).equals((EqualsOperator)value) :
-//            x == value
-//    })
+  // [RequireGenericType Type implements EqualsOperator]
+  // public contains(EqualsOperator value) => any({ (EqualsOperator)_ == value })
 
-    public contains(Type value) => any(x => { x == null && value == null || x != null && x.equals(value) })
+  /// Check whether or not the List contains the given value.
+  ///
+  /// value: The value to search for.
+  /// return: Whether the List contains it.
+//  public contains(Type value) => any(x => {
+//    value.class.isOfType(EqualsOperator) && x.class.isOfType(EqualsOperator) ?
+//      ((EqualsOperator)x).equals((EqualsOperator)value) :
+//      x == value
+//  })
 
-    /// Check to see if this List contains any of the values that are
-    ///
-    /// contained within the given values List.
-    /// values: The list to search the values from.
-    /// return: Whether the List contains any of the values in the List.
-    public containsAny(List<Type> values) => any({ values.contains(_) })
+  public contains(Type value) => any(x => { x == null && value == null || x != null && x.equals(value) })
 
-    // [RequireGenericType Type implements EqualsOperator]
-    // public contains(EqualsOperator value) => any({ ((EqualsOperator)_) == value })
+  /// Check to see if this List contains any of the values that are
+  ///
+  /// contained within the given values List.
+  /// values: The list to search the values from.
+  /// return: Whether the List contains any of the values in the List.
+  public containsAny(List<Type> values) => any({ values.contains(_) })
 
-    /// Call the given func function for each of the elements in this List.
-    ///
-    /// func: The function to call for each of the elements in the List.
-    /// return: Returns itself. Chainable function.
-    public forEach(func(Type, Int, List<Type>)) => this {
-        var Int i = 0
+  // [RequireGenericType Type implements EqualsOperator]
+  // public contains(EqualsOperator value) => any({ ((EqualsOperator)_) == value })
 
-        for (value in this) {
-            func(value, i++, this)
-        }
+  /// Call the given func function for each of the elements in this List.
+  ///
+  /// func: The function to call for each of the elements in the List.
+  /// return: Returns itself. Chainable function.
+  public forEach(func(Type, Int, List<Type>)) => this {
+    var Int i = 0
+
+    for (value in this) {
+      func(value, i++, this)
+    }
+  }
+
+  /// Create a new List from the values that are returned from the
+  /// supplied mapFunc function.
+  ///
+  /// mapFunc: The function to use to generate the values that will
+  ///   be contained within the outputted List.
+  /// return: The List of values generated from the mapFunc function calls.
+  public map<Out>(mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
+    let array = Array<Out>(count)
+
+    var Int i = 0
+
+    for (element in this) {
+      array.add(mapFunc(element, i++, this))
     }
 
-    /// Create a new List from the values that are returned from the
-    /// supplied mapFunc function.
-    ///
-    /// mapFunc: The function to use to generate the values that will
-    ///     be contained within the outputted List.
-    /// return: The List of values generated from the mapFunc function calls.
-    public map<Out>(mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
-        let array = Array<Out>(count)
+    return array
+  }
 
-        var Int i = 0
+  /// Check whether the anyFunc returns true for any of the values
+  /// within this List.
+  ///
+  /// anyFunc: The function that the values are passed to to determine
+  ///   whether the function is successful.
+  /// return: Whether or not any of the calls to anyFunc returned true.
+  public any(anyFunc(Type, Int, List<Type>) -> Bool) => false {
+    var Int i = 0
 
-        for (element in this) {
-            array.add(mapFunc(element, i++, this))
+    for (element in this) {
+      if (anyFunc(element, i++, this)) {
+        return true
+      }
+    }
+  }
+
+  public all(allFunc(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
+    var Int i = 0
+    var contradiction = false
+
+    for (element in this) {
+      if (!allFunc(element, i++, this)) {
+        if (stopOnContradiction) {
+          return false
         }
 
-        return array
+        contradiction = true
+      }
     }
 
-    /// Check whether the anyFunc returns true for any of the values
-    /// within this List.
-    ///
-    /// anyFunc: The function that the values are passed to to determine
-    ///     whether the function is successful.
-    /// return: Whether or not any of the calls to anyFunc returned true.
-    public any(anyFunc(Type, Int, List<Type>) -> Bool) => false {
-        var Int i = 0
+    return !contradiction
+  }
 
-        for (element in this) {
-            if (anyFunc(element, i++, this)) {
-                return true
-            }
+  public none(func(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
+    var Int i = 0
+    var contradiction = false
+
+    for (element in this) {
+      if (func(element, i++, this)) {
+        if (stopOnContradiction) {
+          return false
         }
+
+        contradiction = true
+      }
     }
 
-    public all(allFunc(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
-        var Int i = 0
-        var contradiction = false
+    return !contradiction
+  }
 
-        for (element in this) {
-            if (!allFunc(element, i++, this)) {
-                if (stopOnContradiction) {
-                    return false
-                }
+  public filter(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
+    let list = Type[]
 
-                contradiction = true
-            }
-        }
+    var Int i = 0
 
-        return !contradiction
+    for (value in this) {
+      if (filterFunc(value, i++, this)) {
+        list.add(value)
+      }
     }
 
-    public none(func(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
-        var Int i = 0
-        var contradiction = false
+    return list
+  }
 
-        for (element in this) {
-            if (func(element, i++, this)) {
-                if (stopOnContradiction) {
-                    return false
-                }
+  public filterNot(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
+    let list = Type[]
 
-                contradiction = true
-            }
-        }
+    var Int i = 0
 
-        return !contradiction
+    for (value in this) {
+      if (!filterFunc(value, i++, this)) {
+        list.add(value)
+      }
     }
 
-    public filter(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
-        let list = Type[]
+    return list
+  }
 
-        var Int i = 0
+  public filterNull() => filter({ _ != null })
 
-        for (value in this) {
-            if (filterFunc(value, i++, this)) {
-                list.add(value)
-            }
-        }
+  [RequireGenericType Type extends String]
+  public pure filterEmpty() -> List<String> {
+    let list = String[]
 
+    var Int i = 0
+
+    for (value in this) {
+      if (value && ((String)value).count > 0) {
+        list.add(value)
+      }
+    }
+
+    return list
+  }
+
+  public pure filterAtIndex(Int index, Int count = 1) => filter({ _2 < index && _2 >= index + count })
+
+  public pure take(Int howMany) -> List<Type> {
+    let list = Type[]
+
+    var Int i = 0
+
+    for (value in this) {
+      if (i++ >= howMany) {
         return list
+      }
+
+      list.add(value)
     }
 
-    public filterNot(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
-        let list = Type[]
+    return list
+  }
 
-        var Int i = 0
+  public pure takeLast(Int howMany) -> List<Type> {
+    let list = Type[]
+    let startIndex = Math.max(0, count - howMany)
 
-        for (value in this) {
-            if (!filterFunc(value, i++, this)) {
-                list.add(value)
-            }
-        }
-
-        return list
+    if (startIndex == count) {
+      return list
     }
 
-    public filterNull() => filter({ _ != null })
+    var Int i = 0
 
-    [RequireGenericType Type extends String]
-    public pure filterEmpty() -> List<String> {
-        let list = String[]
-
-        var Int i = 0
-
-        for (value in this) {
-            if (value && ((String)value).count > 0) {
-                list.add(value)
-            }
-        }
-
-        return list
+    for (value in this) {
+      if (i++ >= startIndex) {
+        list.add(value)
+      }
     }
 
-    public pure filterAtIndex(Int index, Int count = 1) => filter({ _2 < index && _2 >= index + count })
+    return list
+  }
 
-    public pure take(Int howMany) -> List<Type> {
-        let list = Type[]
+  public pure skipLast(Int howMany) => take(count - howMany)
 
-        var Int i = 0
+  public pure skip(Int howMany) -> List<Type> {
+    Type[] list = Type[]
 
-        for (value in this) {
-            if (i++ >= howMany) {
-                return list
-            }
+    var Int i = 0
 
-            list.add(value)
-        }
-
-        return list
+    for (value in this) {
+      if (i++ >= howMany) {
+        list.add(value)
+      }
     }
 
-    public pure takeLast(Int howMany) -> List<Type> {
-        let list = Type[]
-        let startIndex = Math.max(0, count - howMany)
+    return list
+  }
 
-        if (startIndex == count) {
-            return list
-        }
+  public firstOr(Type default, func(Type, Int, List<Type>) -> Bool = {true}) -> Type => default {
+    var Int i = 0
 
-        var Int i = 0
-
-        for (value in this) {
-            if (i++ >= startIndex) {
-                list.add(value)
-            }
-        }
-
-        return list
+    for (element in this) {
+      if (func(element, i++, this)) {
+        return element
+      }
     }
+  }
 
-    public pure skipLast(Int howMany) => take(count - howMany)
+  public firstOrNull(func(Type, Int, List<Type>) -> Bool = {true}) -> Type => firstOr(null, func)
 
-    public pure skip(Int howMany) -> List<Type> {
-        Type[] list = Type[]
+  public firstWhereOrThrow<OUT>(Exception e, func(Type, Int, List<Type>) -> OUT = {null}) -> OUT {
+    var Int i = 0
 
-        var Int i = 0
-
-        for (value in this) {
-            if (i++ >= howMany) {
-                list.add(value)
-            }
-        }
-
-        return list
-    }
-
-    public firstOr(Type default, func(Type, Int, List<Type>) -> Bool = {true}) -> Type => default {
-        var Int i = 0
-
-        for (element in this) {
-            if (func(element, i++, this)) {
-                return element
-            }
-        }
-    }
-
-    public firstOrNull(func(Type, Int, List<Type>) -> Bool = {true}) -> Type => firstOr(null, func)
-
-    public firstWhereOrThrow<OUT>(Exception e, func(Type, Int, List<Type>) -> OUT = {null}) -> OUT {
-        var Int i = 0
-
-        for (element in this) {
-            if (let value = func(element, i++, this)) {
-                return value
-            }
-        }
-
-        throw e
-    }
-
-    public firstOrThrow(Exception e, func(Type, Int, List<Type>) -> Bool = {true}) -> Type {
-        var Int i = 0
-
-        for (element in this) {
-            if (func(element, i++, this)) {
-                return element
-            }
-        }
-
-        throw e
-    }
-
-    public firstWhere(func(Type, Int, List<Type>) -> Bool) -> Type => null {
-        var Int i = 0
-
-        for (element in this) {
-            if (func(element, i++, this)) {
-                return element
-            }
-        }
-    }
-
-    public firstNonNull<Out>(func(Type, Int, List<Type>) -> Out) -> Out => null {
-        var Int i = 0
-
-        for (element in this) {
-            Out value = func(element, i++, this)
-
-            if (value) {
-                return value
-            }
-        }
-    }
-
-    public zip<OtherType, Out>(List<OtherType> other, zipper(Type, OtherType) -> Out) -> List<Out> {
-        let i1 = iterator
-        let i2 = other.iterator
-
-        let array = Out[]
-
-        while (i1.hasNext && i2.hasNext) {
-            array.add(zipper(i1.stepNext, i2.stepNext))
-        }
-
-        return array
-    }
-
-    public sum(func(Type, Int, List<Type>) -> Long) -> Long {
-        var Long sum = 0
-        var Int i = 0
-
-        for (element in this) {
-            sum += func(element, i++, this)
-        }
-
-        return sum
-    }
-
-    public sum(func(Type, Int, List<Type>) -> Double) -> Double {
-        var Double sum = 0
-        var Int i = 0
-
-        for (element in this) {
-            sum += func(element, i++, this)
-        }
-
-        return sum
-    }
-
-    public min(func(Type, Int, List<Type>) -> Long) -> Long {
-        var Long min = Long.MAX_VALUE
-        var Int i = 0
-
-        for (element in this) {
-            min = Math.min(min, func(element, i++, this))
-        }
-
-        return min
-    }
-
-    public max(func(Type, Int, List<Type>) -> Long) -> Long {
-        var Long max = Long.MAX_VALUE
-        var Int i = 0
-
-        for (element in this) {
-            max = Math.max(max, func(element, i++, this))
-        }
-
-        return max
-    }
-
-    //get(Int index) -> Type
-    //set(Int index, Type value) -> List<Type>
-    //add(Type value) -> List<Type>
-    //remove(Type value) -> List<Type>
-    //clone() -> List<Type>
-    public reverse() -> List<Type>
-
-    public reduce<Out>(func(Out, Type, Int, List) -> Out, Out initialValue) -> Out {
-        var Out value = initialValue
-        var Int i = 0
-
-        for (element in this) {
-            value = func(value, element, i++, this)
-        }
-
+    for (element in this) {
+      if (let value = func(element, i++, this)) {
         return value
+      }
     }
 
-    public join(String delimiter = "") =>
-        reduce((str, e, i) => str + (i > 0 ? delimiter : "") + e, "")
-        //reduce({ _value + (_index > 0 ? delimiter : "") + _element })
+    throw e
+  }
 
-    public stitch(String delimiter = "") =>
-        reduce((str, e) => str + delimiter + e, "")
+  public firstOrThrow(Exception e, func(Type, Int, List<Type>) -> Bool = {true}) -> Type {
+    var Int i = 0
 
-    public toEnglish(String conjunction, Bool oxford = true) =>
-        count > 1 ?
-            take(count - 1).join(", ") + (oxford && count > 2 ? ", " : " ") + "#conjunction " + skip(count - 1).first :
-            "#first"
-
-    public toString() => this.class.location + " {" + join(", ") + "}"
-
-    public equals(Object another) => true {
-        if (!another) return false
-        if (!another.class.isOfType(List.class)) return false
-
-        let otherList = (List)another
-
-        if (otherList.count != count) return false
-
-        let iteratorValue = iterator
-        let otherIteratorValue = otherList.iterator
-
-        while (iteratorValue.hasNext) {
-            if (!iteratorValue.stepNext.equals(otherIteratorValue.stepNext)) {
-                return false
-            }
-        }
+    for (element in this) {
+      if (func(element, i++, this)) {
+        return element
+      }
     }
+
+    throw e
+  }
+
+  public firstWhere(func(Type, Int, List<Type>) -> Bool) -> Type => null {
+    var Int i = 0
+
+    for (element in this) {
+      if (func(element, i++, this)) {
+        return element
+      }
+    }
+  }
+
+  public firstNonNull<Out>(func(Type, Int, List<Type>) -> Out) -> Out => null {
+    var Int i = 0
+
+    for (element in this) {
+      Out value = func(element, i++, this)
+
+      if (value) {
+        return value
+      }
+    }
+  }
+
+  public zip<OtherType, Out>(List<OtherType> other, zipper(Type, OtherType) -> Out) -> List<Out> {
+    let i1 = iterator
+    let i2 = other.iterator
+
+    let array = Out[]
+
+    while (i1.hasNext && i2.hasNext) {
+      array.add(zipper(i1.stepNext, i2.stepNext))
+    }
+
+    return array
+  }
+
+  public sum(func(Type, Int, List<Type>) -> Long) -> Long {
+    var Long sum = 0
+    var Int i = 0
+
+    for (element in this) {
+      sum += func(element, i++, this)
+    }
+
+    return sum
+  }
+
+  public sum(func(Type, Int, List<Type>) -> Double) -> Double {
+    var Double sum = 0
+    var Int i = 0
+
+    for (element in this) {
+      sum += func(element, i++, this)
+    }
+
+    return sum
+  }
+
+  public min(func(Type, Int, List<Type>) -> Long) -> Long {
+    var Long min = Long.MAX_VALUE
+    var Int i = 0
+
+    for (element in this) {
+      min = Math.min(min, func(element, i++, this))
+    }
+
+    return min
+  }
+
+  public max(func(Type, Int, List<Type>) -> Long) -> Long {
+    var Long max = Long.MAX_VALUE
+    var Int i = 0
+
+    for (element in this) {
+      max = Math.max(max, func(element, i++, this))
+    }
+
+    return max
+  }
+
+  //get(Int index) -> Type
+  //set(Int index, Type value) -> List<Type>
+  //add(Type value) -> List<Type>
+  //remove(Type value) -> List<Type>
+  //clone() -> List<Type>
+  public reverse() -> List<Type>
+
+  public reduce<Out>(func(Out, Type, Int, List) -> Out, Out initialValue) -> Out {
+    var Out value = initialValue
+    var Int i = 0
+
+    for (element in this) {
+      value = func(value, element, i++, this)
+    }
+
+    return value
+  }
+
+  public join(String delimiter = "") =>
+    reduce((str, e, i) => str + (i > 0 ? delimiter : "") + e, "")
+    //reduce({ _value + (_index > 0 ? delimiter : "") + _element })
+
+  public stitch(String delimiter = "") =>
+    reduce((str, e) => str + delimiter + e, "")
+
+  public toEnglish(String conjunction, Bool oxford = true) =>
+    count > 1 ?
+      take(count - 1).join(", ") + (oxford && count > 2 ? ", " : " ") + "#conjunction " + skip(count - 1).first :
+      "#first"
+
+  public toString() => this.class.location + " {" + join(", ") + "}"
+
+  public equals(Object another) => true {
+    if (!another) return false
+    if (!another.class.isOfType(List.class)) return false
+
+    let otherList = (List)another
+
+    if (otherList.count != count) return false
+
+    let iteratorValue = iterator
+    let otherIteratorValue = otherList.iterator
+
+    while (iteratorValue.hasNext) {
+      if (!iteratorValue.stepNext.equals(otherIteratorValue.stepNext)) {
+        return false
+      }
+    }
+  }
 }

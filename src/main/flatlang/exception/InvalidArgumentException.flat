@@ -1,5 +1,5 @@
 package "flatlang/exception"
 
 class InvalidArgumentException extends Exception {
-    public construct(String message) => super(message)
+  public construct(String message) => super(message)
 }

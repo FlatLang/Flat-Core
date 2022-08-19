@@ -1,5 +1,5 @@
 package "flatlang/operators"
 
 public trait NotEqualToOperator<E> {
-    public notEqualTo(E another) -> Bool
+  public notEqualTo(E another) -> Bool
 }
