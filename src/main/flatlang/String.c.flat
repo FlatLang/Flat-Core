@@ -1,14 +1,14 @@
-package "flatlang"
+package flatlang
 
-import "flatlang/datastruct/Comparable"
-import "flatlang/datastruct/HashSet"
-import "flatlang/datastruct/list/StringCharArray"
-import "flatlang/operators/PlusOperator"
-import "flatlang/operators/EqualsOperator"
-import "flatlang/operators/MultiplyOperator"
-import "flatlang/regex/Regex"
-import "flatlang/regex/Match"
-import "flatlang/regex/Pattern"
+import flatlang/datastruct/Comparable
+import flatlang/datastruct/HashSet
+import flatlang/datastruct/list/StringCharArray
+import flatlang/operators/PlusOperator
+import flatlang/operators/EqualsOperator
+import flatlang/operators/MultiplyOperator
+import flatlang/regex/Regex
+import flatlang/regex/Match
+import flatlang/regex/Pattern
 
 [AutoFinal]
 class String {

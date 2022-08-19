@@ -1,10 +1,10 @@
-package "flatlang"
+package flatlang
 
-import "flatlang/datastruct/Comparable"
-import "flatlang/datastruct/list/StringCharArray"
-import "flatlang/operators/PlusOperator"
-import "flatlang/operators/EqualsOperator"
-import "flatlang/operators/MultiplyOperator"
+import flatlang/datastruct/Comparable
+import flatlang/datastruct/list/StringCharArray
+import flatlang/operators/PlusOperator
+import flatlang/operators/EqualsOperator
+import flatlang/operators/MultiplyOperator
 
 [AutoFinal]
 class String {

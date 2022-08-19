@@ -1,4 +1,4 @@
-package "flatlang/datastruct/list"
+package flatlang/datastruct/list
 
 class IntRangeIterator implements Iterator<Int> {
   visible var Int position

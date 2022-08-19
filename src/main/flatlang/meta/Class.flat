@@ -1,6 +1,6 @@
-package "flatlang/meta"
+package flatlang/meta
 
-import "flatlang/operators/EqualsOperator"
+import flatlang/operators/EqualsOperator
 
 class Class<Type> implements EqualsOperator<Class> {
   visible Bool isInterface

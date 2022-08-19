@@ -1,4 +1,4 @@
-package "flatlang/operators"
+package flatlang/operators
 
 public trait MinusOperator<In, Out> {
   public minus(In another) -> Out

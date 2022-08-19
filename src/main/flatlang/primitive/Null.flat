@@ -1,4 +1,4 @@
-package "flatlang/primitive"
+package flatlang/primitive
 
 class Null extends String {
   public construct() {}

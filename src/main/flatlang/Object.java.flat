@@ -1,6 +1,6 @@
-package "flatlang"
+package flatlang
 
-import "flatlang/operators/EqualsOperator"
+import flatlang/operators/EqualsOperator
 
 class Object {
   public Long hashCodeLong => 0

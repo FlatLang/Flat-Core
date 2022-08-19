@@ -1,4 +1,4 @@
-package "flatlang/primitive/number"
+package flatlang/primitive/number
 
 trait RealNumber {
 

@@ -1,4 +1,4 @@
-package "flatlang/datastruct/list"
+package flatlang/datastruct/list
 
 public trait Iterator<E> {
   visible Bool hasNext => false

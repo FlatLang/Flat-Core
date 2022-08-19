@@ -1,9 +1,9 @@
-package "flatlang/primitive/number"
+package flatlang/primitive/number
 
-import "flatlang/datastruct/Comparable"
-import "flatlang/operators/EqualsOperator"
-import "flatlang/operators/MultiplyOperator"
-import "flatlang/operators/MultiplyEqualsOperator"
+import flatlang/datastruct/Comparable
+import flatlang/operators/EqualsOperator
+import flatlang/operators/MultiplyOperator
+import flatlang/operators/MultiplyEqualsOperator
 
 class Byte extends Number implements Integer {
   public Double realValue => (Double)value

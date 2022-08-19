@@ -1,4 +1,4 @@
-package "flatlang/exception"
+package flatlang/exception
 
 class NullAccessException extends Exception {
   public construct(String message = "Cannot access property from a null Object") => super(message)

@@ -1,4 +1,4 @@
-package "flatlang/datastruct/list"
+package flatlang/datastruct/list
 
 [AutoFinal]
 class ArrayIterator<E> implements Iterator<E> {

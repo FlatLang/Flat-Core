@@ -1,4 +1,4 @@
-package "flatlang/datastruct/list"
+package flatlang/datastruct/list
 
 class {
   public static jsStringArrayToFlatArray(Object value) -> String[] {

@@ -1,4 +1,4 @@
-package "flatlang"
+package flatlang
 
 class Object {
   public Long hashCodeLong => 0

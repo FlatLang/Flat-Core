@@ -1,6 +1,6 @@
-package "flatlang/primitive"
+package flatlang/primitive
 
-import "flatlang/datastruct/Comparable"
+import flatlang/datastruct/Comparable
 
 class Bool extends Primitive implements Comparable<Bool> {
   public construct(public Bool value) {}

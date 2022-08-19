@@ -1,6 +1,6 @@
-package "flatlang/datastruct/list"
+package flatlang/datastruct/list
 
-import "flatlang/operators/EqualsOperator"
+import flatlang/operators/EqualsOperator
 
 [AutoFinal]
 trait List<Type> implements Iterable<Type> {

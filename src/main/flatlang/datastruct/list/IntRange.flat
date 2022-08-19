@@ -1,4 +1,4 @@
-package "flatlang/datastruct/list"
+package flatlang/datastruct/list
 
 class IntRange implements List<Int> {
   visible Int size => end - start

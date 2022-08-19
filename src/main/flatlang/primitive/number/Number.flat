@@ -1,14 +1,14 @@
-package "flatlang/primitive/number"
+package flatlang/primitive/number
 
-import "flatlang/datastruct/Comparable"
-import "flatlang/primitive/Primitive"
-import "flatlang/operators/PlusOperator"
-import "flatlang/operators/PlusEqualsOperator"
-import "flatlang/operators/MinusOperator"
-import "flatlang/operators/MinusEqualsOperator"
-import "flatlang/operators/EqualsOperator"
-import "flatlang/operators/MultiplyOperator"
-import "flatlang/operators/MultiplyEqualsOperator"
+import flatlang/datastruct/Comparable
+import flatlang/primitive/Primitive
+import flatlang/operators/PlusOperator
+import flatlang/operators/PlusEqualsOperator
+import flatlang/operators/MinusOperator
+import flatlang/operators/MinusEqualsOperator
+import flatlang/operators/EqualsOperator
+import flatlang/operators/MultiplyOperator
+import flatlang/operators/MultiplyEqualsOperator
 
 abstract class Number extends Primitive implements PlusOperator<Number, Number>, PlusEqualsOperator<Number, Number>, MinusOperator<Number, Number>, MinusEqualsOperator<Number, Number>, MultiplyOperator<Number, Number>, MultiplyEqualsOperator<Number, Number>, Comparable<Number> {
   public Double realValue => 0

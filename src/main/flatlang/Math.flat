@@ -1,6 +1,6 @@
-package "flatlang"
+package flatlang
 
-import "math.h"
+import math.h
 
 [AutoFinal]
 class Math {

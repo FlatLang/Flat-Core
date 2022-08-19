@@ -1,7 +1,7 @@
-package "flatlang/exception"
+package flatlang/exception
 
-import "signal.h"
-import "NovaExceptionHandling.h"
+import signal.h
+import NovaExceptionHandling.h
 
 class ExceptionData {
   external type buffer

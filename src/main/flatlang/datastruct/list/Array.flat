@@ -1,9 +1,9 @@
-package "flatlang/datastruct/list"
+package flatlang/datastruct/list
 
-import "flatlang/primitive/number/Integer"
-import "flatlang/datastruct/Comparable"
-import "flatlang/operators/PlusOperator"
-import "flatlang/operators/PlusEqualsOperator"
+import flatlang/primitive/number/Integer
+import flatlang/datastruct/Comparable
+import flatlang/operators/PlusOperator
+import flatlang/operators/PlusEqualsOperator
 
 class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, PlusEqualsOperator<Array<E>, Array<E>> {
   pure external void arrayCopy(E dest[], int dIndex, E src[], int sIndex, int len, int destArrLen)

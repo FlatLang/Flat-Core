@@ -1,4 +1,4 @@
-package "flatlang/datastruct"
+package flatlang/datastruct
 
 public trait Comparable<E> {
   public compareTo(E other) -> Int
