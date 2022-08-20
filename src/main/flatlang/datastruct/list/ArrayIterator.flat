@@ -5,7 +5,7 @@ class ArrayIterator<E> implements Iterator<E> {
   visible var Int position
 
   visible Bool hasNext => array.count > position
-  visible Bool hasPrevious => position > 0
+  visible Bool hasPrevious => position > 1
 
   visible E stepNext {
     get {
