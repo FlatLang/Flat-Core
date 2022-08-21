@@ -224,5 +224,7 @@ class String implements Comparable<String>,
     return substring(start, i)
   }
 
+  public orElse(String value) => count == 0 ? value : this
+
   public toString() => this
 }
