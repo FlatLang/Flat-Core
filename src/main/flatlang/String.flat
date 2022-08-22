@@ -133,6 +133,18 @@ class String implements Comparable<String>,
   public trimStart(Int count) => substring(count)
   public trimEnd(Int count) => substring(end: this.count - count)
 
+  public trimStart(var Int: start = 0, Char[] charsToTrim = WHITESPACE) -> String {
+    while (start <= count - 1 && charsToTrim.contains(chars[start])) start++
+
+    return start > count - 1 ? "" : substring(start, count)
+  }
+
+  public trimEnd(var Int: end = 0, Char[] charsToTrim = WHITESPACE) -> String {
+    while (end >= 0 && charsToTrim.contains(chars[end])) end--
+
+    return end < 0 ? "" : substring(0, end + 1)
+  }
+
   /// Trim the front and back end of the string by the given number
   /// of characters.
   ///
