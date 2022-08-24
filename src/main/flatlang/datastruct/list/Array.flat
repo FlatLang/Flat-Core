@@ -121,6 +121,12 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     count = Math.max(position, count)
   }
 
+  public unshift(E element) => element {
+    add(0, element)
+  }
+
+  public shift() => remove(index: 0)
+
   public remove(Int index) -> E {
     E element = data[index]
 
