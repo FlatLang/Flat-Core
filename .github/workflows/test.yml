@@ -1,0 +1,67 @@
+name: Test Flat Core
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  LOGGING_DEFAULT_SHOW_PREFIX: true
+  LOGGING_DEFAULT_LOGGING_LEVEL: DEBUG
+  LOGGING_DEFAULT_SHOW_FORMATTING: true
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download latest Airship
+        uses: FlatLang/fetch-airship@master
+        with:
+          includePrerelease: true
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v4.4
+        with:
+          maven-version: 3.8.2
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.m2/repository
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Setup Airship
+        run: |
+          node airship.js setup
+
+      - name: Link Flat Core
+        run: |
+          node airship.js reinstall --link
+
+      - name: Build Flat Core Test
+        run: |
+          node airship.js install test -t es6
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: test.js
+          path: dist/test.js
+
+      - name: Run Flat Core Test
+        run: |
+          node airship.js run test

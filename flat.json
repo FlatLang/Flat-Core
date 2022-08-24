@@ -10,5 +10,11 @@
     "dependencies": {
       "github:FlatLang/Flat": "master"
     }
+  },
+  "test": {
+    "source": "src",
+    "dependencies": {
+      "github:FlatLang/Nest": "master"
+    }
   }
 }
