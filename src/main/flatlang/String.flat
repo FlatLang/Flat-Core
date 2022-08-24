@@ -145,6 +145,9 @@ class String implements Comparable<String>,
     return end < 0 ? "" : substring(0, end + 1)
   }
 
+  public trimEnd(Char charToTrim, var Int: end = count - 1) =>
+    trimEnd(end, charsToTrim: [charToTrim])
+
   /// Trim the front and back end of the string by the given number
   /// of characters.
   ///
