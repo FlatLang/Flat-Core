@@ -4,7 +4,9 @@
   "description": "Flat Core library",
   "author": "Braden Steffaniak",
   "license": "ISC",
-  "scripts": {},
+  "scripts": {
+    "test": "node dist/test.js"
+  },
   "main": {
     "source": "src/main",
     "dependencies": {
@@ -12,9 +14,11 @@
     }
   },
   "test": {
+    "mainClass": "flatlang/FlatCore_TestSuite",
     "source": "src",
     "dependencies": {
-      "github:FlatLang/Nest": "master"
+      "github:FlatLang/Nest": "master",
+      "github:FlatLang/IO": "master"
     }
   }
 }
