@@ -15,10 +15,11 @@
   },
   "test": {
     "mainClass": "flatlang/FlatCore_TestSuite",
-    "source": "src",
+    "source": "test",
     "dependencies": {
       "github:FlatLang/Nest": "master",
-      "github:FlatLang/IO": "master"
+      "github:FlatLang/IO": "master",
+      "github:FlatLang/System": "master"
     }
   }
 }
