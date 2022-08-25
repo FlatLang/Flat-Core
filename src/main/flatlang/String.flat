@@ -70,7 +70,7 @@ class String implements Comparable<String>,
   public contains(String search) => indexOf(search) >= 0
 
   public endsWith(Char search) => count > 0 && lastIndexOf(search) == count - 1
-  public endsWith(String search) => count > 0 && lastIndexOf(search) == count - search.count
+  public endsWith(String search) => count >= search.count && lastIndexOf(search) == count - search.count
 
   public indexOf(Char search, Int start = 0, Int direction = 1, Int defaultReturnValue = -1) =>
   	indexOf("#search", start, direction, defaultReturnValue)
