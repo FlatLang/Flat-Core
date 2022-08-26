@@ -5,8 +5,11 @@ import novex/nest/TestResult
 import flatlang/time/Timer
 import flatlang/io/FancyOutputStream
 
+import flatlang/datastruct/List_Test
+
 [TestSuite [
-  FlatCore_Test
+  FlatCore_Test,
+  List_Test
 ]]
 class {
   public static async main(String args[]) {
