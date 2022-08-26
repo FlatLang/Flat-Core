@@ -248,6 +248,18 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
+  override public flatMap<Out>(mapFunc(E, Int, Array<E>) -> Out[]) -> Out[] {
+    let array = Array<Out>()
+
+    var Int i = 0
+
+    for (element in this) {
+      array.addAll(mapFunc(element, i++, this))
+    }
+
+    return array
+  }
+
   override public forEach(func(E, Int, Array<E>)) => this {
     for (i in 0..count) {
       func(data[i], i, this)
