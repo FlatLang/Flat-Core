@@ -282,6 +282,18 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
   override public pure filterAtIndex(Int index, Int count = 1) => filter({ _2 >= index && _2 < index + count })
 
+  public unique() -> E[] {
+    let array = E[]
+
+    for (value in this) {
+      if (!array.contains(value)) {
+        array.add(value)
+      }
+    }
+
+    return array
+  }
+
   override public pure take(var Int howMany) -> E[] {
     howMany = howMany > count ? count : howMany
 

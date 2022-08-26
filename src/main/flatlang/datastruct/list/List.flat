@@ -173,6 +173,18 @@ trait List<Type> implements Iterable<Type> {
 
   public filterNull() => filter({ _ != null })
 
+  public unique() -> List<Type> {
+    let list = Type[]
+
+    for (value in this) {
+      if (!list.contains(value)) {
+        list.add(value)
+      }
+    }
+
+    return list
+  }
+
   [RequireGenericType Type extends String]
   public pure filterEmpty() -> List<String> {
     let list = String[]
