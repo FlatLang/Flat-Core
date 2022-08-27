@@ -46,7 +46,9 @@ jobs:
 
       - name: Setup Airship
         run: |
-          node airship.js setup
+          mkdir Airship
+          cd Airship
+          node ../airship.js setup
 
       - name: Link Flat Core
         run: |
