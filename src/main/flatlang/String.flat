@@ -50,14 +50,14 @@ class String implements Comparable<String>,
   public equals(String other) => other && count == other.count && compareTo(other) == 0
   public equalsIgnoreCase(String other) => other && count == other.count && toLowerCase().compareTo(other.toLowerCase()) == 0
 
-  public replace(String search, String replace, Int start = 0) -> String {
+  public replace(String search, String replacement, Int start = 0) -> String {
     var output = this
     var Int index = start
     var Int offset = 0
 
     while ((index = output.indexOf(search, index + offset)) >= 0) {
-      output = output.substring(0, index) + replace + output.substring(index + search.count)
-      offset += replace.count - search.count
+      output = output.substring(0, index) + replacement + output.substring(index + search.count)
+      offset += replacement.count - search.count
     }
 
     return output
