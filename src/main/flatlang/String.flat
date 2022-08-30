@@ -63,6 +63,22 @@ class String implements Comparable<String>,
     return output
   }
 
+  public indent(
+    Int tabCount = 1,
+    String: tab = "\t",
+    Bool: firstLine = true
+  ) -> String {
+    var value = this
+
+    value = value.replace("\n", "\n" + tab.repeat(tabCount))
+
+    if (firstLine) {
+      value = tab.repeat(tabCount) + value
+    }
+
+    return value
+  }
+
   public startsWith(Char search) => indexOf(search) == 0
   public startsWith(String search) => indexOf(search) == 0
 
