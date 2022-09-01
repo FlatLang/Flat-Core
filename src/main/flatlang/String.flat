@@ -163,6 +163,9 @@ class String implements Comparable<String>,
     return end < 0 ? "" : substring(0, end + 1)
   }
 
+  public trimStart(Char charToTrim, var Int: start = 0) =>
+    trimStart(start, charsToTrim: [charToTrim])
+
   public trimEnd(Char charToTrim, var Int: end = count - 1) =>
     trimEnd(end, charsToTrim: [charToTrim])
 
