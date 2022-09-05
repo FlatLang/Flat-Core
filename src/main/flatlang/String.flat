@@ -90,6 +90,26 @@ class String implements Comparable<String>,
 
   public indexOf(Char search, Int start = 0, Int direction = 1, Int defaultReturnValue = -1) =>
   	indexOf("#search", start, direction, defaultReturnValue)
+
+  public indexOf(Char[] searches, Int start = 0, Int direction = 1, Int defaultReturnValue = -1) => defaultReturnValue {
+    var i = start
+
+    while (i < count && i >= 0) {
+      var Int j = 0
+
+      while (j < searches.count) {
+        if (searches[j] == chars[i]) {
+          return i
+        }
+
+        j++
+      }
+
+
+      i += direction
+    }
+  }
+
   public indexOf(String search, Int start = 0, Int direction = 1, Int defaultReturnValue = -1) => defaultReturnValue {
     var i = start
 
@@ -114,7 +134,9 @@ class String implements Comparable<String>,
   }
 
   public lastIndexOf(Char search, Int start = count - 1, Int defaultReturnValue = -1) =>
-    lastIndexOf("#search", start, defaultReturnValue)
+    lastIndexOf(Array<Char>():add(search), start, defaultReturnValue)
+  public lastIndexOf(Char[] searches, Int start = count - 1, Int defaultReturnValue = -1) =>
+    indexOf(searches, start, -1, defaultReturnValue: defaultReturnValue)
   public lastIndexOf(String search, Int start = count - search.count, Int defaultReturnValue = -1) =>
     indexOf(search, start, -1, defaultReturnValue: defaultReturnValue)
 
