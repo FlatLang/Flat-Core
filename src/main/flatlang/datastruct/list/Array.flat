@@ -309,6 +309,37 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return filtered
   }
 
+  override public async filterParallel(async filterFunc(E, Int, Array<E>) -> Bool, Int maxParallel = 10) -> E[] {
+    let array = E[]
+    let promiseArray = Array<Object>(count)
+
+    let filtered = Async.all<Bool>(this, async { filterFunc(_, _, this) }, maxParallel)
+
+    var Int i = 0
+
+    for (element in this) {
+      if (filtered[i++] == true) {
+        array.add(element)
+      }
+    }
+
+    return array
+  }
+
+  override public async filterAsync(async filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
+    let array = E[]
+
+    var Int i = 0
+
+    for (element in this) {
+      if (filterFunc(element, i++, this)) {
+        array.add(element)
+      }
+    }
+
+    return array
+  }
+
   override public pure filterAtIndex(Int index, Int count = 1) => filter({ _2 >= index && _2 < index + count })
 
   public unique() -> E[] {

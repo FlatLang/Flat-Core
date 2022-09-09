@@ -186,6 +186,37 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
+  public async filterParallel(async filterFunc(Type, Int, List<Type>) -> Bool, Int maxParallel = 10) -> List<Type> {
+    let list = Type[]
+    let promiseArray = Array<Object>(count)
+
+    let filtered = Async.all<Bool>(toArray(), async { filterFunc(_, _, this) }, maxParallel)
+
+    var Int i = 0
+
+    for (element in this) {
+      if (filtered[i++] == true) {
+        list.add(element)
+      }
+    }
+
+    return list
+  }
+
+  public async filterAsync(async filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
+    let list = Type[]
+
+    var Int i = 0
+
+    for (element in this) {
+      if (filterFunc(element, i++, this)) {
+        list.add(element)
+      }
+    }
+
+    return list
+  }
+
   public filterNot(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
     let list = Type[]
 
