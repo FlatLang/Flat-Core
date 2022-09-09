@@ -92,7 +92,7 @@ trait List<Type> implements Iterable<Type> {
 
     for (element in this) {
       external {
-        promises.push(mapFunc(element, i++, this));
+        promises.push(#{mapFunc(element, i++, this)$});
       }
     }
 

@@ -259,7 +259,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
     for (element in this) {
       external {
-        promises.push(mapFunc(element, i++, this));
+        promises.push(#{mapFunc(element, i++, this)$});
       }
     }
 
