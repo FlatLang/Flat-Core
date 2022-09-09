@@ -64,7 +64,7 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public async forEachParallel(async func(Type, Int, List<Type>), Int maxParallel = 10) => this {
+  public async forEachParallel(async func(Type, Int, List<Type>), Int maxParallel = -1) => this {
     Async.all(toArray(), async { func(_, _, this) }, maxParallel)
   }
 
@@ -94,7 +94,7 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
-  public async mapParallel<Out>(async mapFunc(Type, Int, List<Type>) -> Out, Int maxParallel = 10) -> List<Out> {
+  public async mapParallel<Out>(async mapFunc(Type, Int, List<Type>) -> Out, Int maxParallel = -1) -> List<Out> {
     return Async.all(toArray(), async { mapFunc(_, _, this) }, maxParallel)
   }
 
@@ -186,7 +186,7 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public async filterParallel(async filterFunc(Type, Int, List<Type>) -> Bool, Int maxParallel = 10) -> List<Type> {
+  public async filterParallel(async filterFunc(Type, Int, List<Type>) -> Bool, Int maxParallel = -1) -> List<Type> {
     let list = Type[]
     let promiseArray = Array<Object>(count)
 

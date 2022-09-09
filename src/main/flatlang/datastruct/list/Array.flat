@@ -249,7 +249,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  override public async mapParallel<Out>(async mapFunc(E, Int, Array<E>) -> Out, Int maxParallel = 10) -> Out[] {
+  override public async mapParallel<Out>(async mapFunc(E, Int, Array<E>) -> Out, Int maxParallel = -1) -> Out[] {
     return Async.all(this, async { mapFunc(_, _, this) } maxParallel)
   }
 
@@ -283,7 +283,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
   }
 
-  override public async forEachParallel(async func(E, Int, Array<E>), Int maxParallel = 10) => this {
+  override public async forEachParallel(async func(E, Int, Array<E>), Int maxParallel = -1) => this {
     Async.all(this, async { func(_, _, this) }, maxParallel)
   }
 
@@ -309,7 +309,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return filtered
   }
 
-  override public async filterParallel(async filterFunc(E, Int, Array<E>) -> Bool, Int maxParallel = 10) -> E[] {
+  override public async filterParallel(async filterFunc(E, Int, Array<E>) -> Bool, Int maxParallel = -1) -> E[] {
     let array = E[]
     let promiseArray = Array<Object>(count)
 

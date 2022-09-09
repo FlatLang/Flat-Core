@@ -21,7 +21,7 @@ class {
   public static async all<Out>(
     Object[] values,
     async toPromise(Object, Int) -> Out,
-    Int maxParallel = 10
+    Int maxParallel = -1
   ) -> Out[] {
     let array = Array<Out>(values.count)
 
