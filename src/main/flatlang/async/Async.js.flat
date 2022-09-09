@@ -1,0 +1,20 @@
+package flatlang/async
+
+class {
+  public static async all<Out>(Object[] promises) -> Out[] {
+    let array = Array<Out>(promises.count)
+
+    native var Out data
+
+    external {
+      const result = await Promise.all(#{promises.data});
+
+      result.forEach((entry) => {
+        #{data} = entry;
+        #{array.add(data)};
+      });
+    }
+
+    return array
+  }
+}

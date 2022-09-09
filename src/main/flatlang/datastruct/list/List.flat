@@ -1,5 +1,6 @@
 package flatlang/datastruct/list
 
+import flatlang/async/Async
 import flatlang/operators/EqualsOperator
 
 [AutoFinal]
@@ -82,32 +83,15 @@ trait List<Type> implements Iterable<Type> {
   }
 
   public async mapParallel<Out>(async mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
-    let array = Array<Out>(count)
+    let promiseArray = Array<Object>(count)
 
     var Int i = 0
 
-    external {
-      let promises = [];
-    }
-
     for (element in this) {
-      external {
-        promises.push(#{mapFunc(element, i++, this)$});
-      }
+      promiseArray.add(mapFunc(element, i++, this)$)
     }
 
-    native var Out data
-
-    external {
-      const result = await Promise.all(promises);
-
-      result.forEach((entry) => {
-        #{data} = entry;
-        #{array.add(data)};
-      });
-    }
-
-    return array
+    return Async.all(promiseArray)
   }
 
   public async mapAsync<Out>(async mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {

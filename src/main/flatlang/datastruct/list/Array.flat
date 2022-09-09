@@ -1,5 +1,6 @@
 package flatlang/datastruct/list
 
+import flatlang/async/Async
 import flatlang/primitive/number/Integer
 import flatlang/datastruct/Comparable
 import flatlang/operators/PlusOperator
@@ -249,32 +250,15 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
   }
 
   override public async mapParallel<Out>(async mapFunc(E, Int, Array<E>) -> Out) -> Out[] {
-    let array = Array<Out>(count)
+    let promiseArray = Array<Object>(count)
 
     var Int i = 0
 
-    external {
-      let promises = [];
-    }
-
     for (element in this) {
-      external {
-        promises.push(#{mapFunc(element, i++, this)$});
-      }
+      promiseArray.add(mapFunc(element, i++, this)$)
     }
 
-    native var Out data
-
-    external {
-      const result = await Promise.all(promises);
-
-      result.forEach((entry) => {
-        #{data} = entry;
-        #{array.add(data)};
-      });
-    }
-
-    return array
+    return Async.all(promiseArray)
   }
 
   override public async mapAsync<Out>(async mapFunc(E, Int, Array<E>) -> Out) -> Out[] {
