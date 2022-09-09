@@ -82,16 +82,8 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
-  public async mapParallel<Out>(async mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
-    let promiseArray = Array<Object>(count)
-
-    var Int i = 0
-
-    for (element in this) {
-      promiseArray.add(mapFunc(element, i++, this)$)
-    }
-
-    return Async.all(promiseArray)
+  public async mapParallel<Out>(async mapFunc(Type, Int, List<Type>) -> Out, Int maxParallel = 10) -> List<Out> {
+    return Async.all(toArray(), async { mapFunc(_, _, this) }, maxParallel)
   }
 
   public async mapAsync<Out>(async mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
