@@ -64,6 +64,18 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
+  public async forEachParallel(async func(Type, Int, List<Type>), Int maxParallel = 10) => this {
+    Async.all(toArray(), async { func(_, _, this) }, maxParallel)
+  }
+
+  public async forEachAsync(async func(Type, Int, List<Type>)) => this {
+    var Int i = 0
+
+    for (element in this) {
+      func(element, i++, this)
+    }
+  }
+
   /// Create a new List from the values that are returned from the
   /// supplied mapFunc function.
   ///

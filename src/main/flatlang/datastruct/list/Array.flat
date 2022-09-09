@@ -283,6 +283,18 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
   }
 
+  override public async forEachParallel(async func(E, Int, Array<E>), Int maxParallel = 10) => this {
+    Async.all(this, async { func(_, _, this) }, maxParallel)
+  }
+
+  override public async forEachAsync(async func(E, Int, Array<E>)) => this {
+    var Int i = 0
+
+    for (element in this) {
+      func(element, i++, this)
+    }
+  }
+
   override public filter(filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
     let filtered = new E[]
 
