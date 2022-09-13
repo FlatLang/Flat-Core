@@ -253,7 +253,11 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return Async.all(this, async { mapFunc(_, _, this) } maxParallel)
   }
 
-  override public async mapAsync<Out>(async mapFunc(E, Int, Array<E>) -> Out) -> Out[] {
+  override public async mapAsync<Out>(async mapFunc(E, Int, Array<E>) -> Out, Bool: parallel = false) -> Out[] {
+    if (parallel) {
+      return mapParallel(mapFunc)
+    }
+
     let array = Array<Out>(count)
 
     var Int i = 0
@@ -287,7 +291,11 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     Async.all(this, async { func(_, _, this) }, maxParallel)
   }
 
-  override public async forEachAsync(async func(E, Int, Array<E>)) => this {
+  override public async forEachAsync(async func(E, Int, Array<E>), Bool: parallel = false) => this {
+    if (parallel) {
+      return forEachParallel(func)
+    }
+
     var Int i = 0
 
     for (element in this) {
@@ -326,7 +334,11 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  override public async filterAsync(async filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
+  override public async filterAsync(async filterFunc(E, Int, Array<E>) -> Bool, Bool: parallel = false) -> E[] {
+    if (parallel) {
+      return filterParallel(filterFunc)
+    }
+
     let array = E[]
 
     var Int i = 0
