@@ -1,0 +1,99 @@
+package flat/datastruct/list
+
+class StringCharArray {
+  visible Int count
+
+  visible native Char[] data
+
+  [Target not js] this[Int index] => data[index]
+
+  [Target js] this[Int index] -> Char {
+    get {
+      return data[index]
+    }
+
+    set {
+      external {
+        #{data} = #{data}.substr(0, #{index}) + #{value} + #{data}.substr(#{index} + #{value}.length);
+      }
+    }
+  }
+
+  visible Char first => count > 0 ? data[0] : 0
+  visible Char last => count > 0 ? data[count - 1] : 0
+
+  public construct(Char[] data) {
+    // this.data = data
+    this.count = data.count
+
+    external js {
+      #{this.data} = #{data.data}.join("");
+    }
+  }
+
+  [Target not js]
+  public construct(Int count) {
+    this.count = count
+    this.data = new Char[count]
+  }
+
+  [Target js]
+  public construct(Int count) {
+    this.count = count
+
+    native Char[] buf
+
+    external js {
+      if (#{count} == 0) {
+        return "";
+      }
+
+      var count2 = #{count} / 2;
+      var result = '\0';
+
+      // double the input until it is long enough.
+      while (result.length <= count2) {
+        result += result;
+      }
+      // use substring to hit the precise length target without
+      // using extra memory
+      #{buf} = result + result.substring(0, #{count} - result.length);
+    }
+
+    this.data = buf
+  }
+
+  public construct(native Char[] data, Int count) {
+    this.data = data
+    this.count = count
+
+    external js {
+      #{this.data} = typeof #{data} === 'string' ? #{data} : #{data}.join("");
+    }
+  }
+
+  // [Override]
+  public reverse() -> StringCharArray {
+    let array = StringCharArray(count)
+
+    for (i in 0..count) {
+      array[count - i - 1] = this[i]
+    }
+
+    return array
+  }
+
+  public toCharArray() -> Char[] {
+    let array = Array<Char>(count)
+
+    for (i in 0..count) {
+      let c = data[i]
+
+      array[i] = c
+    }
+
+    return array
+  }
+
+  public toString() => String(this)
+}

@@ -1,0 +1,5 @@
+package flat/operators
+
+public trait PlusOperator<In, Out> {
+  public plus(In another) -> Out
+}

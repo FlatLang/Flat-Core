@@ -1,9 +1,0 @@
-package flatlang/primitive/number
-
-class {
-  public static parseLong(String num) -> Int {
-    external {
-      return parseInt(#{num.chars.data});
-    }
-  }
-}

@@ -1,0 +1,5 @@
+package flat/exception
+
+class InvalidOperationException extends Exception {
+  public construct(String message) => super(message)
+}

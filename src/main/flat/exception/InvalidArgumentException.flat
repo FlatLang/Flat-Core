@@ -1,0 +1,5 @@
+package flat/exception
+
+class InvalidArgumentException extends Exception {
+  public construct(String message) => super(message)
+}

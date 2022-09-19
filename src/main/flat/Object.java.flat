@@ -1,0 +1,17 @@
+package flat
+
+import flat/operators/EqualsOperator
+
+class Object {
+  public Long hashCodeLong => 0
+
+  public String hashCode => "No hashcode available"
+
+  public Long hashCodeLong {
+    get {
+      external { return hashCode(); }
+    }
+
+    no set
+  }
+}

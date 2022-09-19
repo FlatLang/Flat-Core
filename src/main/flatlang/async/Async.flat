@@ -1,5 +1,0 @@
-package flatlang/async
-
-class {
-  public static async all(Object[] promises) {}
-}

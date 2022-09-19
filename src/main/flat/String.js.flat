@@ -1,0 +1,69 @@
+package flat
+
+import flat/datastruct/Comparable
+import flat/datastruct/list/StringCharArray
+import flat/operators/PlusOperator
+import flat/operators/EqualsOperator
+import flat/operators/MultiplyOperator
+
+[AutoFinal]
+class String {
+  public construct(Char c) {
+    native Char[] chars
+
+    external {
+      chars = [#{c}];
+    }
+
+    this(chars)
+  }
+
+  public construct(native Char[] chars, Int count) {
+    this.count = count
+    this.chars = StringCharArray(chars, count)
+  }
+
+  public construct(native Char[] chars) {
+    count = calculateSize(chars)
+
+    this.chars = StringCharArray(chars, count)
+  }
+
+  public transform(transform(Char, Int) -> Char) -> String {
+    native Char[] newData
+
+    external {
+      #{newData} = "";
+    }
+
+    for (i in 0..count) {
+      external {
+        #{newData} += #{transform(chars[i], i)};
+      }
+    }
+
+    return String(newData)
+  }
+
+  public compareTo(String other) -> Int {
+    external {
+      return #{chars.data}.localeCompare(#{other.chars.data});
+    }
+  }
+
+  public concat(String str) -> String {
+    native Char[] buf
+
+    external {
+      #{buf} = #{this.chars.data} + #{str.chars.data};
+    }
+
+    return String(buf)
+  }
+
+  calculateSize(native Char[] chars) -> Int {
+    external js {
+      return #{chars}.length;
+    }
+  }
+}
