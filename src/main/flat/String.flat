@@ -191,6 +191,14 @@ class String implements Comparable<String>,
   public trimEnd(Char charToTrim, var Int: end = count - 1) =>
     trimEnd(end, charsToTrim: [charToTrim])
 
+  public trimSurrounding(Char charToTrim, var Int: count = -1) -> String {
+    if ((count == -1 || count > 0) && first == charToTrim && last == charToTrim) {
+      return trimEnds(1).trimSurrounding(charToTrim, count: count - 1)
+    } else {
+      return this
+    }
+  }
+
   /// Trim the front and back end of the string by the given number
   /// of characters.
   ///
