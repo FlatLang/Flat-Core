@@ -8,5 +8,5 @@ class Null extends String {
   public Long hashCodeLong => 0
 
   public equals(Object other) => !other
-  public equals(String other) => !other
+  public equals(Null other) => !other
 }
