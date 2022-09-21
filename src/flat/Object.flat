@@ -3,7 +3,7 @@ package flat
 import flat/NativeObject.h
 import flat/operators/EqualsOperator
 
-class Object {
+class implements EqualsOperator {
   external char[] hashCode(Object obj)
 
   public static default() => null
@@ -14,6 +14,15 @@ class Object {
 
   public equals(Object another) => this == another
   public toString() => "{#this.class.name @#hashCode}"
+
+  public static referenceEquals(Object one, Object two) -> Bool {
+    external js {
+      return #{one} === #{two};
+    }
+    external not js {
+      return #{one} == #{two};
+    }
+  }
 
   // writeFields() =>
   //   this.class.getFields(true).count > 0 ?

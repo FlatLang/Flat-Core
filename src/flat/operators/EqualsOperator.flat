@@ -1,5 +1,5 @@
 package flat/operators
 
-public trait EqualsOperator<E> {
-  public equals(E another) -> Bool
+interface {
+  public equals(Object another) -> Bool
 }

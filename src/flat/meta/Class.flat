@@ -2,7 +2,7 @@ package flat/meta
 
 import flat/operators/EqualsOperator
 
-class Class<Type> implements EqualsOperator<Class> {
+class Class<Type> {
   visible Bool isInterface
 
   visible String location
@@ -19,15 +19,17 @@ class Class<Type> implements EqualsOperator<Class> {
   ) {}
 
   public pure isOfType(Class other) =>
-    other.isInterface ?
+    (other.isInterface ?
       isOfTypeInterface(other) || extension && extension.isOfType(other) :
-      isOfTypeClass(other) || interfaces.any({ _.isOfTypeClass(other) })
+      isOfTypeClass(other) || interfaces.any({ _.isOfTypeClass(other) })) ||
+      Object.referenceEquals(other, Object.class) ||
+      Object.referenceEquals(other, EqualsOperator.class)
 
   public pure isOfTypeClass(Class other) => false {
     var current = this
 
     while (current) {
-      if (current == other) {
+      if (Object.referenceEquals(current, other)) {
         return true
       }
 
@@ -49,6 +51,8 @@ class Class<Type> implements EqualsOperator<Class> {
 
   public getClassesOfType(Class baseType) => ALL.filter({ _.isOfType(baseType) })
 
+  override public equals(Object other) => other && other.class.isOfType(Class.class) && equals((Class)other)
   public equals(Class another) => this.location.chars.data == another.location.chars.data
+
   public toString() => "Class \"#location\""
 }

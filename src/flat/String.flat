@@ -9,7 +9,7 @@ import flat/operators/MultiplyOperator
 [AutoFinal]
 class String implements Comparable<String>,
                   PlusOperator<String>,
-                  EqualsOperator<String>,
+                  EqualsOperator,
                   MultiplyOperator<Int, String> {
   visible Int count
 
