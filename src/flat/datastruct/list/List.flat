@@ -371,6 +371,18 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
+  public async firstNonNullAsync<Out>(async func(Type, Int, List<Type>) -> Out) -> Out => null {
+    var Int i = 0
+
+    for (element in this) {
+      Out value = func(element, i++, this)
+
+      if (value) {
+        return value
+      }
+    }
+  }
+
   public zip<OtherType, Out>(List<OtherType> other, zipper(Type, OtherType) -> Out) -> List<Out> {
     let i1 = iterator
     let i2 = other.iterator
