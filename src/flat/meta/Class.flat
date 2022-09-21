@@ -51,7 +51,7 @@ class Class<Type> {
 
   public getClassesOfType(Class baseType) => ALL.filter({ _.isOfType(baseType) })
 
-  override public equals(Object other) => other && other.class.isOfType(Class.class) && equals((Class)other)
+  override public equals(Object other) => (other || !this) && other.class.isOfType(Class.class) && equals((Class)other)
   public equals(Class another) => this.location.chars.data == another.location.chars.data
 
   public toString() => "Class \"#location\""
