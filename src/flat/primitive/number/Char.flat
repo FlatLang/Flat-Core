@@ -9,6 +9,8 @@ class Char extends Number implements Integer {
   public Double realValue => (Double)value
   public Long integerValue => value
 
+  public Bool isNumber => isNumber(value)
+
   public construct(public Char value) {}
 
   public static toLowerCase(Char c) -> Char => c {
@@ -73,6 +75,12 @@ class Char extends Number implements Integer {
   public static equals(Char value, Number other) => other.equalsInteger(value)
   public static equalsReal(Char value, Double other) => value == other
   public static equalsInteger(Char value, Long other) => value == other
+
+  public static isNumber(Char value) -> Bool {
+    let char = (Int)value
+
+    return char >= '0' && char <= '9'
+  }
 
   public toString() => toString(value)
 
