@@ -292,5 +292,17 @@ class String implements Comparable<String>,
 
   public orElse(String value) => count == 0 ? value : this
 
+  public howMany(Char c) -> Int => 0 {
+    var Int sum = 0
+
+    for (char in chars.toCharArray()) {
+      if (c == char) {
+        sum++
+      }
+    }
+
+    return sum
+  }
+
   public toString() => this
 }
