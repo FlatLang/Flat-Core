@@ -471,5 +471,5 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
   public sort(comparator(E, E) -> Int) => mergeSort(comparator)
 
-  override public toString() => this.class.name + " [#{join(", ")}]"
+  override public toString() => "[" + map(x => x != null && x.class.isOfType(String.class) ? "\"#{x}\"" : x).join(", ") + "]"
 }
