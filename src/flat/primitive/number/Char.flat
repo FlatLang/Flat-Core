@@ -10,6 +10,7 @@ class Char extends Number implements Integer {
   public Long integerValue => value
 
   public Bool isNumber => isNumber(value)
+  public Bool isWhitespace => isWhitespace(value)
 
   public construct(public Char value) {}
 
@@ -80,6 +81,15 @@ class Char extends Number implements Integer {
     let char = (Int)value
 
     return char >= '0' && char <= '9'
+  }
+
+  public static isWhitespace(Char value) => false {
+    switch value {
+      ' ' => fallthrough
+      '\t' => fallthrough
+      '\r' => fallthrough
+      '\n' => return true
+    }
   }
 
   public toString() => toString(value)
