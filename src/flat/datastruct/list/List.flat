@@ -383,14 +383,16 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public zip<OtherType, Out>(List<OtherType> other, zipper(Type, OtherType) -> Out) -> List<Out> {
+  public zip<OtherType, Out>(List<OtherType> other, zipper(Type, OtherType, Int, List<Type>, List<OtherType>) -> Out) -> List<Out> {
     let i1 = iterator
     let i2 = other.iterator
 
     let array = Out[]
 
+    var Int i = 0
+
     while (i1.hasNext && i2.hasNext) {
-      array.add(zipper(i1.stepNext, i2.stepNext))
+      array.add(zipper(i1.stepNext, i2.stepNext, i++, this, other))
     }
 
     return array
