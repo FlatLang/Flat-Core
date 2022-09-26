@@ -262,6 +262,22 @@ trait List<Type> implements Iterable<Type> {
 
   public pure filterAtIndex(Int index, Int count = 1) => filter({ _2 < index && _2 >= index + count })
 
+  public pure takeWhile(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
+    let list = Type[]
+
+    var Int i = 0
+
+    for (value in this) {
+      if (!filterFunc(value, i++, this)) {
+        return list
+      }
+
+      list.add(value)
+    }
+
+    return list
+  }
+
   public pure take(Int howMany) -> List<Type> {
     let list = Type[]
 
