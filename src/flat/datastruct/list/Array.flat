@@ -149,6 +149,17 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return output
   }
 
+  public removeFirstWhere(func(E, Int, Array<E>) -> Bool) -> E => null {
+    var Int i = 0
+
+    for (element in this) {
+      if (func(element, i, this)) {
+        return removeAtIndex(i)
+      }
+      i++
+    }
+  }
+
   public remove(E element) -> E => null {
     Int index = indexOf(element)
 
