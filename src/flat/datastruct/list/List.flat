@@ -375,7 +375,18 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
+  public async firstOrAsync(Type default, async func(Type, Int, List<Type>) -> Bool = {true}) -> Type => default {
+    var Int i = 0
+
+    for (element in this) {
+      if (func(element, i++, this)) {
+        return element
+      }
+    }
+  }
+
   public firstOrNull(func(Type, Int, List<Type>) -> Bool = {true}) -> Type => firstOr(null, func)
+  public async firstOrNullAsync(async func(Type, Int, List<Type>) -> Bool = {true}) -> Type => firstOrAsync(null, func)
 
   public firstWhereOrThrow<OUT>(Exception e, func(Type, Int, List<Type>) -> OUT = {null}) -> OUT {
     var Int i = 0
