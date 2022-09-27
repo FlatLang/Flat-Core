@@ -24,6 +24,8 @@ class ArrayIterator<E> implements Iterator<E> {
   visible E next => hasNext ? array.get(position) : null
   visible E[] allNext => array.skip(position)
   visible E[] allPrevious => array.take(position)
+  visible E[] allNextInclusive => array.skip(position > 0 ? position - 1 : 0)
+  visible E[] allPreviousInclusive => array.take(position < array.count ? position + 1 : array.count)
 
   public construct(private E[] array) {
     reset()
