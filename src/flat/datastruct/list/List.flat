@@ -461,6 +461,24 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
+  public async zipAsync<OtherType, Out>(
+    List<OtherType> other,
+    async zipper(Type, OtherType, Int, List<Type>, List<OtherType>) -> Out
+  ) -> List<Out> {
+    let i1 = iterator
+    let i2 = other.iterator
+
+    let array = Out[]
+
+    var Int i = 0
+
+    while (i1.hasNext && i2.hasNext) {
+      array.add(zipper(i1.stepNext, i2.stepNext, i++, this, other))
+    }
+
+    return array
+  }
+
   public sum(func(Type, Int, List<Type>) -> Long) -> Long {
     var Long sum = 0
     var Int i = 0
