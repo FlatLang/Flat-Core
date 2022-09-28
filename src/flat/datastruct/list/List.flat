@@ -523,6 +523,19 @@ trait List<Type> implements Iterable<Type> {
     return max
   }
 
+  public howMany(func(Type, Int, List<Type>) -> Bool) -> Long {
+    var Long counter = 0
+    var Int i = 0
+
+    for (element in this) {
+      if (func(element, i++, this)) {
+        counter++
+      }
+    }
+
+    return counter
+  }
+
   //get(Int index) -> Type
   //set(Int index, Type value) -> List<Type>
   //add(Type value) -> List<Type>
