@@ -80,7 +80,7 @@ class Char extends Number implements Integer {
   public static isNumber(Char value) -> Bool {
     let char = (Int)value
 
-    return char >= '0' && char <= '9'
+    return char >= (Int)'0' && char <= (Int)'9'
   }
 
   public static isWhitespace(Char value) => false {
