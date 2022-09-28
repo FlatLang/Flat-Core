@@ -111,14 +111,14 @@ trait List<Type> implements Iterable<Type> {
   }
 
   public mapNotNull<Out>(mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
-    let array = Array<Out>(count)
+    let array = Array<Out>()
 
     var Int i = 0
 
     for (element in this) {
       let value = mapFunc(element, i++, this)
 
-      if (value) {
+      if (value != null) {
         array.add(value)
       }
     }
@@ -138,7 +138,7 @@ trait List<Type> implements Iterable<Type> {
     for (element in this) {
       let value = mapFunc(element, i++, this)
 
-      if (value) {
+      if (value != null) {
         array.add(value)
       }
     }
