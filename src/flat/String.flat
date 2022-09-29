@@ -305,4 +305,5 @@ class String implements Comparable<String>,
   }
 
   public toString() => this
+  public toJson() => "\"#{toString()}\""
 }

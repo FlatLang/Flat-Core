@@ -14,6 +14,7 @@ class implements EqualsOperator {
 
   public equals(Object another) => this == another
   public toString() => "{#this.class.name @#hashCode}"
+  public toJson() => "{}"
 
   public static referenceEquals(Object one, Object two) -> Bool {
     external js {

@@ -71,6 +71,7 @@ class Double extends Number implements RealNumber {
 
   [Target js]
   public static toString(Double value) => String(toCharArray(value))
+  public static toJson(Double value) => toString(value)
 
   [Target not js]
   public static toString(Double value) -> String {

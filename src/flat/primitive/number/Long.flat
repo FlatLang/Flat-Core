@@ -30,6 +30,8 @@ class Long extends Number implements Integer {
 
   [Target js]
   public static toString(Long value) => String(toCharArray(value))
+  public static toJson(Long value) => toString(value)
+
 
   [Native]
   [Target js]
