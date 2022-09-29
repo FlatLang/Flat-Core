@@ -543,7 +543,7 @@ trait List<Type> implements Iterable<Type> {
   //clone() -> List<Type>
   public reverse() -> List<Type>
 
-  public reduce<Out>(func(Out, Type, Int, List) -> Out, Out initialValue) -> Out {
+  public reduce<Out>(func(Out, Type, Int, List<Type>) -> Out, Out initialValue) -> Out {
     var Out value = initialValue
     var Int i = 0
 
