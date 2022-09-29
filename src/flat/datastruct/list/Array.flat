@@ -484,4 +484,6 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
   override public toString() => "[" + map(x => x != null && x.class.isOfType(String.class) ? "\"#{x}\"" : x).join(", ") + "]"
   override public toJson() => "[" + map(x => x != null && x.class.isOfType(String.class) ? "\"#{x}\"" : x.toJson()).join(",") + "]"
+
+  public copy() => skip(0)
 }
