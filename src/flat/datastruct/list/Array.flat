@@ -276,6 +276,42 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
+  public mapNotNull<Out>(mapFunc(E, Int, Array<E>) -> Out) -> Array<Out> {
+    let array = Array<Out>()
+
+    var Int i = 0
+
+    for (element in this) {
+      let value = mapFunc(element, i++, this)
+
+      if (value != null) {
+        array.add(value)
+      }
+    }
+
+    return array
+  }
+
+  public async mapNotNullParallel<Out>(async mapFunc(E, Int, Array<E>) -> Out, Int maxParallel = -1) -> Array<Out> {
+    return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel).filterNull()
+  }
+
+  public async mapNotNullAsync<Out>(async mapFunc(E, Int, Array<E>) -> Out) -> Array<Out> {
+    let array = Array<Out>()
+
+    var Int i = 0
+
+    for (element in this) {
+      let value = mapFunc(element, i++, this)
+
+      if (value != null) {
+        array.add(value)
+      }
+    }
+
+    return array
+  }
+
   override public flatMap<Out>(mapFunc(E, Int, Array<E>) -> Out[]) -> Out[] {
     let array = Array<Out>()
 
@@ -386,6 +422,43 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
     return list
   }
+
+  public pure takeWhile(filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
+    let array = E[]
+
+    var Int i = 0
+
+    for (value in this) {
+      if (!filterFunc(value, i++, this)) {
+        return array
+      }
+
+      array.add(value)
+    }
+
+    return array
+  }
+
+  public pure takeLast(Int howMany) -> E[] {
+    let array = E[]
+    let startIndex = Math.max(0, count - howMany)
+
+    if (startIndex == count) {
+      return array
+    }
+
+    var Int i = 0
+
+    for (value in this) {
+      if (i++ >= startIndex) {
+        array.add(value)
+      }
+    }
+
+    return array
+  }
+
+  public pure skipLast(Int howMany) => take(count - howMany)
 
   [RequireGenericType E extends String]
   public sumSize() -> Long {
