@@ -513,7 +513,7 @@ trait List<Type> implements Iterable<Type> {
   }
 
   public max(func(Type, Int, List<Type>) -> Long) -> Long {
-    var Long max = Long.MAX_VALUE
+    var Long max = Long.MIN_VALUE
     var Int i = 0
 
     for (element in this) {
