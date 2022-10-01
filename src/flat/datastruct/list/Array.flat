@@ -127,6 +127,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
   }
 
   public shift() => removeAtIndex(0)
+  public removeLast() => removeAtIndex(count - 1)
 
   public remove(Int index) -> E {
     E element = data[index]
