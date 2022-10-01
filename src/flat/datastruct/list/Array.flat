@@ -32,7 +32,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
   }
 
-  public E last => count > 0 ? this[count - 1] : null {
+  public E last => getLast() {
     set {
       if (count > 0) {
         this[count - 1] = value
@@ -69,6 +69,8 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     this.capacity = count
     this.position = count
   }
+
+  public getLast(Int offset = 0) => count > offset ? this[count - 1 - offset] : null
 
   public fillRemaining(E value) => value {
     while (count < capacity) {
