@@ -249,6 +249,20 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
   override public pure toArray() => clone()
 
+  public clear() -> E[] {
+    let copy = Array<E>(data, count)
+
+    external js {
+      #{data} = new Array();
+    }
+
+    position = 0
+    capacity = 0
+    count = 0
+
+    return copy
+  }
+
   override public map<Out>(mapFunc(E, Int, Array<E>) -> Out) -> Out[] {
     let array = Array<Out>(count)
 
