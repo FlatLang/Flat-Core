@@ -79,6 +79,17 @@ class String implements Comparable<String>,
     return value
   }
 
+  public isWhitespace() => true {
+    for (var Int i = 0; i < count; i++) {
+      let c = chars[i]
+
+      switch c {
+        ' ' => '\n' => '\t' => '\r' => continue
+        default => return false
+      }
+    }
+  }
+
   public startsWith(Char search) => indexOf(search) == 0
   public startsWith(String search) => indexOf(search) == 0
 
