@@ -3,14 +3,6 @@ package flat
 import flat/operators/EqualsOperator
 
 class implements EqualsOperator {
-  external char[] hashCode(Object obj)
-
-  public static default() => null
-
-  external char* NULL
-
-  external long strtol(char str[], char* a, int base)
-
   public equals(Object another) => this == another
   public toString() => "{#this.class.name @#hashCode}"
   public toJson() => "{}"
