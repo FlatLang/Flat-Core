@@ -10,7 +10,6 @@ import flat/regex/Regex
 import flat/regex/Match
 import flat/regex/Pattern
 
-[AutoFinal]
 class String {
   external type CharSequence
 

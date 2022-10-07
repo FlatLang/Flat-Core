@@ -3,7 +3,6 @@ package flat/datastruct/list
 import flat/async/Async
 import flat/operators/EqualsOperator
 
-[AutoFinal]
 trait List<Type> implements Iterable<Type> {
   visible var Int count
 

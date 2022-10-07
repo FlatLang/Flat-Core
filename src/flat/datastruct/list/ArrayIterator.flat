@@ -1,6 +1,5 @@
 package flat/datastruct/list
 
-[AutoFinal]
 class ArrayIterator<E> implements Iterator<E> {
   visible var Int position
 

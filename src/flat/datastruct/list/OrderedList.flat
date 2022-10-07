@@ -1,6 +1,5 @@
 package flat/datastruct/list
 
-[AutoFinal]
 trait OrderedList<Type> implements List<Type> {
   public findIndex(
     condition(Type, Int, OrderedList<Type>) -> Bool,

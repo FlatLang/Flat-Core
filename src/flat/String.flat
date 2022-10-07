@@ -6,7 +6,6 @@ import flat/operators/PlusOperator
 import flat/operators/EqualsOperator
 import flat/operators/MultiplyOperator
 
-[AutoFinal]
 class String implements Comparable<String>,
                   PlusOperator<String>,
                   EqualsOperator,
