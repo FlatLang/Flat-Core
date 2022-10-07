@@ -1,7 +1,5 @@
 package flat
 
-import math.h
-
 [AutoFinal]
 class Math {
   [Target c] external long llabs(long number) as extAbs

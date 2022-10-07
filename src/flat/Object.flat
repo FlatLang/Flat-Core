@@ -1,6 +1,5 @@
 package flat
 
-import flat/NativeObject.h
 import flat/operators/EqualsOperator
 
 class implements EqualsOperator {
