@@ -36,11 +36,9 @@ class String implements Comparable<String>,
     this.chars = chars
   }
 
-  [Override]
-  public plus(String another) => concat(another)
+  override public plus(String another) => concat(another)
 
-  [Override]
-  public multiply(Int times) => repeat(times)
+  override public multiply(Int times) => repeat(times)
 
   public repeat(Int times) =>
     Array<String>(times).map({ this }).join()
