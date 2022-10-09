@@ -17,8 +17,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
   visible Bool isEmpty => count == 0
   visible Bool isNotEmpty => !isEmpty
 
-  [Override]
-  visible ArrayIterator<E> iterator => ArrayIterator(this)
+  override visible ArrayIterator<E> iterator => ArrayIterator(this)
 
   public E first => count > 0 ? this[0] : null {
     set {
@@ -76,11 +75,9 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
   }
 
-  [Override]
-  public plus(E[] other) => clone().plusEquals(other)
+  override public plus(E[] other) => clone().plusEquals(other)
 
-  [Override]
-  public plusEquals(E[] other) => this:addAll(other)
+  override public plusEquals(E[] other) => this:addAll(other)
 
   public addAll(E[] data) => data {
     for (d in data) {

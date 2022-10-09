@@ -72,7 +72,6 @@ class StringCharArray {
     }
   }
 
-  // [Override]
   public reverse() -> StringCharArray {
     let array = StringCharArray(count)
 
