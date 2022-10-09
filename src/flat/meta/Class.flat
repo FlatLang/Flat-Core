@@ -18,14 +18,14 @@ class Class<Type> {
     let visible Class[] interfaces
   ) {}
 
-  public pure isOfType(Class other) =>
+  public isOfType(Class other) =>
     (other.isInterface ?
       isOfTypeInterface(other) || extension && extension.isOfType(other) :
       isOfTypeClass(other) || interfaces.any({ _.isOfTypeClass(other) })) ||
       Object.referenceEquals(other, Object.class) ||
       Object.referenceEquals(other, EqualsOperator.class)
 
-  public pure isOfTypeClass(Class other) => false {
+  public isOfTypeClass(Class other) => false {
     var current = this
 
     while (current) {
@@ -37,7 +37,7 @@ class Class<Type> {
     }
   }
 
-  public pure isOfTypeInterface(Class other) => false {
+  public isOfTypeInterface(Class other) => false {
     var current = this
 
     while (current) {

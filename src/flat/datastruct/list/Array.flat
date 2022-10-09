@@ -215,7 +215,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     capacity = count
   }
 
-  public pure native cloneData() -> E[] {
+  public native cloneData() -> E[] {
     native var d = Array<E>(count)
 
     external c {
@@ -225,9 +225,9 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return d
   }
 
-  public pure clone() => filter({ true })
+  public clone() => filter({ true })
 
-  override public pure toArray() => clone()
+  override public toArray() => clone()
 
   public clear() -> E[] {
     let copy = Array<E>(data, count)
@@ -382,7 +382,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  override public pure filterAtIndex(Int index, Int count = 1) => filter({ _2 >= index && _2 < index + count })
+  override public filterAtIndex(Int index, Int count = 1) => filter({ _2 >= index && _2 < index + count })
 
   public unique() -> E[] {
     let array = E[]
@@ -396,7 +396,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  override public pure take(var Int howMany) -> E[] {
+  override public take(var Int howMany) -> E[] {
     howMany = howMany > count ? count : howMany
 
     let list = new E[]
@@ -408,7 +408,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return list
   }
 
-  override public pure skip(Int howMany) -> E[] {
+  override public skip(Int howMany) -> E[] {
     let list = new E[]
 
     for (i in howMany..count) {
@@ -418,7 +418,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return list
   }
 
-  public pure takeWhile(filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
+  public takeWhile(filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
     let array = E[]
 
     var Int i = 0
@@ -434,7 +434,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  public pure takeLast(Int howMany) -> E[] {
+  public takeLast(Int howMany) -> E[] {
     let array = E[]
     let startIndex = Math.max(0, count - howMany)
 
@@ -453,7 +453,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  public pure skipLast(Int howMany) => take(count - howMany)
+  public skipLast(Int howMany) => take(count - howMany)
 
   [RequireGenericType E extends String]
   public sumSize() -> Long {
@@ -466,7 +466,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return sum
   }
 
-  override public pure reverse() -> E[] {
+  override public reverse() -> E[] {
     let array = Array<E>(count)
 
     var Int i = 0

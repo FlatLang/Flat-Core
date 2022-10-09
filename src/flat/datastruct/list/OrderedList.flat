@@ -14,7 +14,7 @@ trait OrderedList<Type> implements List<Type> {
     }
   }
 
-  public pure indexOf(
+  public indexOf(
     Type element,
     Int defaultReturnValue = -1
   ) => defaultReturnValue {

@@ -295,9 +295,9 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public pure filterAtIndex(Int index, Int count = 1) => filter({ _2 < index && _2 >= index + count })
+  public filterAtIndex(Int index, Int count = 1) => filter({ _2 < index && _2 >= index + count })
 
-  public pure takeWhile(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
+  public takeWhile(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
     let list = Type[]
 
     var Int i = 0
@@ -313,7 +313,7 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public pure take(Int howMany) -> List<Type> {
+  public take(Int howMany) -> List<Type> {
     let list = Type[]
 
     var Int i = 0
@@ -329,7 +329,7 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public pure takeLast(Int howMany) -> List<Type> {
+  public takeLast(Int howMany) -> List<Type> {
     let list = Type[]
     let startIndex = Math.max(0, count - howMany)
 
@@ -348,9 +348,9 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public pure skipLast(Int howMany) => take(count - howMany)
+  public skipLast(Int howMany) => take(count - howMany)
 
-  public pure skip(Int howMany) -> List<Type> {
+  public skip(Int howMany) -> List<Type> {
     Type[] list = Type[]
 
     var Int i = 0
