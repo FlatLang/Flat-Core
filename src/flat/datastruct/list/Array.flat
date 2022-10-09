@@ -7,8 +7,6 @@ import flat/operators/PlusOperator
 import flat/operators/PlusEqualsOperator
 
 class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, PlusEqualsOperator<Array<E>, Array<E>> {
-  pure external void arrayCopy(E dest[], int dIndex, E src[], int sIndex, int len, int destArrLen)
-
   visible var Int capacity
 
   visible var Int count <=> count
@@ -218,23 +216,6 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
   [Target not c]
   increaseSize(Int count) => this {
     capacity = count
-  }
-
-  [Target c]
-  increaseSize(Int count) => this {
-    Int offset = count - capacity
-
-    capacity = count
-
-    native E[] tmp = Array<E>(capacity)
-
-    arrayCopy(tmp, 0, data, 0, capacity - offset, capacity)
-
-    data = tmp
-
-    for (i in (capacity - offset)..capacity) {
-      data[i] = null
-    }
   }
 
   public pure native cloneData() -> E[] {
