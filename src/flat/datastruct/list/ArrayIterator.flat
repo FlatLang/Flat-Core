@@ -14,8 +14,6 @@ class ArrayIterator<E> implements Iterator<E> {
 
       throw NoSuchElementException()
     }
-
-    no set
   }
 
   visible E current => position > 0 ? array.get(position - 1) : null

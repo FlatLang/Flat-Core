@@ -14,8 +14,6 @@ class IntRangeIterator implements Iterator<Int> {
 
       throw NoSuchElementException()
     }
-
-    no set
   }
 
   visible Int current => position
