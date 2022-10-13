@@ -243,6 +243,16 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return copy
   }
 
+  override public lastWhere(func(E, Int, Array<E>) -> Bool) -> E => null {
+    for (var Int i = count - 1; i >= 0; i--) {
+      let element = this[i]
+
+      if (func(element, i, this)) {
+        return element
+      }
+    }
+  }
+
   override public map<Out>(mapFunc(E, Int, Array<E>) -> Out) -> Out[] {
     let array = Array<Out>(count)
 

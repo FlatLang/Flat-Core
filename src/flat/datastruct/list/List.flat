@@ -406,6 +406,10 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
+  public lastWhere(func(Type, Int, List<Type>) -> Bool) -> Type => null {
+    return reverse().firstWhere(func)
+  }
+
   public firstNonNull<Out>(func(Type, Int, List<Type>) -> Out) -> Out => null {
     var Int i = 0
 
