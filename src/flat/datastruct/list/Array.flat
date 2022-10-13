@@ -180,6 +180,13 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
   }
 
+  public replaceAt(Int index, E element) => element {
+    this[index] = element
+  }
+
+  public replaceFirst(E element, Int offset = 0) => replaceAt(offset, element)
+  public replaceLast(E element, Int offset = 0) => replaceAt(count - offset - 1, element)
+
   shiftRight(Int left, Int right) => this {
     var Int i = right - 1
 
