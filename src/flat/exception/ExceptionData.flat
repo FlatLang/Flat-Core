@@ -1,8 +1,5 @@
 package flat/exception
 
-import signal.h
-import NovaExceptionHandling.h
-
 class ExceptionData {
   external type buffer
   external buffer* NULL
