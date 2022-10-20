@@ -565,9 +565,40 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public join(String delimiter = "") =>
-    reduce((str, e, i) => str + (i > 0 ? delimiter : "") + e, "")
-    //reduce({ _value + (_index > 0 ? delimiter : "") + _element })
+  public join(
+    String delimiter = "",
+    var Int maxOutputCount = count,
+    Int ellipsePosition = maxOutputCount / 2,
+    String ellipse = "..."
+  ) -> String {
+    maxOutputCount = maxOutputCount > count ? count : maxOutputCount
+    maxOutputCount = maxOutputCount < 0 ? 0 : maxOutputCount
+
+    if (maxOutputCount < count) {
+      if (maxOutputCount == 0 && count > 0) {
+        return ellipse
+      }
+
+      var str = ""
+      var Int i = 0
+
+      for (value in this) {
+        if (i < ellipsePosition) {
+          str += value + delimiter
+        } else if (i == ellipsePosition) {
+          str += ellipse
+        } else if (i >= count - (maxOutputCount - ellipsePosition)) {
+          str += delimiter + value
+        }
+
+        i++
+      }
+
+      return str
+    } else {
+      return reduce((str, e, i) => str + (i > 0 ? delimiter : "") + e, "")
+    }
+  }
 
   public stitch(String delimiter = "") =>
     reduce((str, e) => str + delimiter + e, "")

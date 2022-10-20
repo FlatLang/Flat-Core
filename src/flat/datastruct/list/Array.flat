@@ -483,6 +483,42 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return sum
   }
 
+  override public join(
+    String delimiter = "",
+    var Int maxOutputCount = count,
+    Int ellipsePosition = maxOutputCount / 2,
+    String ellipse = "..."
+  ) -> String {
+    maxOutputCount = maxOutputCount > count ? count : maxOutputCount
+    maxOutputCount = maxOutputCount < 0 ? 0 : maxOutputCount
+
+    if (maxOutputCount < count) {
+      if (maxOutputCount == 0 && count > 0) {
+        return ellipse
+      }
+
+      var str = ""
+
+      for (i in 0..ellipsePosition) {
+        let value = data[i]
+
+        str += value + delimiter
+      }
+
+      str += ellipse
+
+      let start = count - (maxOutputCount - ellipsePosition)
+
+      for (i in start..count) {
+        str += delimiter + data[i]
+      }
+
+      return str
+    } else {
+      return reduce((str, e, i) => str + (i > 0 ? delimiter : "") + e, "")
+    }
+  }
+
   override public reverse() -> E[] {
     let array = Array<E>(count)
 
