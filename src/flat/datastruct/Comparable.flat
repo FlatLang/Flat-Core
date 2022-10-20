@@ -1,5 +1,5 @@
 package flat/datastruct
 
-public trait Comparable<E> {
+trait Comparable<E> {
   public compareTo(E other) -> Int
 }

@@ -1,5 +1,5 @@
 package flat/operators
 
-public trait GreaterThanOrEqualToOperator<In> {
+trait GreaterThanOrEqualToOperator<In> {
   public greaterThanOrEqualTo(In another) -> Bool
 }

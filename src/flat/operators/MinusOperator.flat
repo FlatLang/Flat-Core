@@ -1,5 +1,5 @@
 package flat/operators
 
-public trait MinusOperator<In, Out> {
+trait MinusOperator<In, Out> {
   public minus(In another) -> Out
 }

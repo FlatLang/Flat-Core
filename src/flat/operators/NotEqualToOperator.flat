@@ -1,5 +1,5 @@
 package flat/operators
 
-public trait NotEqualToOperator<E> {
+trait NotEqualToOperator<E> {
   public notEqualTo(E another) -> Bool
 }

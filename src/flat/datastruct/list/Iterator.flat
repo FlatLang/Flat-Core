@@ -1,6 +1,6 @@
 package flat/datastruct/list
 
-public trait Iterator<E> {
+trait Iterator<E> {
   visible Bool hasNext => false
   visible Bool hasPrevious => false
   visible E stepNext => null
