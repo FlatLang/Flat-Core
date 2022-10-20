@@ -355,7 +355,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
   }
 
   override public filter(filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
-    let filtered = new E[]
+    let filtered = E[]
 
     var Int i = 0
 
@@ -416,7 +416,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
   override public take(var Int howMany) -> E[] {
     howMany = howMany > count ? count : howMany
 
-    let list = new E[]
+    let list = E[]
 
     for (i in 0..howMany) {
       list.add(data[i])
@@ -426,7 +426,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
   }
 
   override public skip(Int howMany) -> E[] {
-    let list = new E[]
+    let list = E[]
 
     for (i in howMany..count) {
       list.add(data[i])
