@@ -472,17 +472,6 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
   public skipLast(Int howMany) => take(count - howMany)
 
-  [RequireGenericType E extends String]
-  public sumSize() -> Long {
-    var Long sum = 0
-
-    for (value in this) {
-      sum += ((String)value).count
-    }
-
-    return sum
-  }
-
   override public join(
     String delimiter = "",
     var Int maxOutputCount = count,
