@@ -273,7 +273,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
   }
 
   override public async mapParallel<Out>(async mapFunc(E, Int, Array<E>) -> Out, Int maxParallel = -1) -> Out[] {
-    return Async.all(this, { mapFunc(_, _, this) } maxParallel)
+    return Async.all(this, { mapFunc(_, _, this) }, maxParallel)
   }
 
   override public async mapAsync<Out>(async mapFunc(E, Int, Array<E>) -> Out) -> Out[] {
