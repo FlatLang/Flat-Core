@@ -12,10 +12,10 @@ class Class<Type> {
   visible static Class[] ALL = Array()
 
   public construct(
-    let visible String location,
-    let visible Bool isInterface,
-    let visible Class extension,
-    let visible Class[] interfaces
+    visible String location,
+    visible Bool isInterface,
+    visible Class extension,
+    visible Class[] interfaces
   ) {}
 
   public isOfType(Class other) =>
