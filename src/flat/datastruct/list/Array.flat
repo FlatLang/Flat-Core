@@ -581,14 +581,14 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return r
   }
 
-  [RequireGenericType E extends Comparable]
-  public mergeSort() => mergeSort({ ((Comparable)_).compareTo((Comparable)_) })
+  // [RequireGenericType E extends Comparable]
+  // public mergeSort() => mergeSort({ ((Comparable)_).compareTo((Comparable)_) })
 
-  [RequireGenericType E extends Comparable]
-  public quickSort() => quickSort({ ((Comparable)_).compareTo((Comparable)_) })
+  // [RequireGenericType E extends Comparable]
+  // public quickSort() => quickSort({ ((Comparable)_).compareTo((Comparable)_) })
 
-  [RequireGenericType E extends Comparable]
-  public sort() => mergeSort()
+  // [RequireGenericType E extends Comparable]
+  // public sort() => mergeSort()
 
   public sort(comparator(E, E) -> Int) => mergeSort(comparator)
 
