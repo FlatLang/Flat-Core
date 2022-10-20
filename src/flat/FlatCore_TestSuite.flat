@@ -13,7 +13,7 @@ import flat/datastruct/list
   List_Test
 ]]
 class {
-  public static async main(String args[]) {
+  public static async main(String[] args) {
     let test = FlatCore_TestSuite()
 
     Timer timer = Timer().start()
