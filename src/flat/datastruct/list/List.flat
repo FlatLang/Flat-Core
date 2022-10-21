@@ -173,6 +173,22 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
+  /// Check whether the anyFunc returns true for any of the values
+  /// within this List.
+  ///
+  /// anyFunc: The function that the values are passed to to determine
+  ///   whether the function is successful.
+  /// return: Whether or not any of the calls to anyFunc returned true.
+  public async anyAsync(async anyFunc(Type, Int, List<Type>) -> Bool) => false {
+    var Int i = 0
+
+    for (element in this) {
+      if (anyFunc(element, i++, this)) {
+        return true
+      }
+    }
+  }
+
   public all(allFunc(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var Int i = 0
     var contradiction = false
@@ -190,7 +206,41 @@ trait List<Type> implements Iterable<Type> {
     return !contradiction
   }
 
+  public async allAsync(async allFunc(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
+    var Int i = 0
+    var contradiction = false
+
+    for (element in this) {
+      if (!allFunc(element, i++, this)) {
+        if (stopOnContradiction) {
+          return false
+        }
+
+        contradiction = true
+      }
+    }
+
+    return !contradiction
+  }
+
   public none(func(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
+    var Int i = 0
+    var contradiction = false
+
+    for (element in this) {
+      if (func(element, i++, this)) {
+        if (stopOnContradiction) {
+          return false
+        }
+
+        contradiction = true
+      }
+    }
+
+    return !contradiction
+  }
+
+  public async noneAsync(async func(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var Int i = 0
     var contradiction = false
 
