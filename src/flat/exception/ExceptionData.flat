@@ -1,18 +1,11 @@
 package flat/exception
 
 class ExceptionData {
-  external type buffer
-  external buffer* NULL
-
   visible ExceptionData parent
 
   visible CaughtException[] caught
 
   public Exception thrownException
-
-  public construct(visible buffer* buf) {
-    this.caught = CaughtException[]
-  }
 
   public addCaught(Class type, Bool soft = false) {
     caught.add(CaughtException(type, soft))
@@ -29,25 +22,6 @@ class ExceptionData {
       }
 
       data = data.parent
-    }
-  }
-
-  [Target c]
-  public throwException(ExceptionData* context, Exception exception, Bool soft) => false {
-    let catchExceptionData = getDataByException(exception, soft)
-
-    if (catchExceptionData) {
-      exception.onThrown(soft)
-
-      if (!catchExceptionData.parent) {
-        exception.stackTrace.trace()
-      }
-
-      external {
-        *context = #{catchExceptionData}; // need to set in case nested tries in same function
-        #{catchExceptionData}->nova_exception_Nova_ExceptionData_Nova_thrownException = #{exception};
-        jump(*#{catchExceptionData.buf}, (intptr_t)#{exception});
-      }
     }
   }
 
