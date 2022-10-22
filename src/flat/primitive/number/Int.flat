@@ -8,8 +8,8 @@ import flat/operators/MultiplyEqualsOperator
 class Int extends Number implements Integer {
   public Long hashCodeLong => value
 
-  visible static final Int MAX_VALUE =  2147483647
-  visible static final Int MIN_VALUE = -2147483648
+  visible static Int MAX_VALUE =  2147483647
+  visible static Int MIN_VALUE = -2147483648
 
   public Double realValue => (Double)value
   public Long integerValue => value
