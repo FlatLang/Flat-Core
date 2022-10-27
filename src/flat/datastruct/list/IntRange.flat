@@ -18,7 +18,7 @@ class IntRange implements List<Int> {
   override public contains(Int value) => value >= start && value < end
 
   public toArray() -> Int[] {
-    let ints = new Int[size]
+    let ints = Array<Int>(size)
 
     var Int i = start
 
