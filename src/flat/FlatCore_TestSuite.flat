@@ -5,12 +5,14 @@ import novex/nest/TestResult
 import flat/time/Timer
 import flat/io/FancyOutputStream
 
+import flat/meta
 import flat/datastruct/list
 
 [TestSuite [
   FlatCore_Test,
   Array_Test,
-  List_Test
+  List_Test,
+  Class_Test
 ]]
 class {
   public static async main(String[] args) {

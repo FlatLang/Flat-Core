@@ -1,0 +1,19 @@
+package flat/meta
+
+data class Function {
+  public construct(
+    visible String name
+  ) {}
+
+  public call(Object obj, Object[] args = Array()) -> Object {
+    external js {
+      return #{obj}[#{name}.chars.data].apply(#{obj}, #{args}.data);
+    }
+  }
+
+  public callStatic(Object obj, Object[] args = Array()) -> Object {
+    external js {
+      return #{obj}[#{name}.chars.data].apply(null, #{args}.data);
+    }
+  }
+}

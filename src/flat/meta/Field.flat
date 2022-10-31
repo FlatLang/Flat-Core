@@ -1,0 +1,19 @@
+package flat/meta
+
+data class Field {
+  public construct(
+    visible String name
+  ) {}
+
+  public getValue(Object obj) -> Object {
+    external js {
+      return #{obj}[#{name}.chars.data];
+    }
+  }
+
+  public setValue(Object obj, Object value) -> Object {
+    external js {
+      return #{obj}[#{name}.chars.data] = #{value};
+    }
+  }
+}

@@ -9,13 +9,15 @@ class Class<Type> {
   visible String package => location.substring(0, location.lastIndexOf("/", defaultReturnValue: 0))
   visible String name => location.substring(location.lastIndexOf("/") + 1)
 
-  visible static Class[] ALL = Array()
+  visible static lazy Class[] ALL => null
 
   public construct(
     visible String location,
     visible Bool isInterface,
     visible Class extension,
-    visible Class[] interfaces
+    visible Class[] interfaces,
+    visible Field[] fields = null,
+    visible Function[] functions = null
   ) {}
 
   public isOfType(Class other) =>
