@@ -64,7 +64,7 @@ testable class {
   test `can call constructor from function`() {
     let constructor = TestClass.class.functions.firstWhere({ _.name == "construct" })
 
-    expect(constructor.callStatic(TestClass(), ["test", "bob"])).toBe(TestClass("test", "bob"))
+    expect(constructor.callStatic(TestClass.class, ["test", "bob"])).toBe(TestClass("test", "bob"))
   }
 }
 

@@ -11,9 +11,9 @@ data class Function {
     }
   }
 
-  public callStatic(Object obj, Object[] args = Array()) -> Object {
+  public callStatic(Class c, Object[] args = Array()) -> Object {
     external js {
-      return #{obj}[#{name}.chars.data].apply(null, #{args}.data);
+      return #{c.jsClass}[#{name}.chars.data].apply(null, #{args}.data);
     }
   }
 }
