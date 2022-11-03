@@ -20,6 +20,12 @@ class Class<Type> {
     visible Function[] functions = null
   ) {}
 
+  public getField(String name, Bool checkAncestors = false) -> Field {
+    return fields.firstWhere({ _.name == name }) ?:
+      (checkAncestors ? extension?.getField(name, true) : null) ?:
+      (checkAncestors ? interfaces.mapNotNull({ _.getField(name, true) })?.first : null)
+  }
+
   public isOfType(Class other) =>
     (other.isInterface ?
       isOfTypeInterface(other) || extension && extension.isOfType(other) :
