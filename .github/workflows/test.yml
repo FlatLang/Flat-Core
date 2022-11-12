@@ -62,6 +62,9 @@ jobs:
           node airship.js install test -t es6
 
       - name: Build Flat Core wtih flatc
+        env:
+          LOGGING_DEFAULT_SHOW_PREFIX: false
+          LOGGING_DEFAULT_LOGGING_LEVEL: INFO
         run: |
           . ~/.flat/env
           airship install --flatc-runtime flat -t es6
