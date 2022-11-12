@@ -61,6 +61,11 @@ jobs:
         run: |
           node airship.js install test -t es6
 
+      - name: Build Flat Core wtih flatc
+        run: |
+          . ~/.flat/env
+          airship install --flatc-runtime flat -t es6
+
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
