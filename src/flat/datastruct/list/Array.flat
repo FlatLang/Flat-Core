@@ -136,7 +136,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return element
   }
 
-  public removeAtIndex(Int index) => removeAtIndex(index, 1)[0]
+  public removeAtIndex(Int index) => removeAtIndex(index, 1).first
   public removeAtIndex(Int index, Int count = 1) -> E[] {
     let output = Array<E>()
 
