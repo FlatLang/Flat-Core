@@ -399,6 +399,22 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
+  public findOne(func(Type, Int, List<Type>) -> Bool = {true}) -> Type => null {
+    var Int i = 0
+    var matched = false
+    var Type value
+
+    for (element in this) {
+      if (func(element, i++, this)) {
+        if (matched) return null
+        matched = true
+        value = element
+      }
+    }
+
+    return value
+  }
+
   public firstOr(Type default, func(Type, Int, List<Type>) -> Bool = {true}) -> Type => default {
     var Int i = 0
 
