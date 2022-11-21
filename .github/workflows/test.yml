@@ -61,14 +61,6 @@ jobs:
         run: |
           node airship.js install test -t es6
 
-      - name: Build Flat-Core with flatc
-        env:
-          LOGGING_DEFAULT_SHOW_PREFIX: false
-          LOGGING_DEFAULT_LOGGING_LEVEL: INFO
-        run: |
-          . ~/.flat/env
-          airship install --flatc-runtime flat -t es6
-
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
@@ -78,3 +70,11 @@ jobs:
       - name: Run Flat-Core Test
         run: |
           node airship.js run test
+
+      - name: Build Flat-Core with flatc
+        env:
+          LOGGING_DEFAULT_SHOW_PREFIX: false
+          LOGGING_DEFAULT_LOGGING_LEVEL: INFO
+        run: |
+          . ~/.flat/env
+          airship install --flatc-runtime flat -t es6
