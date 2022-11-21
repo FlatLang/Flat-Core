@@ -1,4 +1,4 @@
-name: Test Flat Core
+name: Test Flat-Core
 
 on:
   push:
@@ -53,15 +53,15 @@ jobs:
           cd Airship
           node ../airship.js setup
 
-      - name: Link Flat Core
+      - name: Link Flat-Core
         run: |
           node airship.js reinstall --link
 
-      - name: Build Flat Core Test
+      - name: Build Flat-Core Test
         run: |
           node airship.js install test -t es6
 
-      - name: Build Flat Core wtih flatc
+      - name: Build Flat-Core with flatc
         env:
           LOGGING_DEFAULT_SHOW_PREFIX: false
           LOGGING_DEFAULT_LOGGING_LEVEL: INFO
@@ -75,6 +75,6 @@ jobs:
           name: test.js
           path: dist/test.js
 
-      - name: Run Flat Core Test
+      - name: Run Flat-Core Test
         run: |
           node airship.js run test
