@@ -19,4 +19,15 @@ class {
   }
 
   public static toString(Double value) => String(toCharArray(value))
+
+  public toFixed(Int precision) => toFixed(value, precision)
+  public static toFixed(Double value, Int precision) -> String {
+    native var Char[] data
+
+    external {
+      #{data} = #{value}.toFixed(#{precision});
+    }
+
+    return String(data)
+  }
 }

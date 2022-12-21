@@ -19,4 +19,7 @@ class {
   }
 
   public static toString(Float value) => String(toCharArray(value))
+
+  public toFixed(Int precision) => toFixed(value, precision)
+  public static toFixed(Float value, Int precision) => Double.toFixed(value, precision)
 }
