@@ -65,4 +65,7 @@ class Int extends Number implements Integer {
   public static hashCodeLong(Int value) => Math.abs(value)
   public static plus(Int a, Long b) => a + b
   public static compareTo(Int a, Int b) => a - b
+
+  public toFileSize() => toFileSize(value)
+  public static toFileSize(Int value) => Long.toFileSize(value)
 }

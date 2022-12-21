@@ -114,4 +114,24 @@ class Long extends Number implements Integer {
   public toString() => toString(value)
   public static hashCodeLong(Long value) => Math.abs(value)
   public static plus(Long a, Long b) => a + b
+
+  static String[] FILE_SIZES = [
+    "B",
+    "KiB",
+    "MiB",
+    "GiB",
+  ]
+
+  public toFileSize() => toFileSize(value)
+  public static toFileSize(Long size) -> String {
+    var Int index = 0
+    var Double current = size
+
+    while (current >= 1024 && index < FILE_SIZES.count - 1) {
+      current /= 1024
+      index++
+    }
+
+    return "#{current.toFixed(1)}#{FILE_SIZES[index]}"
+  }
 }
