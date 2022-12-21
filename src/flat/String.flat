@@ -87,6 +87,9 @@ class String implements Comparable<String>,
     }
   }
 
+  public Bool isEmpty => count == 0
+  public Bool isNotEmpty => count > 0
+
   public startsWith(Char search) => indexOf(search) == 0
   public startsWith(String search) => indexOf(search) == 0
 
