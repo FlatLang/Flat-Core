@@ -257,6 +257,21 @@ trait List<Type> implements Iterable<Type> {
     return !contradiction
   }
 
+  public async noneParallel(async func(Type, Int, List<Type>) -> Bool, Int maxParallel = -1) -> Bool {
+    var Int i = 0
+    var contradiction = false
+
+    let checked = Async.all<Bool>(toArray(), { func(_, _, this) }, maxParallel)
+
+    for (element in this) {
+      if (checked[i++] == true) {
+        return false
+      }
+    }
+
+    return !contradiction
+  }
+
   public filter(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
     let list = Type[]
 
