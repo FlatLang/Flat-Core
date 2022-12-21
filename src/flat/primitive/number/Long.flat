@@ -134,4 +134,66 @@ class Long extends Number implements Integer {
 
     return "#{current.toFixed(1)}#{FILE_SIZES[index]}"
   }
+
+  public millisToTime(Bool abbreviate = true, Bool: millis = true, Bool: seconds = true, Bool: minutes = true, Bool: hours = true) => millisToTime(value, abbreviate, millis, seconds, minutes, hours)
+  public static millisToTime(var Long time, Bool abbreviate = true, Bool: millis = true, Bool: seconds = true, Bool: minutes = true, Bool: hours = true) -> String {
+    var str = ""
+    var value = time % 1000
+
+    if (millis) {
+      if (abbreviate) {
+        str = "ms"
+      } else {
+        str = " millisecond#{value == 1 ? "" : "s"}"
+      }
+      str = "#{value}#{str}"
+      if (time < 1000) return str
+    }
+
+    time /= 1000
+    value = time % 60
+    if (seconds) {
+      if (abbreviate) {
+        str = "s#{str.isNotEmpty ? ", " + str : ""}"
+      } else {
+        str = " second#{value == 1 ? "" : "s"}" + (str.isNotEmpty ? ", #{str}" : "")
+      }
+      str = "#{value}#{str}"
+      if (time < 60) return str
+    }
+
+    time /= 60
+    value = time % 60
+    if (minutes) {
+      if (abbreviate) {
+        str = "m#{str.isNotEmpty ? ", " + str : ""}"
+      } else {
+        str = " minute#{value == 1 ? "" : "s"}" + (str.isNotEmpty ? ", #{str}" : "")
+      }
+      str = "#{value}#{str}"
+      if (time < 60) return str
+    }
+
+    time /= 60
+    value = time % 24
+    if (hours) {
+      if (abbreviate) {
+        str = "h#{str.isNotEmpty ? ", " + str : ""}"
+      } else {
+        str = " hour#{value == 1 ? "" : "s"}" + (str.isNotEmpty ? ", #{str}" : "")
+      }
+      str = "#{value}#{str}"
+      if (time < 24) return str
+    }
+
+    time /= 24
+    if (abbreviate) {
+      str = "d#{str.isNotEmpty ? ", " + str : ""}"
+    } else {
+      str = " days#{str.isNotEmpty ? ", " + str : ""}"
+    }
+    str = "#{time}#{str}"
+
+    return str
+  }
 }
