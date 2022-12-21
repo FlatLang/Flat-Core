@@ -1,0 +1,22 @@
+package flat/primitive/number
+
+import flat/datastruct/Comparable
+import flat/operators/EqualsOperator
+import flat/operators/MultiplyOperator
+import flat/operators/MultiplyEqualsOperator
+
+class {
+  public static parseFloat(String str) -> Float {
+    external {
+      return parseFloat(#{str.chars.data});
+    }
+  }
+
+  public native static toCharArray(Float value) -> Char[] {
+    external {
+      return #{value}.toString();
+    }
+  }
+
+  public static toString(Float value) => String(toCharArray(value))
+}
