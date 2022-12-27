@@ -135,8 +135,32 @@ class Long extends Number implements Integer {
     return "#{current.toFixed(1)}#{FILE_SIZES[index]}"
   }
 
-  public millisToTime(Bool abbreviate = true, Bool: millis = true, Bool: seconds = true, Bool: minutes = true, Bool: hours = true) => millisToTime(value, abbreviate, millis, seconds, minutes, hours)
-  public static millisToTime(var Long time, Bool abbreviate = true, Bool: millis = true, Bool: seconds = true, Bool: minutes = true, Bool: hours = true) -> String {
+  public millisToTime(
+    Bool abbreviate = true,
+    Bool: millis = true,
+    Bool: seconds = true,
+    Bool: minutes = true,
+    Bool: hours = true,
+    String: delimiter = abbreviate ? " " : ", "
+  ) => millisToTime(
+    value,
+    abbreviate,
+    millis,
+    seconds,
+    minutes,
+    hours,
+    delimiter
+  )
+
+  public static millisToTime(
+    var Long time,
+    Bool abbreviate = true,
+    Bool: millis = true,
+    Bool: seconds = true,
+    Bool: minutes = true,
+    Bool: hours = true,
+    String: delimiter = abbreviate ? " " : ", "
+  ) -> String {
     var str = ""
     var value = time % 1000
 
@@ -154,9 +178,9 @@ class Long extends Number implements Integer {
     value = time % 60
     if (seconds) {
       if (abbreviate) {
-        str = "s#{str.isNotEmpty ? ", " + str : ""}"
+        str = "s#{str.isNotEmpty ? delimiter + str : ""}"
       } else {
-        str = " second#{value == 1 ? "" : "s"}" + (str.isNotEmpty ? ", #{str}" : "")
+        str = " second#{value == 1 ? "" : "s"}" + (str.isNotEmpty ? delimiter + str : "")
       }
       str = "#{value}#{str}"
       if (time < 60) return str
@@ -166,9 +190,9 @@ class Long extends Number implements Integer {
     value = time % 60
     if (minutes) {
       if (abbreviate) {
-        str = "m#{str.isNotEmpty ? ", " + str : ""}"
+        str = "m#{str.isNotEmpty ? delimiter + str : ""}"
       } else {
-        str = " minute#{value == 1 ? "" : "s"}" + (str.isNotEmpty ? ", #{str}" : "")
+        str = " minute#{value == 1 ? "" : "s"}" + (str.isNotEmpty ? delimiter + str : "")
       }
       str = "#{value}#{str}"
       if (time < 60) return str
@@ -178,9 +202,9 @@ class Long extends Number implements Integer {
     value = time % 24
     if (hours) {
       if (abbreviate) {
-        str = "h#{str.isNotEmpty ? ", " + str : ""}"
+        str = "h#{str.isNotEmpty ? delimiter + str : ""}"
       } else {
-        str = " hour#{value == 1 ? "" : "s"}" + (str.isNotEmpty ? ", #{str}" : "")
+        str = " hour#{value == 1 ? "" : "s"}" + (str.isNotEmpty ? delimiter + str : "")
       }
       str = "#{value}#{str}"
       if (time < 24) return str
@@ -188,9 +212,9 @@ class Long extends Number implements Integer {
 
     time /= 24
     if (abbreviate) {
-      str = "d#{str.isNotEmpty ? ", " + str : ""}"
+      str = "d#{str.isNotEmpty ? delimiter + str : ""}"
     } else {
-      str = " days#{str.isNotEmpty ? ", " + str : ""}"
+      str = " days#{str.isNotEmpty ? delimiter + str : ""}"
     }
     str = "#{time}#{str}"
 
