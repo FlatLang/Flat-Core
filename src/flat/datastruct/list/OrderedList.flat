@@ -21,7 +21,7 @@ trait OrderedList<Type> implements List<Type> {
     var Int i = 0
 
     for (e in this) {
-      if (element == e) {
+      if (element == null && e == null || element != null && element.equals(e)) {
         return i
       }
 
