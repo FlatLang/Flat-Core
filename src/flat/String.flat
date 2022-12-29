@@ -315,6 +315,38 @@ class String implements Comparable<String>,
     return sum
   }
 
+  public split(String delimiter) -> String[] {
+    let strs = String[]
+    var Int i = 0
+    var Int lastI = i
+
+    for (i = indexOf(delimiter); i != -1; i = indexOf(delimiter, i + delimiter.count)) {
+      strs.add(substring(lastI, i))
+
+      lastI = i + delimiter.count
+    }
+
+    strs.add(substring(lastI))
+
+    return strs
+  }
+
+  public split(Char delimiter) -> String[] {
+    let strs = String[]
+    var Int i = 0
+    var Int lastI = i
+
+    for (i = indexOf(delimiter); i != -1; i = indexOf(delimiter, i + delimiter.count)) {
+      strs.add(substring(lastI, i))
+
+      lastI = i + 1
+    }
+
+    strs.add(substring(lastI))
+
+    return strs
+  }
+
   public toString() => this
   public toJson() => "\"#{toString()}\""
 }
