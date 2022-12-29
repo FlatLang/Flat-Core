@@ -8,6 +8,7 @@ class Class<Type> {
   visible String location
   visible String package => location.substring(0, location.lastIndexOf("/", defaultReturnValue: 0))
   visible String name => location.substring(location.lastIndexOf("/") + 1)
+  visible String rootName => location.substring(Math.max(location.lastIndexOf("/"), location.lastIndexOf(".")) + 1)
 
   visible static lazy Class[] ALL => null
 
