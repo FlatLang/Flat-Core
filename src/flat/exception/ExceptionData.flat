@@ -15,7 +15,7 @@ class ExceptionData {
     var data = this
 
     while (true) {
-      if (data.caught.any(c => { (!soft || c.soft) && exception.class.isOfType(c.type) })) {
+      if (data.caught.any({ (!soft || _x.soft) && exception.class.isOfType(_x.type) })) {
         return data
       } else if (!data.parent) {
         return soft ? null : data

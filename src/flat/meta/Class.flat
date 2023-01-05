@@ -50,7 +50,7 @@ class Class<Type> {
     var current = this
 
     while (current) {
-      if (current.interfaces.any(i => i == other || i.isOfTypeInterface(other))) {
+      if (current.interfaces.any({ _x == other || _x.isOfTypeInterface(other)})) {
         return true
       }
 

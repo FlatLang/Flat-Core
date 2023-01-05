@@ -18,14 +18,14 @@ class implements EqualsOperator {
 
   // writeFields() =>
   //   this.class.getFields(true).count > 0 ?
-  //     this.class.getFields(true).map(f => {
-  //       "\n#f.name = #f.getValue(this)"
+  //     this.class.getFields(true).map({
+  //       "\n#_x.name = #_x.getValue(this)"
   //     }) + "\n" :
   //     ""
 
   // writeFunctions() =>
-  //   this.class.functions.map(f => {
-  //     "\n#f"
+  //   this.class.functions.map({
+  //     "\n#_x"
   //   })
 
   // public toString() =>
