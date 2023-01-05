@@ -147,7 +147,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return output
   }
 
-  public removeFirstWhere(func(E, Int, Array<E>) -> Bool) -> E => null {
+  public removeFirstWhere(func(E x, Int i, Array<E> array) -> Bool) -> E => null {
     var Int i = 0
 
     for (element in this) {
@@ -250,7 +250,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return copy
   }
 
-  override public lastWhere(func(E, Int, Array<E>) -> Bool) -> E => null {
+  override public lastWhere(func(E x, Int i, Array<E> array) -> Bool) -> E => null {
     for (var Int i = count - 1; i >= 0; i--) {
       let element = this[i]
 
@@ -260,7 +260,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
   }
 
-  override public map<Out>(mapFunc(E, Int, Array<E>) -> Out) -> Out[] {
+  override public map<Out>(mapFunc(E x, Int i, Array<E> array) -> Out) -> Out[] {
     let array = Array<Out>(count)
 
     var Int i = 0
@@ -272,11 +272,11 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  override public async mapParallel<Out>(async mapFunc(E, Int, Array<E>) -> Out, Int maxParallel = -1) -> Out[] {
+  override public async mapParallel<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out, Int maxParallel = -1) -> Out[] {
     return Async.all(this, { mapFunc(_, _, this) }, maxParallel)
   }
 
-  override public async mapAsync<Out>(async mapFunc(E, Int, Array<E>) -> Out) -> Out[] {
+  override public async mapAsync<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out) -> Out[] {
     let array = Array<Out>(count)
 
     var Int i = 0
@@ -288,7 +288,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  public mapNotNull<Out>(mapFunc(E, Int, Array<E>) -> Out) -> Array<Out> {
+  public mapNotNull<Out>(mapFunc(E x, Int i, Array<E> array) -> Out) -> Array<Out> {
     let array = Array<Out>()
 
     var Int i = 0
@@ -304,11 +304,11 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  public async mapNotNullParallel<Out>(async mapFunc(E, Int, Array<E>) -> Out, Int maxParallel = -1) -> Array<Out> {
+  public async mapNotNullParallel<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out, Int maxParallel = -1) -> Array<Out> {
     return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel).filterNull()
   }
 
-  public async mapNotNullAsync<Out>(async mapFunc(E, Int, Array<E>) -> Out) -> Array<Out> {
+  public async mapNotNullAsync<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out) -> Array<Out> {
     let array = Array<Out>()
 
     var Int i = 0
@@ -324,7 +324,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  override public flatMap<Out>(mapFunc(E, Int, Array<E>) -> Out[]) -> Out[] {
+  override public flatMap<Out>(mapFunc(E x, Int i, Array<E> array) -> Out[]) -> Out[] {
     let array = Array<Out>()
 
     var Int i = 0
@@ -336,17 +336,17 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  override public forEach(func(E, Int, Array<E>)) => this {
+  override public forEach(func(E x, Int i, Array<E> array)) => this {
     for (i in 0..count) {
       func(data[i], i, this)
     }
   }
 
-  override public async forEachParallel(async func(E, Int, Array<E>), Int maxParallel = -1) => this {
+  override public async forEachParallel(async func(E x, Int i, Array<E> array), Int maxParallel = -1) => this {
     Async.all(this, { func(_, _, this) }, maxParallel)
   }
 
-  override public async forEachAsync(async func(E, Int, Array<E>)) => this {
+  override public async forEachAsync(async func(E x, Int i, Array<E> array)) => this {
     var Int i = 0
 
     for (element in this) {
@@ -354,7 +354,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
   }
 
-  override public filter(filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
+  override public filter(filterFunc(E x, Int i, Array<E> array) -> Bool) -> E[] {
     let filtered = E[]
 
     var Int i = 0
@@ -368,7 +368,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return filtered
   }
 
-  override public async filterParallel(async filterFunc(E, Int, Array<E>) -> Bool, Int maxParallel = -1) -> E[] {
+  override public async filterParallel(async filterFunc(E x, Int i, Array<E> array) -> Bool, Int maxParallel = -1) -> E[] {
     let array = E[]
     let promiseArray = Array<Object>(count)
 
@@ -385,7 +385,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  override public async filterAsync(async filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
+  override public async filterAsync(async filterFunc(E x, Int i, Array<E> array) -> Bool) -> E[] {
     let array = E[]
 
     var Int i = 0
@@ -435,7 +435,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return list
   }
 
-  public takeWhile(filterFunc(E, Int, Array<E>) -> Bool) -> E[] {
+  public takeWhile(filterFunc(E x, Int i, Array<E> array) -> Bool) -> E[] {
     let array = E[]
 
     var Int i = 0
@@ -520,7 +520,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  public mergeSort(comparator(E, E) -> Int) -> E[] {
+  public mergeSort(comparator(E a, E b) -> Int) -> E[] {
     let sorted = clone()
 
     if (count > 1) {
@@ -552,9 +552,9 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return sorted
   }
 
-  public quickSort(comparator(E, E) -> Int) => quickSortHelper(clone(), 0, count - 1, comparator)
+  public quickSort(comparator(E a, E b) -> Int) => quickSortHelper(clone(), 0, count - 1, comparator)
 
-  static quickSortHelper(E[] list, Int first, Int last, comparator(E, E) -> Int) => list {
+  static quickSortHelper(E[] list, Int first, Int last, comparator(E a, E b) -> Int) => list {
     if (first < last) {
       let mid = partition(list, first, last, comparator)
 
@@ -563,7 +563,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
   }
 
-  static partition(E[] list, Int first, Int last, comparator(E, E) -> Int) -> Int {
+  static partition(E[] list, Int first, Int last, comparator(E a, E b) -> Int) -> Int {
     let pivot = list[first]
 
     var l = first + 1
@@ -590,7 +590,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
   // [RequireGenericType E extends Comparable]
   // public sort() => mergeSort()
 
-  public sort(comparator(E, E) -> Int) => mergeSort(comparator)
+  public sort(comparator(E a, E b) -> Int) => mergeSort(comparator)
 
   override public toString() => "[" + map(x => x != null && x.class.isOfType(String.class) ? "\"#{x}\"" : x).join(", ") + "]"
   override public toJson() => "[" + map(x => x != null && x.class.isOfType(String.class) ? "\"#{x}\"" : x.toJson()).join(",") + "]"
