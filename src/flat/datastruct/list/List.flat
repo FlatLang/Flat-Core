@@ -55,7 +55,7 @@ trait List<Type> implements Iterable<Type> {
   ///
   /// func: The function to call for each of the elements in the List.
   /// return: Returns itself. Chainable function.
-  public forEach(func(Type, Int, List<Type>)) => this {
+  public forEach(func(Type x, Int i, List<Type> list)) => this {
     var Int i = 0
 
     for (value in this) {
@@ -63,11 +63,11 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public async forEachParallel(async func(Type, Int, List<Type>), Int maxParallel = -1) => this {
+  public async forEachParallel(async func(Type x, Int i, List<Type> list), Int maxParallel = -1) => this {
     Async.all(toArray(), { func(_, _, this) }, maxParallel)
   }
 
-  public async forEachAsync(async func(Type, Int, List<Type>)) => this {
+  public async forEachAsync(async func(Type x, Int i, List<Type> list)) => this {
     var Int i = 0
 
     for (element in this) {
@@ -81,7 +81,7 @@ trait List<Type> implements Iterable<Type> {
   /// mapFunc: The function to use to generate the values that will
   ///   be contained within the outputted List.
   /// return: The List of values generated from the mapFunc function calls.
-  public map<Out>(mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
+  public map<Out>(mapFunc(Type x, Int i, List<Type> list) -> Out) -> List<Out> {
     let array = Array<Out>(count)
 
     var Int i = 0
@@ -93,11 +93,11 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
-  public async mapParallel<Out>(async mapFunc(Type, Int, List<Type>) -> Out, Int maxParallel = -1) -> List<Out> {
+  public async mapParallel<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out, Int maxParallel = -1) -> List<Out> {
     return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel)
   }
 
-  public async mapAsync<Out>(async mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
+  public async mapAsync<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out) -> List<Out> {
     let array = Array<Out>(count)
 
     var Int i = 0
@@ -109,7 +109,7 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
-  public mapNotNull<Out>(mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
+  public mapNotNull<Out>(mapFunc(Type x, Int i, List<Type> list) -> Out) -> List<Out> {
     let array = Array<Out>()
 
     var Int i = 0
@@ -125,11 +125,11 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
-  public async mapNotNullParallel<Out>(async mapFunc(Type, Int, List<Type>) -> Out, Int maxParallel = -1) -> List<Out> {
+  public async mapNotNullParallel<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out, Int maxParallel = -1) -> List<Out> {
     return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel).filterNull()
   }
 
-  public async mapNotNullAsync<Out>(async mapFunc(Type, Int, List<Type>) -> Out) -> List<Out> {
+  public async mapNotNullAsync<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out) -> List<Out> {
     let array = Array<Out>()
 
     var Int i = 0
@@ -145,7 +145,7 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
-  public flatMap<Out>(mapFunc(Type, Int, List<Type>) -> Out[]) -> List<Out> {
+  public flatMap<Out>(mapFunc(Type x, Int i, List<Type> list) -> Out[]) -> List<Out> {
     let array = Array<Out>()
 
     var Int i = 0
@@ -163,7 +163,7 @@ trait List<Type> implements Iterable<Type> {
   /// anyFunc: The function that the values are passed to to determine
   ///   whether the function is successful.
   /// return: Whether or not any of the calls to anyFunc returned true.
-  public any(anyFunc(Type, Int, List<Type>) -> Bool) => false {
+  public any(anyFunc(Type x, Int i, List<Type> list) -> Bool) => false {
     var Int i = 0
 
     for (element in this) {
@@ -179,7 +179,7 @@ trait List<Type> implements Iterable<Type> {
   /// anyFunc: The function that the values are passed to to determine
   ///   whether the function is successful.
   /// return: Whether or not any of the calls to anyFunc returned true.
-  public async anyAsync(async anyFunc(Type, Int, List<Type>) -> Bool) => false {
+  public async anyAsync(async anyFunc(Type x, Int i, List<Type> list) -> Bool) => false {
     var Int i = 0
 
     for (element in this) {
@@ -189,7 +189,7 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public all(allFunc(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
+  public all(allFunc(Type x, Int i, List<Type> list) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var Int i = 0
     var contradiction = false
 
@@ -206,7 +206,7 @@ trait List<Type> implements Iterable<Type> {
     return !contradiction
   }
 
-  public async allAsync(async allFunc(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
+  public async allAsync(async allFunc(Type x, Int i, List<Type> list) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var Int i = 0
     var contradiction = false
 
@@ -223,7 +223,7 @@ trait List<Type> implements Iterable<Type> {
     return !contradiction
   }
 
-  public none(func(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
+  public none(func(Type x, Int i, List<Type> list) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var Int i = 0
     var contradiction = false
 
@@ -240,7 +240,7 @@ trait List<Type> implements Iterable<Type> {
     return !contradiction
   }
 
-  public async noneAsync(async func(Type, Int, List<Type>) -> Bool, Bool stopOnContradiction = true) -> Bool {
+  public async noneAsync(async func(Type x, Int i, List<Type> list) -> Bool, Bool stopOnContradiction = true) -> Bool {
     var Int i = 0
     var contradiction = false
 
@@ -257,7 +257,7 @@ trait List<Type> implements Iterable<Type> {
     return !contradiction
   }
 
-  public async noneParallel(async func(Type, Int, List<Type>) -> Bool, Int maxParallel = -1) -> Bool {
+  public async noneParallel(async func(Type x, Int i, List<Type> list) -> Bool, Int maxParallel = -1) -> Bool {
     var Int i = 0
     var contradiction = false
 
@@ -272,7 +272,7 @@ trait List<Type> implements Iterable<Type> {
     return !contradiction
   }
 
-  public filter(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
+  public filter(filterFunc(Type x, Int i, List<Type> list) -> Bool) -> List<Type> {
     let list = Type[]
 
     var Int i = 0
@@ -286,7 +286,7 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public async filterParallel(async filterFunc(Type, Int, List<Type>) -> Bool, Int maxParallel = -1) -> List<Type> {
+  public async filterParallel(async filterFunc(Type x, Int i, List<Type> list) -> Bool, Int maxParallel = -1) -> List<Type> {
     let list = Type[]
     let promiseArray = Array<Object>(count)
 
@@ -303,7 +303,7 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public async filterAsync(async filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
+  public async filterAsync(async filterFunc(Type x, Int i, List<Type> list) -> Bool) -> List<Type> {
     let list = Type[]
 
     var Int i = 0
@@ -317,7 +317,7 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public filterNot(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
+  public filterNot(filterFunc(Type x, Int i, List<Type> list) -> Bool) -> List<Type> {
     let list = Type[]
 
     var Int i = 0
@@ -347,7 +347,7 @@ trait List<Type> implements Iterable<Type> {
 
   public filterAtIndex(Int index, Int count = 1) => filter({ _2 < index && _2 >= index + count })
 
-  public takeWhile(filterFunc(Type, Int, List<Type>) -> Bool) -> List<Type> {
+  public takeWhile(filterFunc(Type x, Int i, List<Type> list) -> Bool) -> List<Type> {
     let list = Type[]
 
     var Int i = 0
@@ -414,7 +414,7 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public findOne(func(Type, Int, List<Type>) -> Bool = {true}) -> Type => null {
+  public findOne(func(Type x, Int i, List<Type> list) -> Bool = {true}) -> Type => null {
     var Int i = 0
     var matched = false
     var Type value
@@ -430,7 +430,7 @@ trait List<Type> implements Iterable<Type> {
     return value
   }
 
-  public firstOr(Type default, func(Type, Int, List<Type>) -> Bool = {true}) -> Type => default {
+  public firstOr(Type default, func(Type x, Int i, List<Type> list) -> Bool = {true}) -> Type => default {
     var Int i = 0
 
     for (element in this) {
@@ -440,7 +440,7 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public async firstOrAsync(Type default, async func(Type, Int, List<Type>) -> Bool = {true}) -> Type => default {
+  public async firstOrAsync(Type default, async func(Type x, Int i, List<Type> list) -> Bool = {true}) -> Type => default {
     var Int i = 0
 
     for (element in this) {
@@ -450,10 +450,10 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public firstOrNull(func(Type, Int, List<Type>) -> Bool = {true}) -> Type => firstOr(null, func)
-  public async firstOrNullAsync(async func(Type, Int, List<Type>) -> Bool = {true}) -> Type => firstOrAsync(null, func)
+  public firstOrNull(func(Type x, Int i, List<Type> list) -> Bool = {true}) -> Type => firstOr(null, func)
+  public async firstOrNullAsync(async func(Type x, Int i, List<Type> list) -> Bool = {true}) -> Type => firstOrAsync(null, func)
 
-  public firstWhereOrThrow<OUT>(Exception e, func(Type, Int, List<Type>) -> OUT = {null}) -> OUT {
+  public firstWhereOrThrow<OUT>(Exception e, func(Type x, Int i, List<Type> list) -> OUT = {null}) -> OUT {
     var Int i = 0
 
     for (element in this) {
@@ -465,7 +465,7 @@ trait List<Type> implements Iterable<Type> {
     throw e
   }
 
-  public firstOrThrow(Exception e, func(Type, Int, List<Type>) -> Bool = {true}) -> Type {
+  public firstOrThrow(Exception e, func(Type x, Int i, List<Type> list) -> Bool = {true}) -> Type {
     var Int i = 0
 
     for (element in this) {
@@ -477,7 +477,7 @@ trait List<Type> implements Iterable<Type> {
     throw e
   }
 
-  public firstWhere(func(Type, Int, List<Type>) -> Bool) -> Type => null {
+  public firstWhere(func(Type x, Int i, List<Type> list) -> Bool) -> Type => null {
     var Int i = 0
 
     for (element in this) {
@@ -487,11 +487,11 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public lastWhere(func(Type, Int, List<Type>) -> Bool) -> Type => null {
+  public lastWhere(func(Type x, Int i, List<Type> list) -> Bool) -> Type => null {
     return reverse().firstWhere(func)
   }
 
-  public firstNonNull<Out>(func(Type, Int, List<Type>) -> Out) -> Out => null {
+  public firstNonNull<Out>(func(Type x, Int i, List<Type> list) -> Out) -> Out => null {
     var Int i = 0
 
     for (element in this) {
@@ -503,7 +503,7 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public async firstNonNullAsync<Out>(async func(Type, Int, List<Type>) -> Out) -> Out => null {
+  public async firstNonNullAsync<Out>(async func(Type x, Int i, List<Type> list) -> Out) -> Out => null {
     var Int i = 0
 
     for (element in this) {
@@ -515,7 +515,7 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public zip<OtherType, Out>(List<OtherType> other, zipper(Type, OtherType, Int, List<Type>, List<OtherType>) -> Out) -> List<Out> {
+  public zip<OtherType, Out>(List<OtherType> other, zipper(Type x1, OtherType x2, Int i, List<Type> list1, List<OtherType> list2) -> Out) -> List<Out> {
     let i1 = iterator
     let i2 = other.iterator
 
@@ -532,7 +532,7 @@ trait List<Type> implements Iterable<Type> {
 
   public async zipAsync<OtherType, Out>(
     List<OtherType> other,
-    async zipper(Type, OtherType, Int, List<Type>, List<OtherType>) -> Out
+    async zipper(Type x1, OtherType x2, Int i, List<Type> list1, List<OtherType> list2) -> Out
   ) -> List<Out> {
     let i1 = iterator
     let i2 = other.iterator
@@ -548,7 +548,7 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
-  public sum(func(Type, Int, List<Type>) -> Long) -> Long {
+  public sum(func(Type x, Int i, List<Type> list) -> Long) -> Long {
     var Long sum = 0
     var Int i = 0
 
@@ -559,7 +559,7 @@ trait List<Type> implements Iterable<Type> {
     return sum
   }
 
-  public sum(func(Type, Int, List<Type>) -> Double) -> Double {
+  public sum(func(Type x, Int i, List<Type> list) -> Double) -> Double {
     var Double sum = 0
     var Int i = 0
 
@@ -570,7 +570,7 @@ trait List<Type> implements Iterable<Type> {
     return sum
   }
 
-  public min(func(Type, Int, List<Type>) -> Long) -> Long {
+  public min(func(Type x, Int i, List<Type> list) -> Long) -> Long {
     var Long min = Long.MAX_VALUE
     var Int i = 0
 
@@ -581,7 +581,7 @@ trait List<Type> implements Iterable<Type> {
     return min
   }
 
-  public max(func(Type, Int, List<Type>) -> Long) -> Long {
+  public max(func(Type x, Int i, List<Type> list) -> Long) -> Long {
     var Long max = Long.MIN_VALUE
     var Int i = 0
 
@@ -592,7 +592,7 @@ trait List<Type> implements Iterable<Type> {
     return max
   }
 
-  public howMany(func(Type, Int, List<Type>) -> Bool) -> Long {
+  public howMany(func(Type x, Int i, List<Type> list) -> Bool) -> Long {
     var Long counter = 0
     var Int i = 0
 
@@ -612,7 +612,7 @@ trait List<Type> implements Iterable<Type> {
   //clone() -> List<Type>
   public reverse() -> List<Type>
 
-  public reduce<Out>(func(Out, Type, Int, List<Type>) -> Out, Out initialValue) -> Out {
+  public reduce<Out>(func(Out, Type x, Int i, List<Type> list) -> Out, Out initialValue) -> Out {
     var Out value = initialValue
     var Int i = 0
 
@@ -625,7 +625,7 @@ trait List<Type> implements Iterable<Type> {
 
   public split(Type delimiter) => split({ _ == delimiter })
 
-  public split(delimiterFunc(Type, Int, List<Type>) -> Bool) -> List<Type>[] {
+  public split(delimiterFunc(Type x, Int i, List<Type> list) -> Bool) -> List<Type>[] {
     let list = List<Type>[]
     var current = Type[]
     var Int i = 0
