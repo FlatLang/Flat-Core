@@ -4,12 +4,12 @@ testable class {
   test `can flatmap from same type`() {
     let value = Array<String>():addAll(["1", "2", "3"])
 
-    let response = value.flatMap((num) => {
-      let number = Int.parseInt(num)
+    let response = value.flatMap({
+      let number = Int.parseInt(_x)
       let array = Array<String>()
 
       for (i in 0..number) {
-        array.add(num)
+        array.add(_x)
       }
 
       return array
@@ -21,11 +21,11 @@ testable class {
   test `can flatmap one type to another`() {
     let value = Array<Int>():addAll([1, 2, 3])
 
-    let response = value.flatMap((number) => {
+    let response = value.flatMap({
       let array = Array<String>()
 
-      for (i in 0..number) {
-        array.add(number.toString())
+      for (i in 0.._x) {
+        array.add(_x.toString())
       }
 
       return array

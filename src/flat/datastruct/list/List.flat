@@ -677,12 +677,12 @@ trait List<Type> implements Iterable<Type> {
 
       return str
     } else {
-      return reduce((str, e, i) => str + (i > 0 ? delimiter : "") + e, "")
+      return reduce({ _acc + (_i > 0 ? delimiter : "") + _x }, "")
     }
   }
 
   public stitch(String delimiter = "") =>
-    reduce((str, e) => str + delimiter + e, "")
+    reduce({ _acc + delimiter + _x }, "")
 
   public toEnglish(String conjunction, Bool oxford = true) =>
     count > 1 ?

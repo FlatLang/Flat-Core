@@ -8,11 +8,11 @@ class {
       #{count} = #{value}.length;
     }
 
-    return Array(count).map((x, i) => {
+    return Array(count).map({
       var native Char[] chars
 
       external {
-        #{chars} = #{value}[#{i}];
+        #{chars} = #{value}[#{_i}];
       }
 
       return String(chars)

@@ -504,7 +504,7 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
 
       return str
     } else {
-      return reduce((str, e, i) => str + (i > 0 ? delimiter : "") + e, "")
+      return reduce({ _acc + (_i > 0 ? delimiter : "") + _x }, "")
     }
   }
 
