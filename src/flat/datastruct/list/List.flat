@@ -63,8 +63,8 @@ trait List<Type> implements Iterable<Type> {
     }
   }
 
-  public async forEachParallel(async func(Type x, Int i, List<Type> list), Int maxParallel = -1) => this {
-    Async.all(toArray(), { func(_, _, this) }, maxParallel)
+  public async forEachParallel(async func(Type x, Int i, List<Type> list), Int maxParallel = -1, async onAfterChunk(Int count) = {}) => this {
+    Async.all(toArray(), { func(_, _, this) }, maxParallel, onAfterChunk)
   }
 
   public async forEachAsync(async func(Type x, Int i, List<Type> list)) => this {
@@ -93,8 +93,8 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
-  public async mapParallel<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out, Int maxParallel = -1) -> List<Out> {
-    return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel)
+  public async mapParallel<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out, Int maxParallel = -1, async onAfterChunk(Int count) = {}) -> List<Out> {
+    return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel, onAfterChunk)
   }
 
   public async mapAsync<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out) -> List<Out> {
@@ -125,8 +125,8 @@ trait List<Type> implements Iterable<Type> {
     return array
   }
 
-  public async mapNotNullParallel<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out, Int maxParallel = -1) -> List<Out> {
-    return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel).filterNull()
+  public async mapNotNullParallel<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out, Int maxParallel = -1, async onAfterChunk(Int count) = {}) -> List<Out> {
+    return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel, onAfterChunk).filterNull()
   }
 
   public async mapNotNullAsync<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out) -> List<Out> {
@@ -257,11 +257,11 @@ trait List<Type> implements Iterable<Type> {
     return !contradiction
   }
 
-  public async noneParallel(async func(Type x, Int i, List<Type> list) -> Bool, Int maxParallel = -1) -> Bool {
+  public async noneParallel(async func(Type x, Int i, List<Type> list) -> Bool, Int maxParallel = -1, async onAfterChunk(Int count) = {}) -> Bool {
     var Int i = 0
     var contradiction = false
 
-    let checked = Async.all<Bool>(toArray(), { func(_, _, this) }, maxParallel)
+    let checked = Async.all<Bool>(toArray(), { func(_, _, this) }, maxParallel, onAfterChunk)
 
     for (element in this) {
       if (checked[i++] == true) {
@@ -286,11 +286,11 @@ trait List<Type> implements Iterable<Type> {
     return list
   }
 
-  public async filterParallel(async filterFunc(Type x, Int i, List<Type> list) -> Bool, Int maxParallel = -1) -> List<Type> {
+  public async filterParallel(async filterFunc(Type x, Int i, List<Type> list) -> Bool, Int maxParallel = -1, async onAfterChunk(Int count) = {}) -> List<Type> {
     let list = Type[]
     let promiseArray = Array<Object>(count)
 
-    let filtered = Async.all<Bool>(toArray(), { filterFunc(_, _, this) }, maxParallel)
+    let filtered = Async.all<Bool>(toArray(), { filterFunc(_, _, this) }, maxParallel, onAfterChunk)
 
     var Int i = 0
 

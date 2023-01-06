@@ -21,7 +21,8 @@ class {
   public static async all<Out>(
     Object[] values,
     async toPromise(Object, Int) -> Out,
-    Int maxParallel = -1
+    Int maxParallel = -1,
+    async onAfterChunk(Int count) = {}
   ) -> Out[] {
     let array = Array<Out>(values.count)
 
@@ -36,6 +37,8 @@ class {
     }
 
     for (var Int i = 0; i < values.count; i += step) {
+      var Int count
+
       external {
         let promises = #{values.data}
           .slice(#{i}, #{i} + #{step})
@@ -46,6 +49,8 @@ class {
             return #{toPromise(input, i + localIndex)$};
           });
 
+        #{count} = promises.length;
+
         const result = await Promise.all(promises);
 
         result.forEach((entry) => {
@@ -53,6 +58,8 @@ class {
           #{array.add(data)};
         });
       }
+
+      onAfterChunk(count)
     }
 
     return array

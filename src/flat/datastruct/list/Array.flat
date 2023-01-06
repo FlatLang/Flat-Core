@@ -272,8 +272,8 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  override public async mapParallel<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out, Int maxParallel = -1) -> Out[] {
-    return Async.all(this, { mapFunc(_, _, this) }, maxParallel)
+  override public async mapParallel<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out, Int maxParallel = -1, async onAfterChunk(Int count) = {}) -> Out[] {
+    return Async.all(this, { mapFunc(_, _, this) }, maxParallel, onAfterChunk)
   }
 
   override public async mapAsync<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out) -> Out[] {
@@ -304,8 +304,8 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return array
   }
 
-  public async mapNotNullParallel<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out, Int maxParallel = -1) -> Array<Out> {
-    return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel).filterNull()
+  public async mapNotNullParallel<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out, Int maxParallel = -1, async onAfterChunk(Int count) = {}) -> Array<Out> {
+    return Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel, onAfterChunk).filterNull()
   }
 
   public async mapNotNullAsync<Out>(async mapFunc(E x, Int i, Array<E> array) -> Out) -> Array<Out> {
@@ -342,8 +342,8 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     }
   }
 
-  override public async forEachParallel(async func(E x, Int i, Array<E> array), Int maxParallel = -1) => this {
-    Async.all(this, { func(_, _, this) }, maxParallel)
+  override public async forEachParallel(async func(E x, Int i, Array<E> array), Int maxParallel = -1, async onAfterChunk(Int count) = {}) => this {
+    Async.all(this, { func(_, _, this) }, maxParallel, onAfterChunk)
   }
 
   override public async forEachAsync(async func(E x, Int i, Array<E> array)) => this {
@@ -368,11 +368,11 @@ class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<
     return filtered
   }
 
-  override public async filterParallel(async filterFunc(E x, Int i, Array<E> array) -> Bool, Int maxParallel = -1) -> E[] {
+  override public async filterParallel(async filterFunc(E x, Int i, Array<E> array) -> Bool, Int maxParallel = -1, async onAfterChunk(Int count) = {}) -> E[] {
     let array = E[]
     let promiseArray = Array<Object>(count)
 
-    let filtered = Async.all<Bool>(this, { filterFunc(_, _, this) }, maxParallel)
+    let filtered = Async.all<Bool>(this, { filterFunc(_, _, this) }, maxParallel, onAfterChunk)
 
     var Int i = 0
 
