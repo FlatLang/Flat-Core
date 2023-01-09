@@ -1,12 +1,10 @@
 package flat
 
-import flat/datastruct/Comparable
-import flat/datastruct/list/StringCharArray
-import flat/operators/PlusOperator
-import flat/operators/EqualsOperator
-import flat/operators/MultiplyOperator
+import flat/datastruct
+import flat/datastruct/list
+import flat/operators
 
-class String {
+class {
   public construct(Char c) {
     native Char[] chars
 

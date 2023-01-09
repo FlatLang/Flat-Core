@@ -1,5 +1,5 @@
 package flat/operators
 
-trait MultiplyEqualsOperator<In, Out> {
+trait<In, Out> {
   public multiplyEquals(In value) -> Out
 }

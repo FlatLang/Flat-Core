@@ -1,6 +1,6 @@
 package flat/meta
 
-data class Field {
+data class {
   public construct(
     visible String name
   ) {}

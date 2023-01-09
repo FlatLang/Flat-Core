@@ -1,6 +1,6 @@
 package flat/datastruct/list
 
-class StringCharArray {
+class {
   visible Int count
 
   visible native Char[] data

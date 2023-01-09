@@ -1,6 +1,6 @@
 package flat/exception
 
-class CaughtException {
+class {
   public construct(visible Class type, visible Bool soft = true) {}
 
   public toString() => "Catching #type, soft: #soft"

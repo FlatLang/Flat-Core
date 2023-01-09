@@ -1,11 +1,9 @@
 package flat/primitive/number
 
-import flat/datastruct/Comparable
-import flat/operators/EqualsOperator
-import flat/operators/MultiplyOperator
-import flat/operators/MultiplyEqualsOperator
+import flat/datastruct
+import flat/operators
 
-class Int extends Number implements Integer {
+class extends Number implements Integer {
   public Long hashCodeLong => value
 
   visible static Int MAX_VALUE =  2147483647

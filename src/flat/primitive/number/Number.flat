@@ -1,16 +1,10 @@
 package flat/primitive/number
 
-import flat/datastruct/Comparable
-import flat/primitive/Primitive
-import flat/operators/PlusOperator
-import flat/operators/PlusEqualsOperator
-import flat/operators/MinusOperator
-import flat/operators/MinusEqualsOperator
-import flat/operators/EqualsOperator
-import flat/operators/MultiplyOperator
-import flat/operators/MultiplyEqualsOperator
+import flat/datastruct
+import flat/primitive
+import flat/operators
 
-abstract class Number extends Primitive implements PlusOperator<Number, Number>, PlusEqualsOperator<Number, Number>, MinusOperator<Number, Number>, MinusEqualsOperator<Number, Number>, MultiplyOperator<Number, Number>, MultiplyEqualsOperator<Number, Number>, Comparable<Number> {
+abstract class extends Primitive implements PlusOperator<Number, Number>, PlusEqualsOperator<Number, Number>, MinusOperator<Number, Number>, MinusEqualsOperator<Number, Number>, MultiplyOperator<Number, Number>, MultiplyEqualsOperator<Number, Number>, Comparable<Number> {
   visible Double realValue => 0
   visible Long integerValue => 0
 

@@ -1,11 +1,9 @@
 package flat/primitive/number
 
-import flat/datastruct/Comparable
-import flat/operators/EqualsOperator
-import flat/operators/MultiplyOperator
-import flat/operators/MultiplyEqualsOperator
+import flat/datastruct
+import flat/operators
 
-class Float extends Number implements RealNumber {
+class extends Number implements RealNumber {
   public Double realValue => value
   public Long integerValue => (Long)value
 

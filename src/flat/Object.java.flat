@@ -1,8 +1,6 @@
 package flat
 
-import flat/operators/EqualsOperator
-
-class Object {
+class {
   visible Long hashCodeLong => 0
 
   visible String hashCode => "No hashcode available"

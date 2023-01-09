@@ -1,8 +1,8 @@
 package flat/primitive
 
-import flat/datastruct/Comparable
+import flat/datastruct
 
-class Bool extends Primitive implements Comparable<Bool> {
+class extends Primitive implements Comparable<Bool> {
   public construct(public Bool value) {}
 
   public compareTo(Bool other) => value == other

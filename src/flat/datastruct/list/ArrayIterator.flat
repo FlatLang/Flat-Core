@@ -1,6 +1,6 @@
 package flat/datastruct/list
 
-class ArrayIterator<E> implements Iterator<E> {
+class<E> implements Iterator<E> {
   visible var Int position
 
   visible Bool hasNext => array.count > position

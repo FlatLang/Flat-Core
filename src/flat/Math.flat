@@ -1,6 +1,6 @@
 package flat
 
-class Math {
+class {
   visible static Double PI = 3.141592653
 
   public static max(Long a, Long b) -> Long => a > b ? a : b

@@ -1,9 +1,9 @@
 package flat/datastruct/list
 
-import flat/async/Async
-import flat/operators/EqualsOperator
+import flat/async
+import flat/operators
 
-trait List<Type> implements Iterable<Type> {
+trait<Type> implements Iterable<Type> {
   visible var Int count
 
   visible Iterator<Type> iterator

@@ -1,6 +1,6 @@
 package flat/primitive
 
-class Null extends String {
+class extends String {
   public construct() {}
 
   public concat(String other) => "null#other"

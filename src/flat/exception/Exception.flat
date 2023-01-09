@@ -1,6 +1,6 @@
 package flat/exception
 
-class Exception {
+class {
   visible StackTrace stackTrace = StackTrace()
 
   public construct(visible String message = "") {

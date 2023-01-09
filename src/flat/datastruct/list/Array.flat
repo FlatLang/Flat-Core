@@ -1,12 +1,11 @@
 package flat/datastruct/list
 
-import flat/async/Async
-import flat/primitive/number/Integer
-import flat/datastruct/Comparable
-import flat/operators/PlusOperator
-import flat/operators/PlusEqualsOperator
+import flat/async
+import flat/primitive/number
+import flat/datastruct
+import flat/operators
 
-class Array<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, PlusEqualsOperator<Array<E>, Array<E>> {
+class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, PlusEqualsOperator<Array<E>, Array<E>> {
   visible var Int capacity
 
   visible var Int count <=> count

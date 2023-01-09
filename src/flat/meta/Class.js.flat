@@ -1,8 +1,8 @@
 package flat/meta
 
-import flat/operators/EqualsOperator
+import flat/operators
 
-class Class<Type> {
+class<Type> {
   public construct(
     visible String location,
     visible Bool isInterface,

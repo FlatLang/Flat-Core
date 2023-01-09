@@ -1,5 +1,5 @@
 package flat/exception
 
-class DivideByZeroException extends Exception {
+class extends Exception {
 
 }

@@ -1,6 +1,6 @@
 package flat/datastruct/list
 
-class IntRangeIterator implements Iterator<Int> {
+class implements Iterator<Int> {
   visible var Int position
 
   visible Bool hasNext => position < range.end

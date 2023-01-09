@@ -1,6 +1,6 @@
 package flat/exception
 
-class ExceptionData {
+class {
   visible ExceptionData parent
 
   visible CaughtException[] caught

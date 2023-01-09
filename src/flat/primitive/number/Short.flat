@@ -1,11 +1,9 @@
 package flat/primitive/number
 
-import flat/datastruct/Comparable
-import flat/operators/EqualsOperator
-import flat/operators/MultiplyOperator
-import flat/operators/MultiplyEqualsOperator
+import flat/datastruct
+import flat/operators
 
-class Short extends Number implements Integer {
+class extends Number implements Integer {
   public Double realValue => (Double)value
   public Long integerValue => value
 

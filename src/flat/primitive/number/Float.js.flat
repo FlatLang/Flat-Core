@@ -1,10 +1,5 @@
 package flat/primitive/number
 
-import flat/datastruct/Comparable
-import flat/operators/EqualsOperator
-import flat/operators/MultiplyOperator
-import flat/operators/MultiplyEqualsOperator
-
 class {
   public static parseFloat(String str) -> Float {
     external {

@@ -1,5 +1,5 @@
 package flat/primitive/number
 
-trait Integer {
+trait {
 
 }

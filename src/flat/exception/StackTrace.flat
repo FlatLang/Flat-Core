@@ -1,4 +1,4 @@
 package flat/exception
 
-class StackTrace {
+class {
 }

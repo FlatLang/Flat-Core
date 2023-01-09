@@ -1,11 +1,9 @@
 package flat/primitive/number
 
-import flat/datastruct/Comparable
-import flat/operators/EqualsOperator
-import flat/operators/MultiplyOperator
-import flat/operators/MultiplyEqualsOperator
+import flat/datastruct
+import flat/operators
 
-class Long extends Number implements Integer {
+class extends Number implements Integer {
   visible static Long MAX_VALUE =  9223372036854775807
   visible static Long MIN_VALUE = -9223372036854775808
 

@@ -1,5 +1,5 @@
 package flat/exception
 
-class UnimplementedOperationException extends Exception {
+class extends Exception {
   public construct(String message) => super(message)
 }

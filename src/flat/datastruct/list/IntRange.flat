@@ -1,6 +1,6 @@
 package flat/datastruct/list
 
-class IntRange implements List<Int> {
+class implements List<Int> {
   visible Int size => end - start
 
   override visible IntRangeIterator iterator => IntRangeIterator(this)

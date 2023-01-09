@@ -1,5 +1,5 @@
 package flat/operators
 
-trait LessThanOperator<In> {
+trait<In> {
   public lessThan(In another) -> Bool
 }

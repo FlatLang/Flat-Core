@@ -1,6 +1,6 @@
 package flat/datastruct/list
 
-trait OrderedList<Type> implements List<Type> {
+trait<Type> implements List<Type> {
   public findIndex(
     condition(Type x, Int i, OrderedList<Type> list) -> Bool,
     Int defaultReturnValue = -1

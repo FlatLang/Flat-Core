@@ -1,8 +1,8 @@
 package flat/meta
 
-import flat/operators/EqualsOperator
+import flat/operators
 
-class Class<Type> {
+class<Type> {
   visible Bool isInterface
 
   visible String location

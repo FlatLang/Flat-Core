@@ -1,6 +1,6 @@
 package flat
 
-class Math {
+class {
   public static sqrt(Double number) -> Double {
     external {
       return Math.sqrt(number);

@@ -1,9 +1,9 @@
 package flat
 
-import flat/test/TestResult
+import flat/test
 
-import flat/time/Timer
-import flat/io/FancyOutputStream
+import flat/time
+import flat/io
 
 import flat/meta
 import flat/datastruct/list
