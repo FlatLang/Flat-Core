@@ -18,4 +18,10 @@ class {
       return String(chars)
     })
   }
+
+  public native cloneData() -> E[] {
+    external {
+      return #{data}.slice(0);
+    }
+  }
 }
