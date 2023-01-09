@@ -6,4 +6,12 @@ class {
       return parseInt(#{num.chars.data});
     }
   }
+
+  public static native toCharArray(Long value) -> Char[] {
+    external js {
+      return #{value}.toString();
+    }
+  }
+
+  public static toString(Long value) => String(toCharArray(value))
 }

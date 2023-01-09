@@ -28,30 +28,17 @@ class Long extends Number implements Integer {
     return size
   }
 
-  [Target js]
-  public static toString(Long value) => String(toCharArray(value))
   public static toJson(Long value) => toString(value)
 
-
-  [Native]
-  [Target js]
-  public static toCharArray(Long value) -> Char[] {
-    external js {
-      return #{value}.toString();
-    }
-  }
-
-  [Target not js]
   public static toString(var Long value) -> String {
     Int charOffset = '0'
     var Int digits = numDigits(value)
 
-    [Native]
-    Char[] data = new Char[digits + 1]
+    native Char[] data = new Char[digits + 1]
 
     data[digits] = '\0'
 
-    var Int  offset  = 0
+    var Int offset = 0
 
     if (value < 0) {
       data[0] = '-'
