@@ -3,49 +3,49 @@ package flat
 class {
   public static sqrt(Double number) -> Double {
     external {
-      return Math.sqrt(number);
+      return java.lang.Math.sqrt(number);
     }
   }
 
   public static pow(Double base, Double power) -> Double {
     external {
-      return Math.pow(base, power);
+      return java.lang.Math.pow(base, power);
     }
   }
 
   public static sin(Double number) -> Double {
     external {
-      return Math.sin(number);
+      return java.lang.Math.sin(number);
     }
   }
 
   public static cos(Double number) -> Double {
     external {
-      return Math.cos(number);
+      return java.lang.Math.cos(number);
     }
   }
 
   public static tan(Double number) -> Double {
     external {
-      return Math.tan(number);
+      return java.lang.Math.tan(number);
     }
   }
 
   public static asin(Double number) -> Double {
     external {
-      return Math.asin(number);
+      return java.lang.Math.asin(number);
     }
   }
 
   public static acos(Double number) -> Double {
     external {
-      return Math.acos(number);
+      return java.lang.Math.acos(number);
     }
   }
 
   public static atan(Double number) -> Double {
     external {
-      return Math.atan(number);
+      return java.lang.Math.atan(number);
     }
   }
 
@@ -53,19 +53,19 @@ class {
 
   public static random(Long range) -> Long {
     external {
-      return ~~(Math.random() * #{range});
+      return (long)(java.lang.Math.random() * #{range});
     }
   }
 
   public static floor(Double number) -> Long {
     external {
-      return Math.floor(number);
+      return (long)java.lang.Math.floor(number);
     }
   }
 
   public static ceil(Double number) -> Long {
     external {
-      return Math.ceil(number);
+      return (long)java.lang.Math.ceil(number);
     }
   }
 }
