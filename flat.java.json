@@ -1,0 +1,10 @@
+{
+  "sources": {
+    "main": {
+      "outDirectory": "dist/java/main"
+    },
+    "test": {
+      "outDirectory": "dist/java/test"
+    }
+  }
+}

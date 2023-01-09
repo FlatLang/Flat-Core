@@ -1,0 +1,37 @@
+package flat/primitive/number
+
+import flat/datastruct/Comparable
+import flat/operators/EqualsOperator
+import flat/operators/MultiplyOperator
+import flat/operators/MultiplyEqualsOperator
+
+class {
+  public static parseDouble(String str) -> Double {
+    external {
+      return Double.parseDouble(#{str.chars.data});
+    }
+  }
+
+  public native static toCharArray(Double value) -> Char[] {
+    external {
+      return String.valueOf(#{value}).toCharArray();
+    }
+  }
+
+  public static toString(Double value) => String(toCharArray(value))
+
+  public toFixed(Int precision) => toFixed(value, precision)
+  public static toFixed(Double value, Int precision) -> String {
+    native var Char[] data
+
+    external {
+      String fmt = "0.";
+
+      for (int i = 0; i < #{precision}; i++) fmt += "#";
+
+      #{data} = new DecimalFormat(fmt).format(#{value}).toCharArray();
+    }
+
+    return String(data)
+  }
+}

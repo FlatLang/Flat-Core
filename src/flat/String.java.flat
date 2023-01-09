@@ -1,0 +1,29 @@
+package flat
+
+class {
+  public construct(Char c) {}
+
+  public construct(native Char[] chars) {
+    native var Int count
+
+    external {
+      #{count} = chars.length;
+    }
+
+    this.chars = StringCharArray(chars, count)
+  }
+
+  public construct(native String str) {
+
+  }
+
+  public compareTo(String other) -> Int {
+    external {
+      return #{chars.data}.localeCompare(#{other.chars.data});
+    }
+  }
+
+  public concat(String str) -> String {
+    return null
+  }
+}

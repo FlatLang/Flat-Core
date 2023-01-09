@@ -40,4 +40,10 @@ class Object {
       #{func}.apply(this, #{args});
     }
   }
+
+  public static referenceEquals(Object one, Object two) -> Bool {
+    external {
+      return #{one} === #{two};
+    }
+  }
 }

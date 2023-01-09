@@ -7,15 +7,6 @@ class implements EqualsOperator {
   public toString() => "{#this.class.name @#hashCode}"
   public toJson() => "{}"
 
-  public static referenceEquals(Object one, Object two) -> Bool {
-    external js {
-      return #{one} === #{two};
-    }
-    external not js {
-      return #{one} == #{two};
-    }
-  }
-
   // writeFields() =>
   //   this.class.getFields(true).count > 0 ?
   //     this.class.getFields(true).map({

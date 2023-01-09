@@ -12,4 +12,10 @@ class Object {
       external { return hashCode(); }
     }
   }
+
+  public static referenceEquals(Object one, Object two) -> Bool {
+    external {
+      return #{one} == #{two};
+    }
+  }
 }
