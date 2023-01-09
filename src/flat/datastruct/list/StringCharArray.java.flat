@@ -1,0 +1,66 @@
+package flat/datastruct/list
+
+class {
+  visible native String string
+
+  visible Int count {
+    get {
+      external {
+        return #{string}.length();
+      }
+    }
+  }
+
+  visible native Char[] data {
+    get {
+      external {
+        return #{string}.toCharArray();
+      }
+    }
+
+    set {
+      external {
+        #{string} = new String(#{value});
+      }
+    }
+  }
+
+  visible Char first => count > 0 ? this[0] : 0
+  visible Char last => count > 0 ? this[count - 1] : 0
+
+  this[Int index] -> Char {
+    get {
+      external {
+        return #{string}.charAt(#{index});
+      }
+    }
+
+    set {
+      external {
+        #{string} = #{string}.substring(0, #{index}) + #{value} + #{string}.substring(index + 1);
+      }
+    }
+  }
+
+  public construct(Char[] data) {
+    let native Char[] nativeData = new Char[count]
+
+    for (var Int i = 0; i < count; i++) {
+      nativeData[i] = data[i].value
+    }
+
+    this.data = nativeData
+  }
+
+  public construct(Int count) {
+    this.data = new Char[count]
+  }
+
+  public construct(native Char[] data, Int count) {
+    this.data = data
+  }
+
+  public construct(native String string) {
+    this.string = string
+  }
+}

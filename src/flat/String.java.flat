@@ -14,7 +14,7 @@ class {
   }
 
   public construct(native String str) {
-
+    this.chars = StringCharArray(str)
   }
 
   public compareTo(String other) -> Int {
