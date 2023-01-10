@@ -18,7 +18,10 @@ class extends Number implements Integer {
   public static compareToInteger(Byte value, Long other) => value - other
 
   public multiply(Number other) => other.multiplyReal(value)
-  public multiply(Object other) => other && other.class.isOfType(Number.class) && (Byte)other * value
+  public multiply(Object other) -> Byte {
+    if (!other || !other.class.isOfType(Number.class)) return 0
+    return (Byte)other * value
+  }
   public multiplyReal(Double other) => this.value * other
   public multiplyInteger(Long other) => this.value * other
 

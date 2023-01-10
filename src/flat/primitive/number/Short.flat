@@ -34,7 +34,10 @@ class extends Number implements Integer {
   public minusEqualsInteger(Long other) => this.value -= other
 
   public multiply(Number other) => other.multiplyReal(value)
-  public multiply(Object other) => other && other.class.isOfType(Number.class) && (Short)other * value
+  public multiply(Object other) -> Short {
+    if (!other || !other.class.isOfType(Number.class)) return 0
+    return (Short)other * value
+  }
   public multiplyReal(Double other) => this.value * other
   public multiplyInteger(Long other) => this.value * other
 
