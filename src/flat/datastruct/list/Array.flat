@@ -66,7 +66,7 @@ class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, P
     this.position = count
   }
 
-  public getLast(Int offset = 0) => count > offset ? this[count - 1 - offset] : null
+  public getLast(Int offset = 0) -> E => count > offset ? this[count - 1 - offset] : null
 
   public fillRemaining(E value) => value {
     while (count < capacity) {
