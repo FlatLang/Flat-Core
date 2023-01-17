@@ -9,9 +9,9 @@ class {
     return array
   }
 
-  public static async all<Out>(
-    Object[] values,
-    async toPromise(Object, Int) -> Out,
+  public static async all<In, Out>(
+    In[] values,
+    async toPromise(In, Int) -> Out,
     Int maxParallel = -1,
     async onAfterChunk(Int count) = {}
   ) -> Out[] {
