@@ -4,7 +4,7 @@ import flat/datastruct
 import flat/primitive
 import flat/operators
 
-abstract class extends Primitive implements PlusOperator<Number, Number>, PlusEqualsOperator<Number, Number>, MinusOperator<Number, Number>, MinusEqualsOperator<Number, Number>, MultiplyOperator<Number, Number>, MultiplyEqualsOperator<Number, Number>, Comparable<Number> {
+abstract class<Type extends Number> extends Primitive implements PlusOperator<Type, Type>, PlusEqualsOperator<Type, Type>, MinusOperator<Type, Type>, MinusEqualsOperator<Type, Type>, MultiplyOperator<Type, Type>, MultiplyEqualsOperator<Type, Type>, Comparable<Type> {
   visible Double realValue => 0
   visible Long integerValue => 0
 

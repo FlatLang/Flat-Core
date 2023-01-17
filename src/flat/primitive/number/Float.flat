@@ -3,7 +3,7 @@ package flat/primitive/number
 import flat/datastruct
 import flat/operators
 
-class extends Number implements RealNumber {
+class extends Number<Float> implements RealNumber {
   public Double realValue => value
   public Long integerValue => (Long)value
 
@@ -16,30 +16,37 @@ class extends Number implements RealNumber {
     (value - target) < tolerance && (value - target) > -tolerance
 
   public compareTo(Number other) => other.compareToReal(value)
+  public compareTo(Float other) => this.value - other
   public compareToReal(Double other) => this.value - other
   public compareToInteger(Long other) => this.value - other
 
   public static compareTo(Float value, Number other) => other.compareToReal(value)
+  public static compareTo(Float value, Float other) => value - other
   public static compareToReal(Float value, Double other) => value - other
   public static compareToInteger(Float value, Long other) => value - other
 
   public plus(Number other) => other.plusReal(value)
+  public plus(Float other) => this.value + other
   public plusReal(Double other) => this.value + other
   public plusInteger(Long other) => this.value + other
 
   public plusEquals(Number other) => other.plusEqualsReal(value)
+  public plusEquals(Float other) => this.value += other
   public plusEqualsReal(Double other) => this.value += other
   public plusEqualsInteger(Long other) => this.value += other
 
   public minus(Number other) => other.minusReal(value)
+  public minus(Float other) => this.value - other
   public minusReal(Double other) => this.value - other
   public minusInteger(Long other) => this.value - other
 
   public minusEquals(Number other) => other.minusEqualsReal(value)
+  public minusEquals(Float other) => this.value -= other
   public minusEqualsReal(Double other) => this.value -= other
   public minusEqualsInteger(Long other) => this.value -= other
 
   public multiply(Number other) => other.multiplyReal(value)
+  public multiply(Float other) => this.value * other
   public multiply(Object other) -> Float {
     if (!other || !other.class.isOfType(Number.class)) return 0
     return (Float)other * value
@@ -48,14 +55,17 @@ class extends Number implements RealNumber {
   public multiplyInteger(Long other) => this.value * other
 
   public multiplyEquals(Number other) => other.multiplyEqualsReal(value)
+  public multiplyEquals(Float other) => this.value *= other
   public multiplyEqualsReal(Double other) => this.value *= other
   public multiplyEqualsInteger(Long other) => this.value *= other
 
   public equals(Object other) => (other || !this) && other.class.isOfType(Number.class) && (Float)other == value
+  public equals(Float other) => this.value == other
   public equalsReal(Double other) => this.value == other
   public equalsInteger(Long other) => this.value == other
 
   public static equals(Float value, Number other) => other.equalsReal(value)
+  public static equals(Float value, Float other) => value == other
   public static equalsReal(Float value, Double other) => value == other
   public static equalsInteger(Float value, Long other) => value == other
 
