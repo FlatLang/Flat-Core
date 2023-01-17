@@ -346,6 +346,8 @@ class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, P
     }
   }
 
+  override public filterNull() => filter({ _ != null })
+
   override public filter(filterFunc(E x, Int i, Array<E> array) -> Bool) -> E[] {
     let filtered = E[]
 
