@@ -332,7 +332,10 @@ class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, P
   }
 
   override public async forEachParallel(async func(E x, Int i, Array<E> array), Int maxParallel = -1, async onAfterChunk(Int count) = {}) => this {
-    Async.all(this, { func(_, _, this) }, maxParallel, onAfterChunk)
+    Async.all(this, {
+      func(_, _, this)
+      return null
+    }, maxParallel, onAfterChunk)
   }
 
   override public async forEachAsync(async func(E x, Int i, Array<E> array)) => this {

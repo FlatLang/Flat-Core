@@ -64,7 +64,10 @@ trait<Type> implements Iterable<Type> {
   }
 
   public async forEachParallel(async func(Type x, Int i, List<Type> list), Int maxParallel = -1, async onAfterChunk(Int count) = {}) => this {
-    Async.all(toArray(), { func(_, _, this) }, maxParallel, onAfterChunk)
+    Async.all(toArray(), {
+      func(_, _, this)
+      return null
+    }, maxParallel, onAfterChunk)
   }
 
   public async forEachAsync(async func(Type x, Int i, List<Type> list)) => this {
