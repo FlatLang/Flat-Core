@@ -1,11 +1,11 @@
 package flat
 
-import flat/operators/EqualsOperator
-
-class implements EqualsOperator {
+class {
   public equals(Object another) => this == another
   public toString() => "{#this.class.name @#hashCode}"
   public toJson() => "{}"
+
+  visible Long hashCodeLong => 0
 
   // writeFields() =>
   //   this.class.getFields(true).count > 0 ?

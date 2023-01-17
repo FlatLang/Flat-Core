@@ -4,7 +4,7 @@ import flat/datastruct
 import flat/datastruct/list
 import flat/operators
 
-class implements Comparable<String>, PlusOperator<String, String>, EqualsOperator, MultiplyOperator<Int, String> {
+class implements Comparable<String>, PlusOperator<String, String>, MultiplyOperator<Int, String> {
   visible Int count
 
   visible StringCharArray chars

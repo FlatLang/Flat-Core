@@ -1,5 +1,0 @@
-package flat/operators
-
-interface {
-  public equals(Object another) -> Bool
-}

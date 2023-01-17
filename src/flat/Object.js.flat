@@ -1,8 +1,6 @@
 package flat
 
 class {
-  public Long hashCodeLong => 0
-
   public String hashCode => "No hashcode available"
 
   async compiler_visible external_name __chainAsync(String funcName, Object[] args) => this {

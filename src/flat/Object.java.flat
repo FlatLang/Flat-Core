@@ -1,8 +1,6 @@
 package flat
 
 class {
-  visible Long hashCodeLong => 0
-
   visible String hashCode => "No hashcode available"
 
   visible Long hashCodeLong {
