@@ -137,9 +137,7 @@ trait<Type> implements Iterable<Type> {
     for (element in this) {
       let value = mapFunc(element, i++, this)
 
-      if (value != null) {
-        array.add(value)
-      }
+      if (value != null) array.add(value)
     }
 
     return array
@@ -167,9 +165,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (element in this) {
-      if (anyFunc(element, i++, this)) {
-        return true
-      }
+      if (anyFunc(element, i++, this)) return true
     }
   }
 
@@ -183,9 +179,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (element in this) {
-      if (anyFunc(element, i++, this)) {
-        return true
-      }
+      if (anyFunc(element, i++, this)) return true
     }
   }
 
@@ -195,9 +189,7 @@ trait<Type> implements Iterable<Type> {
 
     for (element in this) {
       if (!allFunc(element, i++, this)) {
-        if (stopOnContradiction) {
-          return false
-        }
+        if (stopOnContradiction) return false
 
         contradiction = true
       }
@@ -212,9 +204,7 @@ trait<Type> implements Iterable<Type> {
 
     for (element in this) {
       if (!allFunc(element, i++, this)) {
-        if (stopOnContradiction) {
-          return false
-        }
+        if (stopOnContradiction) return false
 
         contradiction = true
       }
@@ -229,9 +219,7 @@ trait<Type> implements Iterable<Type> {
 
     for (element in this) {
       if (func(element, i++, this)) {
-        if (stopOnContradiction) {
-          return false
-        }
+        if (stopOnContradiction) return false
 
         contradiction = true
       }
@@ -246,9 +234,7 @@ trait<Type> implements Iterable<Type> {
 
     for (element in this) {
       if (func(element, i++, this)) {
-        if (stopOnContradiction) {
-          return false
-        }
+        if (stopOnContradiction) return false
 
         contradiction = true
       }
@@ -264,9 +250,7 @@ trait<Type> implements Iterable<Type> {
     let checked = Async.all<Bool>(toArray(), { func(_, _, this) }, maxParallel, onAfterChunk)
 
     for (element in this) {
-      if (checked[i++] == true) {
-        return false
-      }
+      if (checked[i++] == true) return false
     }
 
     return !contradiction
@@ -278,9 +262,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (value in this) {
-      if (filterFunc(value, i++, this)) {
-        list.add(value)
-      }
+      if (filterFunc(value, i++, this)) list.add(value)
     }
 
     return list
@@ -295,9 +277,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (element in this) {
-      if (filtered[i++] == true) {
-        list.add(element)
-      }
+      if (filtered[i++] == true) list.add(element)
     }
 
     return list
@@ -309,9 +289,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (element in this) {
-      if (filterFunc(element, i++, this)) {
-        list.add(element)
-      }
+      if (filterFunc(element, i++, this)) list.add(element)
     }
 
     return list
@@ -323,9 +301,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (value in this) {
-      if (!filterFunc(value, i++, this)) {
-        list.add(value)
-      }
+      if (!filterFunc(value, i++, this)) list.add(value)
     }
 
     return list
@@ -337,9 +313,7 @@ trait<Type> implements Iterable<Type> {
     let list = Type[]
 
     for (value in this) {
-      if (!list.contains(value)) {
-        list.add(value)
-      }
+      if (!list.contains(value)) list.add(value)
     }
 
     return list
@@ -353,9 +327,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (value in this) {
-      if (!filterFunc(value, i++, this)) {
-        return list
-      }
+      if (!filterFunc(value, i++, this)) return list
 
       list.add(value)
     }
@@ -369,9 +341,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (value in this) {
-      if (i++ >= howMany) {
-        return list
-      }
+      if (i++ >= howMany) return list
 
       list.add(value)
     }
@@ -390,9 +360,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (value in this) {
-      if (i++ >= startIndex) {
-        list.add(value)
-      }
+      if (i++ >= startIndex) list.add(value)
     }
 
     return list
@@ -406,9 +374,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (value in this) {
-      if (i++ >= howMany) {
-        list.add(value)
-      }
+      if (i++ >= howMany) list.add(value)
     }
 
     return list
@@ -422,6 +388,7 @@ trait<Type> implements Iterable<Type> {
     for (element in this) {
       if (func(element, i++, this)) {
         if (matched) return null
+
         matched = true
         value = element
       }
@@ -434,9 +401,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (element in this) {
-      if (func(element, i++, this)) {
-        return element
-      }
+      if (func(element, i++, this)) return element
     }
   }
 
@@ -444,9 +409,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (element in this) {
-      if (func(element, i++, this)) {
-        return element
-      }
+      if (func(element, i++, this)) return element
     }
   }
 
@@ -469,9 +432,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (element in this) {
-      if (func(element, i++, this)) {
-        return element
-      }
+      if (func(element, i++, this)) return element
     }
 
     throw e
@@ -481,9 +442,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (element in this) {
-      if (func(element, i++, this)) {
-        return element
-      }
+      if (func(element, i++, this)) return element
     }
   }
 
@@ -497,9 +456,7 @@ trait<Type> implements Iterable<Type> {
     for (element in this) {
       Out value = func(element, i++, this)
 
-      if (value) {
-        return value
-      }
+      if (value) return value
     }
   }
 
@@ -509,9 +466,7 @@ trait<Type> implements Iterable<Type> {
     for (element in this) {
       Out value = func(element, i++, this)
 
-      if (value) {
-        return value
-      }
+      if (value) return value
     }
   }
 
@@ -597,9 +552,7 @@ trait<Type> implements Iterable<Type> {
     var Int i = 0
 
     for (element in this) {
-      if (func(element, i++, this)) {
-        counter++
-      }
+      if (func(element, i++, this)) counter++
     }
 
     return counter
@@ -703,9 +656,7 @@ trait<Type> implements Iterable<Type> {
     let otherIteratorValue = otherList.iterator
 
     while (iteratorValue.hasNext) {
-      if (!iteratorValue.stepNext.equals(otherIteratorValue.stepNext)) {
-        return false
-      }
+      if (!iteratorValue.stepNext.equals(otherIteratorValue.stepNext)) return false
     }
   }
 }
