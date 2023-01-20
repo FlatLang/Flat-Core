@@ -17,12 +17,6 @@ class {
     this.chars = StringCharArray(str)
   }
 
-  public compareTo(String other) -> Int {
-    external {
-      return #{chars.data}.localeCompare(#{other.chars.data});
-    }
-  }
-
   public concat(String str) -> String {
     return null
   }
