@@ -3,7 +3,7 @@ package flat/primitive/number
 class {
   public static parseInt(String num) -> Int {
     external {
-      return Integer.parseInt(#{num.chars.data});
+      return java.lang.Integer.parseInt(#{num.chars.string});
     }
   }
 }
