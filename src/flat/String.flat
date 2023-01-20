@@ -294,10 +294,9 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
 
   public split(String delimiter) -> String[] {
     let strs = String[]
-    var Int i = 0
-    var Int lastI = i
+    var Int lastI = 0
 
-    for (i = indexOf(delimiter); i != -1; i = indexOf(delimiter, i + delimiter.count)) {
+    for (var Int i = indexOf(delimiter); i != -1; i = indexOf(delimiter, i + delimiter.count)) {
       strs.add(substring(lastI, i))
 
       lastI = i + delimiter.count
