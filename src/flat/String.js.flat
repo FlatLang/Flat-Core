@@ -6,7 +6,7 @@ import flat/operators
 
 class {
   public construct(Char c) {
-    native Char[] chars
+    native_array native Char[] chars
 
     external {
       chars = [#{c}];
@@ -15,19 +15,19 @@ class {
     this(chars)
   }
 
-  public construct(native Char[] chars, Int count) {
+  public construct(native_array native Char[] chars, Int count) {
     this.count = count
     this.chars = StringCharArray(chars, count)
   }
 
-  public construct(native Char[] chars) {
+  public construct(native_array native Char[] chars) {
     count = calculateSize(chars)
 
     this.chars = StringCharArray(chars, count)
   }
 
   public transform(transform(Char, Int) -> Char) -> String {
-    native Char[] newData
+    native_array native Char[] newData
 
     external {
       #{newData} = "";
@@ -49,7 +49,7 @@ class {
   }
 
   public concat(String str) -> String {
-    native Char[] buf
+    native_array native Char[] buf
 
     external {
       #{buf} = #{this.chars.data} + #{str.chars.data};
@@ -58,7 +58,7 @@ class {
     return String(buf)
   }
 
-  calculateSize(native Char[] chars) -> Int {
+  calculateSize(native_array native Char[] chars) -> Int {
     external js {
       return #{chars}.length;
     }
@@ -73,7 +73,7 @@ class {
       return this
     }
 
-    native var Char[] data
+    native_array native var Char[] data
 
     external {
       #{data} = #{chars.data}.substring(#{start}, #{end});

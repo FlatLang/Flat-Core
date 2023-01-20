@@ -34,32 +34,32 @@ class extends Number<Double> implements RealNumber {
   public compareTo(Number other) => other.compareToReal(value)
   public compareTo(Double other) => this.value - other
   public compareToReal(Double other) => this.value - other
-  public compareToInteger(Long other) => this.value - other
+  public compareToInteger(Long other) -> Long => (Long)(this.value - other)
 
   public static compareTo(Double value, Number other) => other.compareToReal(value)
   public static compareTo(Double value, Double other) => value - other
   public static compareToReal(Double value, Double other) => value - other
-  public static compareToInteger(Double value, Long other) => value - other
+  public static compareToInteger(Double value, Long other) => (Long)(value - other)
 
   public plus(Number other) => other.plusReal(value)
   public plus(Double other) => this.value + other
   public plusReal(Double other) => this.value + other
-  public plusInteger(Long other) => this.value + other
+  public plusInteger(Long other) -> Long => (Long)(this.value + other)
 
   public plusEquals(Number other) => other.plusEqualsReal(value)
   public plusEquals(Double other) => this.value += other
   public plusEqualsReal(Double other) => this.value += other
-  public plusEqualsInteger(Long other) => this.value += other
+  public plusEqualsInteger(Long other) -> Long => (Long)(this.value += other)
 
   public minus(Number other) => other.minusReal(value)
   public minus(Double other) => this.value - other
   public minusReal(Double other) => this.value - other
-  public minusInteger(Long other) => this.value - other
+  public minusInteger(Long other) -> Long => (Long)(this.value - other)
 
   public minusEquals(Number other) => other.minusEqualsReal(value)
   public minusEquals(Double other) => this.value -= other
   public minusEqualsReal(Double other) => this.value -= other
-  public minusEqualsInteger(Long other) => this.value -= other
+  public minusEqualsInteger(Long other) -> Long => (Long)(this.value -= other)
 
   public multiply(Number other) => other.multiplyReal(value)
   public multiply(Double other) => this.value * other
@@ -68,12 +68,12 @@ class extends Number<Double> implements RealNumber {
     return (Double)other * value
   }
   public multiplyReal(Double other) => this.value * other
-  public multiplyInteger(Long other) => this.value * other
+  public multiplyInteger(Long other) -> Long => (Long)(this.value * other)
 
   public multiplyEquals(Number other) => other.multiplyEqualsReal(value)
   public multiplyEquals(Double other) => this.value *= other
   public multiplyEqualsReal(Double other) => this.value *= other
-  public multiplyEqualsInteger(Long other) => this.value *= other
+  public multiplyEqualsInteger(Long other) -> Long => (Long)(this.value *= other)
 
   public equals(Object other) => (other || !this) && other.class.isOfType(Number.class) && (Byte)other == value
   public equals(Double other) => this.value == other

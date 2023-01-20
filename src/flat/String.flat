@@ -216,7 +216,7 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
   public capitalize() => count > 0 ? chars[0].toUpperCase() + substring(1) : this
 
   public transform(transform(Char, Int) -> Char) -> String {
-    native Char[] newData = new Char[count]
+    native_array native Char[] newData = new Char[count]
 
     for (i in 0..count) {
       newData[i] = transform(chars[i], i)

@@ -7,7 +7,7 @@ class {
     }
   }
 
-  public static native toCharArray(Long value) -> Char[] {
+  public static native_array native toCharArray(Long value) -> Char[] {
     external js {
       return #{value}.toString();
     }

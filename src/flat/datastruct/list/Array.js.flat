@@ -9,7 +9,7 @@ class {
     }
 
     return Array(count).map({
-      var native Char[] chars
+      var native_array native Char[] chars
 
       external {
         #{chars} = #{value}[#{_i}];
@@ -19,7 +19,7 @@ class {
     })
   }
 
-  public native cloneData() -> E[] {
+  public native_array cloneData() -> E[] {
     external {
       return #{data}.slice(0);
     }

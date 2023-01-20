@@ -11,7 +11,7 @@ class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, P
   visible var Int count <=> count
   visible var Int position
 
-  visible native var E[] data
+  visible native_array var E[] data
 
   visible Bool isEmpty => count == 0
   visible Bool isNotEmpty => !isEmpty
@@ -59,7 +59,7 @@ class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, P
     }
   }
 
-  public construct(native E[] data, Int count) {
+  public construct(native_array E[] data, Int count) {
     this.data = data
     this.count = count
     this.capacity = count

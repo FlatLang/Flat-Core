@@ -7,7 +7,7 @@ class {
     }
   }
 
-  public native static toCharArray(Float value) -> Char[] {
+  public native_array native static toCharArray(Float value) -> Char[] {
     external {
       return #{value}.toString();
     }

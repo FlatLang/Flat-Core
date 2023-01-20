@@ -1,8 +1,8 @@
 package flat/datastruct/list
 
 class<E> {
-  public native cloneData() -> E[] {
-    let native d = new E[count]
+  public native_array cloneData() -> E[] {
+    let native_array d = new E[count]
 
     external {
       System.arraycopy(#{data}, 0, #{d}, 0, #{count});

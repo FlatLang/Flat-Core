@@ -3,7 +3,7 @@ package flat/datastruct/list
 class {
   visible Int count
 
-  visible native Char[] data
+  visible native_array native Char[] data
 
   visible Char first => count > 0 ? data[0] : 0
   visible Char last => count > 0 ? data[count - 1] : 0
@@ -31,7 +31,7 @@ class {
   public construct(Int count) {
     this.count = count
 
-    native Char[] buf
+    native_array native Char[] buf
 
     external {
       if (#{count} == 0) {
@@ -53,7 +53,7 @@ class {
     this.data = buf
   }
 
-  public construct(native Char[] data, Int count) {
+  public construct(native_array native Char[] data, Int count) {
     this.data = data
     this.count = count
 

@@ -7,7 +7,7 @@ class {
     }
   }
 
-  public native static toCharArray(Double value) -> Char[] {
+  public native_array native static toCharArray(Double value) -> Char[] {
     external {
       return #{value}.toString();
     }
@@ -17,7 +17,7 @@ class {
 
   public toFixed(Int precision) => toFixed(value, precision)
   public static toFixed(Double value, Int precision) -> String {
-    native var Char[] data
+    native_array native var Char[] data
 
     external {
       #{data} = #{value}.toFixed(#{precision});

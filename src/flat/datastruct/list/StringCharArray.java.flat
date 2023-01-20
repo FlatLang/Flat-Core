@@ -11,7 +11,7 @@ class {
     }
   }
 
-  visible native Char[] data {
+  visible native_array native Char[] data {
     get {
       external {
         return #{string}.toCharArray();
@@ -43,7 +43,7 @@ class {
   }
 
   public construct(Char[] data) {
-    let native Char[] nativeData = new Char[count]
+    let native_array native Char[] nativeData = new Char[count]
 
     for (var Int i = 0; i < count; i++) {
       nativeData[i] = data[i].value
@@ -56,7 +56,7 @@ class {
     this.data = new Char[count]
   }
 
-  public construct(native Char[] data, Int count) {
+  public construct(native_array native Char[] data, Int count) {
     this.data = data
   }
 

@@ -32,7 +32,7 @@ class extends Number<Long> implements Integer {
     Int charOffset = '0'
     var Int digits = numDigits(value)
 
-    native Char[] data = new Char[digits + 1]
+    native_array native Char[] data = new Char[digits + 1]
 
     data[digits] = '\0'
 
