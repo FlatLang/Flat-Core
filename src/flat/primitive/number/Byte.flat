@@ -9,46 +9,34 @@ class extends Number<Byte> implements Integer {
 
   public construct(public Byte value)
 
-  public compareTo(Number other) => other.compareToInteger(value)
   public compareTo(Byte other) => this.value - other
   public compareToReal(Double other) => this.value - other
   public compareToInteger(Long other) => this.value - other
 
-  public static compareTo(Byte value, Number other) => other.compareToInteger(value)
   public static compareTo(Byte value, Byte other) => value - other
   public static compareToReal(Byte value, Double other) => value - other
   public static compareToInteger(Byte value, Long other) => value - other
 
-  public multiply(Number other) => other.multiplyReal(value)
   public multiply(Byte other) => this.value * other
-  public multiply(Object other) -> Byte {
-    if (!other || !other.class.isOfType(Number.class)) return 0
-    return (Byte)other * value
-  }
   public multiplyReal(Double other) => this.value * other
   public multiplyInteger(Long other) => this.value * other
 
-  public plus(Number other) => other.plusInteger(value)
   public plus(Byte other) => this.value + other
   public plusReal(Double other) => this.value + other
   public plusInteger(Long other) => this.value + other
 
-  public plusEquals(Number other) => other.plusEqualsInteger(value)
   public plusEquals(Byte other) => this.value += other
   public plusEqualsReal(Double other) => this.value += other
   public plusEqualsInteger(Long other) => this.value += other
 
-  public minus(Number other) => other.minusInteger(value)
   public minus(Byte other) => this.value - other
   public minusReal(Double other) => this.value - other
   public minusInteger(Long other) => this.value - other
 
-  public minusEquals(Number other) => other.minusEqualsInteger(value)
   public minusEquals(Byte other) => this.value -= other
   public minusEqualsReal(Double other) => this.value -= other
   public minusEqualsInteger(Long other) => this.value -= other
 
-  public multiplyEquals(Number other) => other.multiplyEqualsInteger(value)
   public multiplyEquals(Byte other) => this.value *= other
   public multiplyEqualsReal(Double other) => this.value *= other
   public multiplyEqualsInteger(Long other) => this.value *= other
@@ -58,7 +46,6 @@ class extends Number<Byte> implements Integer {
   public equalsReal(Double other) => this.value == other
   public equalsInteger(Long other) => this.value == other
 
-  public static equals(Byte value, Number other) => other.equalsInteger(value)
   public static equals(Byte value, Byte other) => value == other
   public static equalsReal(Byte value, Double other) => value == other
   public static equalsInteger(Byte value, Long other) => value == other

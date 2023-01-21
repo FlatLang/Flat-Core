@@ -55,46 +55,34 @@ class extends Number<Long> implements Integer {
     return String(data)
   }
 
-  public compareTo(Number other) => other.compareToInteger(value)
   public compareTo(Long other) => this.value - other
   public compareToReal(Double other) => this.value - other
   public compareToInteger(Long other) => this.value - other
 
-  public static compareTo(Long value, Number other) => other.compareToInteger(value)
   public static compareTo(Long value, Long other) => value - other
   public static compareToReal(Long value, Double other) => value - other
   public static compareToInteger(Long value, Long other) => value - other
 
-  public plus(Number other) => other.plusInteger(value)
   public plus(Long other) => this.value + other
   public plusReal(Double other) => this.value + other
   public plusInteger(Long other) => this.value + other
 
-  public plusEquals(Number other) => other.plusEqualsInteger(value)
   public plusEquals(Long other) => this.value += other
   public plusEqualsReal(Double other) => this.value += other
   public plusEqualsInteger(Long other) => this.value += other
 
-  public minus(Number other) => other.minusInteger(value)
   public minus(Long other) => this.value - other
   public minusReal(Double other) => this.value - other
   public minusInteger(Long other) => this.value - other
 
-  public minusEquals(Number other) => other.minusEqualsInteger(value)
   public minusEquals(Long other) => this.value -= other
   public minusEqualsReal(Double other) => this.value -= other
   public minusEqualsInteger(Long other) => this.value -= other
 
-  public multiply(Number other) => other.multiplyReal(value)
   public multiply(Long other) => this.value * other
-  public multiply(Object other) -> Long {
-    if (!other || !other.class.isOfType(Number.class)) return 0
-    return (Long)other * value
-  }
   public multiplyReal(Double other) => this.value * other
   public multiplyInteger(Long other) => this.value * other
 
-  public multiplyEquals(Number other) => other.multiplyEqualsInteger(value)
   public multiplyEquals(Long other) => this.value *= other
   public multiplyEqualsReal(Double other) => this.value *= other
   public multiplyEqualsInteger(Long other) => this.value *= other
@@ -104,7 +92,6 @@ class extends Number<Long> implements Integer {
   public equalsReal(Double other) => this.value == other
   public equalsInteger(Long other) => this.value == other
 
-  public static equals(Long value, Number other) => other.equalsInteger(value)
   public static equals(Long value, Long other) => value == other
   public static equalsReal(Long value, Double other) => value == other
   public static equalsInteger(Long value, Long other) => value == other

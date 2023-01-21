@@ -34,46 +34,34 @@ class extends Number<Char> implements Integer {
   public toLowerCase() => toLowerCase(value)
   public toUpperCase() => toUpperCase(value)
 
-  public compareTo(Number other) => other.compareToInteger(value)
-  public compareTo(Char other) => this.value - other
+  public compareTo(Char other) -> Int => this.value - other
   public compareToReal(Double other) => this.value - other
   public compareToInteger(Long other) => this.value - other
 
-  public static compareTo(Char value, Number other) => other.compareToInteger(value)
-  public static compareTo(Char value, Char other) => value - other
+  public static compareTo(Char value, Char other) -> Int => value - other
   public static compareToReal(Char value, Double other) => value - other
   public static compareToInteger(Char value, Long other) => value - other
 
-  public multiply(Number other) => other.multiplyReal(value)
   public multiply(Char other) => this.value * other
-  public multiply(Object other) -> Char {
-    if (!other || !other.class.isOfType(Number.class)) return 0
-    return (Char)other * value
-  }
   public multiplyReal(Double other) => this.value * other
   public multiplyInteger(Long other) => this.value * other
 
-  public plus(Number other) => other.plusInteger(value)
   public plus(Char other) => this.value + other
   public plusReal(Double other) => this.value + other
   public plusInteger(Long other) => this.value + other
 
-  public plusEquals(Number other) => other.plusEqualsInteger(value)
   public plusEquals(Char other) => this.value += other
   public plusEqualsReal(Double other) => this.value += other
   public plusEqualsInteger(Long other) => this.value += other
 
-  public minus(Number other) => other.minusInteger(value)
   public minus(Char other) => this.value - other
   public minusReal(Double other) => this.value - other
   public minusInteger(Long other) => this.value - other
 
-  public minusEquals(Number other) => other.minusEqualsInteger(value)
   public minusEquals(Char other) => this.value - other
   public minusEqualsReal(Double other) => this.value -= other
   public minusEqualsInteger(Long other) => this.value -= other
 
-  public multiplyEquals(Number other) => other.multiplyEqualsInteger(value)
   public multiplyEquals(Char other) => this.value *= other
   public multiplyEqualsReal(Double other) => this.value *= other
   public multiplyEqualsInteger(Long other) => this.value *= other
@@ -83,7 +71,6 @@ class extends Number<Char> implements Integer {
   public equalsReal(Double other) => this.value == other
   public equalsInteger(Long other) => this.value == other
 
-  public static equals(Char value, Number other) => other.equalsInteger(value)
   public static equals(Char value, Char other) => value == other
   public static equalsReal(Char value, Double other) => value == other
   public static equalsInteger(Char value, Long other) => value == other

@@ -31,46 +31,34 @@ class extends Number<Double> implements RealNumber {
   public static withinTolerance(Double value, Double target, Double tolerance = 0.00000001) =>
     (value - target) < tolerance && (value - target) > -tolerance
 
-  public compareTo(Number other) => other.compareToReal(value)
-  public compareTo(Double other) => this.value - other
-  public compareToReal(Double other) => this.value - other
-  public compareToInteger(Long other) -> Long => (Long)(this.value - other)
+  public compareTo(Double other) => this.value > other ? 1 : (this.value == other ? 0 : -1)
+  public compareToReal(Double other) => this.value > other ? 1 : (this.value == other ? 0 : -1)
+  public compareToInteger(Long other) -> Long => this.value > other ? 1 : (this.value == other ? 0 : -1)
 
-  public static compareTo(Double value, Number other) => other.compareToReal(value)
   public static compareTo(Double value, Double other) => value - other
   public static compareToReal(Double value, Double other) => value - other
   public static compareToInteger(Double value, Long other) => (Long)(value - other)
 
-  public plus(Number other) => other.plusReal(value)
   public plus(Double other) => this.value + other
   public plusReal(Double other) => this.value + other
   public plusInteger(Long other) -> Long => (Long)(this.value + other)
 
-  public plusEquals(Number other) => other.plusEqualsReal(value)
   public plusEquals(Double other) => this.value += other
   public plusEqualsReal(Double other) => this.value += other
   public plusEqualsInteger(Long other) -> Long => (Long)(this.value += other)
 
-  public minus(Number other) => other.minusReal(value)
   public minus(Double other) => this.value - other
   public minusReal(Double other) => this.value - other
   public minusInteger(Long other) -> Long => (Long)(this.value - other)
 
-  public minusEquals(Number other) => other.minusEqualsReal(value)
   public minusEquals(Double other) => this.value -= other
   public minusEqualsReal(Double other) => this.value -= other
   public minusEqualsInteger(Long other) -> Long => (Long)(this.value -= other)
 
-  public multiply(Number other) => other.multiplyReal(value)
   public multiply(Double other) => this.value * other
-  public multiply(Object other) -> Double {
-    if (!other || !other.class.isOfType(Number.class)) return 0
-    return (Double)other * value
-  }
   public multiplyReal(Double other) => this.value * other
   public multiplyInteger(Long other) -> Long => (Long)(this.value * other)
 
-  public multiplyEquals(Number other) => other.multiplyEqualsReal(value)
   public multiplyEquals(Double other) => this.value *= other
   public multiplyEqualsReal(Double other) => this.value *= other
   public multiplyEqualsInteger(Long other) -> Long => (Long)(this.value *= other)
@@ -80,7 +68,6 @@ class extends Number<Double> implements RealNumber {
   public equalsReal(Double other) => this.value == other
   public equalsInteger(Long other) => this.value == other
 
-  public static equals(Double value, Number other) => other.equalsReal(value)
   public static equals(Double value, Double other) => value == other
   public static equalsReal(Double value, Double other) => value == other
   public static equalsInteger(Double value, Long other) => value == other
@@ -88,5 +75,4 @@ class extends Number<Double> implements RealNumber {
   public toString() => toString(value)
   public static hashCodeLong(Double value) => Math.abs((Long)value)
   public static plus(Double a, Double b) => a + b
-  public static compareTo(Double a, Double b) => a - b
 }
