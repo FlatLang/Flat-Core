@@ -475,31 +475,27 @@ class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, P
     maxOutputCount = maxOutputCount > count ? count : maxOutputCount
     maxOutputCount = maxOutputCount < 0 ? 0 : maxOutputCount
 
-    if (maxOutputCount < count) {
-      if (maxOutputCount == 0 && count > 0) {
-        return ellipse
-      }
-
-      var str = ""
-
-      for (i in 0..ellipsePosition) {
-        let value = data[i]
-
-        str += value + delimiter
-      }
-
-      str += ellipse
-
-      let start = count - (maxOutputCount - ellipsePosition)
-
-      for (i in start..count) {
-        str += delimiter + data[i]
-      }
-
-      return str
-    } else {
+    if (maxOutputCount >= count)
       return reduce({ _acc + (_i > 0 ? delimiter : "") + _x }, "")
+
+    if (maxOutputCount == 0 && count > 0)
+      return ellipse
+
+    var str = ""
+
+    for (i in 0..ellipsePosition) {
+      str += data[i] + delimiter
     }
+
+    str += ellipse
+
+    let start = count - (maxOutputCount - ellipsePosition)
+
+    for (i in start..count) {
+      str += delimiter + data[i]
+    }
+
+    return str
   }
 
   override public reverse() -> E[] {
