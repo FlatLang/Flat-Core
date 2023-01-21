@@ -1,10 +1,9 @@
 package flat/primitive
 
 class extends String {
-  public construct() {}
+  public construct() => super("null".chars)
 
   public concat(String other) => "null#other"
-  public toString() => "null"
   public toJson() => toString()
   public Long hashCodeLong => 0
 
