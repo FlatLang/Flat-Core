@@ -3,7 +3,7 @@ package flat/primitive/number
 class {
   public static parseDouble(String str) -> Double {
     external {
-      return Double.parseDouble(#{str.chars.data});
+      return java.lang.Double.parseDouble(#{str.chars.string});
     }
   }
 
