@@ -5,15 +5,9 @@ data class {
     visible String name
   ) {}
 
-  public getValue(Object obj) -> Object {
-    external js {
-      return #{obj}[#{name}.chars.data];
-    }
+  public getValue(Object obj) -> Object => null {
   }
 
-  public setValue(Object obj, Object value) -> Object {
-    external js {
-      return #{obj}[#{name}.chars.data] = #{value};
-    }
+  public setValue(Object obj, Object value) -> Object => null {
   }
 }
