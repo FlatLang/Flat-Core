@@ -15,12 +15,12 @@ class extends Number<Float> implements RealNumber {
   public static withinTolerance(Float value, Float target, Float tolerance = 0.00000001) =>
     (value - target) < tolerance && (value - target) > -tolerance
 
-  public compareTo(Float other) => this.value - other
-  public compareToReal(Double other) => this.value - other
+  public compareTo(Float other) => (Int)(this.value - other)
+  public compareToReal(Double other) => (Int)(this.value - other)
   public compareToInteger(Long other) -> Long => (Long)(this.value - other)
 
-  public static compareTo(Float value, Float other) => value - other
-  public static compareToReal(Float value, Double other) => value - other
+  public static compareTo(Float value, Float other) => (Int)(value - other)
+  public static compareToReal(Float value, Double other) => (Int)(value - other)
   public static compareToInteger(Float value, Long other) => (Long)(value - other)
 
   public plus(Float other) => this.value + other
