@@ -29,4 +29,8 @@ class {
   }
 
   public toString() => String(this)
+
+  override public equals(Object other) => (other || !this) && other.class.isOfType(StringCharArray.class) && equals((StringCharArray)other)
+
+  public equals(StringCharArray other) => count == other.count && toCharArray() == other.toCharArray()
 }

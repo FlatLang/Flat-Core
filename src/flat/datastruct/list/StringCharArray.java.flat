@@ -79,4 +79,14 @@ class {
 
     return array
   }
+
+  public equals(StringCharArray other) -> Bool {
+    if (count != other.count) return false
+
+    external {
+      if (#{string} == null) return #{other.string} == null;
+
+      return #{string}.equals(#{other.string});
+    }
+  }
 }
