@@ -63,4 +63,20 @@ class {
   public construct(native String string) {
     this.string = string
   }
+
+  public toCharArray() -> Char[] {
+    let array = Array<Char>(count)
+    let native_array native nativeArray = data
+    var native Char c
+
+    for (i in 0..count) {
+      external {
+        #{c} = #{nativeArray}[#{i}];
+      }
+
+      array[i] = c
+    }
+
+    return array
+  }
 }
