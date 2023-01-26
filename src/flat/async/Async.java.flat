@@ -9,7 +9,7 @@ class {
     return array
   }
 
-  public static async all<In, Out>(
+  public static async all<Out, In>(
     In[] values,
     async toPromise(In, Int) -> Out,
     Int maxParallel = -1,
