@@ -22,16 +22,16 @@ class<Type> {
   ) {}
 
   public getField(String name, Bool checkAncestors = false) -> Field {
-    return fields.firstWhere({ _.name == name }) ?:
-      (checkAncestors ? extension?.getField(name, true) : null) ?:
-      (checkAncestors ? interfaces.mapNotNull({ _.getField(name, true) })?.first : null)
+    return fields.firstWhere({ _.name == name })
+      ?: (checkAncestors ? extension?.getField(name, true) : null)
+      ?: (checkAncestors ? interfaces.mapNotNull({ _.getField(name, true) })?.first : null)
   }
 
   public isOfType(Class other) =>
-    (other.isInterface ?
-      isOfTypeInterface(other) || extension && extension.isOfType(other) :
-      isOfTypeClass(other) || interfaces.any({ _.isOfTypeClass(other) })) ||
-      Object.referenceEquals(other, Object.class)
+    (other.isInterface
+      ? isOfTypeInterface(other) || extension && extension.isOfType(other)
+      : isOfTypeClass(other) || interfaces.any({ _.isOfTypeClass(other) }))
+      || Object.referenceEquals(other, Object.class)
 
   public isOfTypeClass(Class other) => false {
     var current = this
