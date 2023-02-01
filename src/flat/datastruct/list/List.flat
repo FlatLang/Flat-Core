@@ -638,6 +638,9 @@ trait<Type> implements Iterable<Type> {
   }
 
   public stitch(String delimiter = "") =>
+    reduce({ _acc + _x + delimiter }, "")
+
+  public stitchFront(String delimiter = "") =>
     reduce({ _acc + delimiter + _x }, "")
 
   public toEnglish(String conjunction, Bool oxford = true) =>
