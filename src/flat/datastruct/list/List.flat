@@ -463,6 +463,10 @@ trait<Type> implements Iterable<Type> {
     }
   }
 
+  public lastNonNull<Out>(func(Type x, Int i, List<Type> list) -> Out) -> Out => null {
+    return reverse().firstNonNull(func)
+  }
+
   public async firstNonNullAsync<Out>(async func(Type x, Int i, List<Type> list) -> Out) -> Out => null {
     var Int i = 0
 
