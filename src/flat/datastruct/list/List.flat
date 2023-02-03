@@ -158,6 +158,18 @@ trait<Type> implements Iterable<Type> {
     return array
   }
 
+  public async flatMapAsync<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out[]) -> List<Out> {
+    let array = Array<Out>()
+
+    var Int i = 0
+
+    for (element in this) {
+      array.addAll(mapFunc(element, i++, this))
+    }
+
+    return array
+  }
+
   /// Check whether the anyFunc returns true for any of the values
   /// within this List.
   ///
