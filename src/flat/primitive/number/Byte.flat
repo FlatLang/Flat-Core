@@ -57,4 +57,7 @@ class extends Number<Byte> implements Integer {
   public static toJson(Byte value) => toString(value)
   public static hashCodeLong(Byte value) => Math.abs(value)
   public static plus(Byte a, Long b) => a + b
+
+  public toEnglish() => toEnglish(value)
+  public static toEnglish(Byte value) => Long.toEnglish(value)
 }

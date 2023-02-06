@@ -65,4 +65,6 @@ class extends Number<Int> implements Integer {
 
   public toFileSize() => toFileSize(value)
   public static toFileSize(Int value) => Long.toFileSize(value)
+  public toEnglish() => toEnglish(value)
+  public static toEnglish(Int value) => Long.toEnglish(value)
 }

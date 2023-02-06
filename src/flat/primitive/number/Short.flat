@@ -56,4 +56,7 @@ class extends Number<Short> implements Integer {
   public static toJson(Short value) => toString(value)
   public static hashCodeLong(Short value) => Math.abs(value)
   public static plus(Short a, Long b) => a + b
+
+  public toEnglish() => toEnglish(value)
+  public static toEnglish(Short value) => Long.toEnglish(value)
 }

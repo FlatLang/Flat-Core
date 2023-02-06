@@ -120,6 +120,20 @@ class extends Number<Long> implements Integer {
     return "#{current.toFixed(1)}#{FILE_SIZES[index]}"
   }
 
+  public toEnglish() => toEnglish(value)
+  public static toEnglish(Long size) -> String {
+    let negative = size < 0
+    let negSize = -size
+    let initial = negative ? negSize.toString() : size.toString()
+    var str = initial
+
+    for (var Int i = 3; i < initial.count; i += 3) {
+      str = str.substring(0, initial.count - i) + "," + str.substring(initial.count - i)
+    }
+
+    return negative ? "-#{str}" : str
+  }
+
   public millisToTime(
     Bool abbreviate = true,
     Bool: millis = true,

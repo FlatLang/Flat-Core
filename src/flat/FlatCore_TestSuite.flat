@@ -4,6 +4,7 @@ import flat/test
 
 import flat/time
 import flat/io
+import flat/primitive/number
 
 import flat/meta
 import flat/datastruct/list
@@ -13,7 +14,8 @@ import flat/datastruct/list
   Array_Test,
   List_Test,
   Class_Test,
-  String_Test
+  String_Test,
+  Long_Test
 ]]
 class {
   public static async main(String[] args) {
