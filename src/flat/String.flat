@@ -72,7 +72,7 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
   }
 
   public isWhitespace() => true {
-    for (var Int i = 0; i < count; i++) {
+    for (i in 0..count) {
       let c = chars[i]
 
       switch c {

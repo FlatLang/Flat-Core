@@ -45,7 +45,7 @@ class {
   public construct(Char[] data) {
     let native_array native Char[] nativeData = new Char[count]
 
-    for (var Int i = 0; i < count; i++) {
+    for (i in 0..count) {
       nativeData[i] = data[i].value
     }
 
