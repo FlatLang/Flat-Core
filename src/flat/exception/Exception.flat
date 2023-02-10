@@ -46,6 +46,27 @@ class {
     }
   }
 
+  [Target not js]
+  public static async catchTypeAsync(async func(), Class exceptionType, Bool soft = false, Bool exact = false) -> Exception => null {
+    if (soft) {
+      try {
+        func()
+      } catch all (Exception e) {
+        if (exact ? e.class == exceptionType : e.class.isOfType(exceptionType)) {
+          return e
+        }
+      }
+    } else {
+      try {
+        func()
+      } catch (Exception e) {
+        if (exact ? e.class == exceptionType : e.class.isOfType(exceptionType)) {
+          return e
+        }
+      }
+    }
+  }
+
   [Target js]
   public static catchType(func(), Class exceptionType, Bool soft = false, Bool exact = false) -> Exception => null {
     if (soft) {
@@ -62,6 +83,31 @@ class {
       } catch (Exception e) {
         if (e.class.location == exceptionType.location) {
           return e
+        } else {
+          throw e
+        }
+      }
+    }
+  }
+
+  [Target js]
+  public static async catchTypeAsync(async func(), Class exceptionType, Bool soft = false, Bool exact = false) -> Exception => null {
+    if (soft) {
+      try {
+        func()
+      } catch all (Exception e) {
+        if (e.class.location == exceptionType.location) {
+          return e
+        }
+      }
+    } else {
+      try {
+        func()
+      } catch (Exception e) {
+        if (e.class.location == exceptionType.location) {
+          return e
+        } else {
+          throw e
         }
       }
     }
