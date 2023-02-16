@@ -26,6 +26,18 @@ class {
     this.chars = StringCharArray(chars, count)
   }
 
+  public construct(native String str) {
+    var native native_array Char[] chars
+
+    external {
+      #{chars} = #{str};
+    }
+
+    count = calculateSize(chars)
+
+    this.chars = StringCharArray(chars, count)
+  }
+
   public transform(transform(Char, Int) -> Char) -> String {
     native_array native Char[] newData
 
