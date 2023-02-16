@@ -1,4 +1,4 @@
-name: Test Flat-Core
+name: Build Flat-Core Java
 
 on:
   push:
@@ -57,16 +57,10 @@ jobs:
         run: |
           node airship.js reinstall --link
 
-      - name: Build Flat-Core Test
+      - name: Build Flat-Core Java
         run: |
-          node airship.js install test -t es6
+          node airship.js install -t java
 
-      - uses: actions/upload-artifact@v3
-        if: failure()
-        with:
-          name: test.js
-          path: dist/es6/test.js
-
-      - name: Run Flat-Core Test
+      - name: Build Flat-Core with Maven
         run: |
-          node airship.js run test
+          mvn -f dist/java install
