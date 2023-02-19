@@ -67,4 +67,24 @@ class extends Number<Int> implements Integer {
   public static toFileSize(Int value) => Long.toFileSize(value)
   public toEnglish() => toEnglish(value)
   public static toEnglish(Int value) => Long.toEnglish(value)
+
+  public static parseOr(String num, Int default) => parseInt(num) {
+    if (!num) return default
+    if (num.isEmpty) return default
+
+    for (i in 0..num.count) {
+      let c = num[i]
+
+      if (i == 0 && c == '-') {
+        if (num.count > 1) continue
+        return default
+      }
+
+      match c {
+        '0' => '1' => '2' => '3' => '4' => '5' => '6' => '7' => '8' => '9' => continue
+      }
+
+      return default
+    }
+  }
 }
