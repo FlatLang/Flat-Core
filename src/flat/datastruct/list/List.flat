@@ -170,6 +170,15 @@ trait<Type> implements Iterable<Type> {
     return array
   }
 
+  public async flatMapParallel<Out>(async mapFunc(Type x, Int i, List<Type> list) -> Out[], Int maxParallel = -1, async onAfterChunk(Int count) = {}) -> List<Out> {
+    let array = Array<Out>()
+
+    Async.all(toArray(), { mapFunc(_, _, this) }, maxParallel, onAfterChunk)
+      .forEach({ array.addAll(_) })
+
+    return array
+  }
+
   /// Check whether the anyFunc returns true for any of the values
   /// within this List.
   ///

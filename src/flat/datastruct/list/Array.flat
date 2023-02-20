@@ -359,6 +359,14 @@ class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, P
     return array
   }
 
+  override public async flatMapParallel<Out>(
+    async mapFunc(E x, Int i, Array<E> array) -> Out[],
+    Int maxParallel = -1,
+    async onAfterChunk(Int count) = {}
+  ) -> Out[] {
+    return Async.all(this, { mapFunc(_, _, this) }, maxParallel, onAfterChunk).flatMap({ _ })
+  }
+
   override public forEach(func(E x, Int i, Array<E> array)) => this {
     for (i in 0..count) {
       func(data[i], i, this)
