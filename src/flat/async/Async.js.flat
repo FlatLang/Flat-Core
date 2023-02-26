@@ -18,15 +18,15 @@ class {
     return array
   }
 
-  public static async all<Out>(
-    Object[] values,
-    async toPromise(Object, Int) -> Out,
+  public static async all<Out, In>(
+    In[] values,
+    async toPromise(In, Int) -> Out,
     Int maxParallel = -1,
     async onAfterChunk(Int count) = {}
   ) -> Out[] {
     let array = Array<Out>(values.count)
 
-    native var Object input
+    native var In input
     native var Out data
     native var Int localIndex
 
