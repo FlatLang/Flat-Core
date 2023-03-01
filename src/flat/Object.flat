@@ -6,21 +6,4 @@ class {
   public toJson() => "{}"
 
   visible Long hashCodeLong => 0
-
-  // writeFields() =>
-  //   this.class.getFields(true).count > 0 ?
-  //     this.class.getFields(true).map({
-  //       "\n#_x.name = #_x.getValue(this)"
-  //     }) + "\n" :
-  //     ""
-
-  // writeFunctions() =>
-  //   this.class.functions.map({
-  //     "\n#_x"
-  //   })
-
-  // public toString() =>
-  //   "#this.class.name {" +
-  //   writeFields() +
-  //   "}"
 }
