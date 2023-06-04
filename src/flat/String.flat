@@ -49,7 +49,7 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
 
     while ((index = output.indexOf(search, index + offset)) >= 0) {
       output = output.substring(0, index) + replacement + output.substring(index + search.count)
-      offset += replacement.count - search.count
+      offset = replacement.count
     }
 
     return output

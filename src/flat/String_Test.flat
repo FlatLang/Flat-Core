@@ -24,4 +24,10 @@ testable class {
 
     expect(str.split(" ")).toBe(["this", "is", "a", "test"])
   }
+
+  test `can replace multiple string occurrences`() {
+    let str = "a\\b\\c\\d\\e\\f"
+
+    expect(str.replace("\\", "/")).toBe("a/b/c/d/e/f")
+  }
 }
