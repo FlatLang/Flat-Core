@@ -1,5 +1,5 @@
 package flat/async
 
 class {
-  public static async all(Object[] promises) {}
+    public static async all(Object[] promises) {}
 }

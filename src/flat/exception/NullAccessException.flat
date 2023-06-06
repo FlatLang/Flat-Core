@@ -1,5 +1,5 @@
 package flat/exception
 
 class extends Exception {
-  public construct(String message = "Cannot access property from a null Object") => super(message)
+    public construct(String message = "Cannot access property from a null Object") => super(message)
 }

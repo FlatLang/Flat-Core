@@ -1,9 +1,9 @@
 package flat
 
 class {
-  public equals(Object another) => referenceEquals(this, another)
-  public toString() -> String => "{#this.class.name @#hashCode}"
-  public toJson() => "{}"
+    public equals(Object another) => referenceEquals(this, another)
+    public toString() -> String => "{#this.class.name @#hashCode}"
+    public toJson() => "{}"
 
-  visible Long hashCodeLong => 0
+    visible Long hashCodeLong => 0
 }

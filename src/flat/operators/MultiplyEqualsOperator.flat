@@ -1,5 +1,5 @@
 package flat/operators
 
 trait<In, Out> {
-  public multiplyEquals(In value) -> Out
+    public multiplyEquals(In value) -> Out
 }

@@ -1,5 +1,5 @@
 package flat/operators
 
 trait<In, Out> {
-  public plusEquals(In another) -> Out
+    public plusEquals(In another) -> Out
 }

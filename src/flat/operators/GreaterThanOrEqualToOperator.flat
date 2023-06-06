@@ -1,5 +1,5 @@
 package flat/operators
 
 trait<In> {
-  public greaterThanOrEqualTo(In another) -> Bool
+    public greaterThanOrEqualTo(In another) -> Bool
 }
