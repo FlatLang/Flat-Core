@@ -11,16 +11,16 @@
     "main": {
       "source": "src",
       "dependencies": {
-        "github:FlatLang/Flat": "master"
+        "https://github.com/FlatLang/Flat": "master"
       }
     },
     "test": {
       "mainClass": "flat/FlatCore_TestSuite",
       "source": "src/**/*_Test*.flat",
       "dependencies": {
-        "github:FlatLang/Test": "master",
-        "github:FlatLang/IO": "master",
-        "github:FlatLang/System": "master"
+        "https://github.com/FlatLang/Test": "master",
+        "https://github.com/FlatLang/IO": "master",
+        "https://github.com/FlatLang/System": "master"
       }
     }
   }
