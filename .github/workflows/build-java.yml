@@ -47,16 +47,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Setup Airship
-        run: |
-          mkdir Airship
-          cd Airship
-          node ../airship.js setup
-
-      - name: Link Flat-Core
-        run: |
-          node airship.js reinstall --link
-
       - name: Build Flat-Core Java
         run: |
           node airship.js install -t java

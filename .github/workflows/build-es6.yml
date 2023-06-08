@@ -47,20 +47,9 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Setup Airship
-        run: |
-          mkdir Airship
-          cd Airship
-          node ../airship.js setup
-
-      - name: Link Flat-Core
-        run: |
-          node airship.js reinstall --link
-
       - name: Build Flat-Core with flatc
         env:
           LOGGING_DEFAULT_SHOW_PREFIX: false
           LOGGING_DEFAULT_LOGGING_LEVEL: INFO
         run: |
-          . ~/.flat/env
-          airship install --flatc-runtime flat -t es6
+          node airship.js install --flatc-runtime flat -t es6
