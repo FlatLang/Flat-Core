@@ -640,7 +640,6 @@ class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, P
     public sort(comparator(E a, E b) -> Int) => mergeSort(comparator)
 
     override public toString() => "[" + map({ _x != null && _x.class.isOfType(String.class) ? "\"#{_x}\"" : _x }).join(", ") + "]"
-    override public toJson() => "[" + map({ _x != null && _x.class.isOfType(String.class) ? "\"#{_x}\"" : _x.toJson() }).join(",") + "]"
 
     public copy() => skip(0)
 }

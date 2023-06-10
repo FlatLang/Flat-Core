@@ -690,6 +690,29 @@ trait<Type> implements Iterable<Type> {
 
     public toString() => this.class.location + " {" + join(", ") + "}"
 
+    override public toJson(Bool: format = false, String: tab = "\t") -> String {
+        if (format) {
+            let values = map({ _.toJson(format, tab) })
+            var Long sum = 0
+            for (str in values) {
+                sum += str.count
+            }
+
+            let formattedValues = values.count > 1 && sum > 50
+                ? values.join(",\n").indent(tab: tab)
+                : values.join(", ")
+
+            return "|
+                [
+                #{formattedValues}
+                ]
+                |"
+        } else {
+            let values = map({ _.toJson() }).join(",")
+            return "[#{values}]"
+        }
+    }
+
     override public equals(Object another) => true {
         if (!another) return false
         if (!another.class.isOfType(List.class)) return false
