@@ -333,6 +333,21 @@ trait<Type> implements Iterable<Type> {
 
     public filterNull() => filter({ _ != null })
 
+    public uniqueBy(prop(Type x) -> Object) -> List<Type> {
+        let list = Type[]
+        let values = Object[]
+
+        for (value in this) {
+            let x = prop(value)
+            if (!values.contains(x)) {
+                list.add(value)
+                values.add(x)
+            }
+        }
+
+        return list
+    }
+
     public unique() -> List<Type> {
         let list = Type[]
 

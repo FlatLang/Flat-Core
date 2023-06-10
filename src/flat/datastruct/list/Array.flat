@@ -437,6 +437,21 @@ class<E> implements List<E>, OrderedList<E>, PlusOperator<Array<E>, Array<E>>, P
 
     override public filterAtIndex(Int index, Int count = 1) => filter({ _2 >= index && _2 < index + count })
 
+    public uniqueBy(prop(E x) -> Object) -> E[] {
+        let array = E[]
+        let values = Object[]
+
+        for (value in this) {
+            let x = prop(value)
+            if (!values.contains(x)) {
+                array.add(value)
+                values.add(x)
+            }
+        }
+
+        return array
+    }
+
     public unique() -> E[] {
         let array = E[]
 
