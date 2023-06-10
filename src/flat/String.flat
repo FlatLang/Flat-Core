@@ -323,8 +323,8 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
     }
 
     public toString() => this
-    public toJson() -> String {
-        let sanitized = replace("\"", "\\\"")
+    public toJson(Bool: format = false, String: tab = "\t") -> String {
+        let sanitized = replace("\\", "\\\\").replace("\"", "\\\"")
         return "\"#{sanitized}\""
     }
 }

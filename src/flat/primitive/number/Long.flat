@@ -26,7 +26,7 @@ class extends Number<Long> implements Integer {
         return size
     }
 
-    public toJson() => Long.toJson(value)
+    public toJson(Bool: format = false, String: tab = "\t") => Long.toJson(value)
     public static toJson(Long value) => toString(value)
 
     public static toString(var Long value) -> String {
