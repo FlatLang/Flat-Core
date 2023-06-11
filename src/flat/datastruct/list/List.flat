@@ -698,13 +698,13 @@ trait<Type> implements Iterable<Type> {
                 sum += str.count
             }
 
-            let formattedValues = values.count > 1 && sum > 50
-                ? values.join(",\n").indent(tab: tab)
-                : values.join(", ")
+            if (values.count <= 1 || sum < 50) {
+                return "[#{values.join(", ")}]"
+            }
 
             return "|
                 [
-                #{formattedValues}
+                #{values.join(",\n").indent(tab: tab)}
                 ]
                 |"
         } else {
