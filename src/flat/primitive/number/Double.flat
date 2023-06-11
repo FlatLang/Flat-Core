@@ -23,7 +23,7 @@ class extends Number<Double> implements RealNumber {
         return size
     }
 
-    public static toJson(Double value) => toString(value)
+    public static toJson(Double value, Bool: format = false, String: tab = "\t") => toString(value)
 
     public withinTolerance(Double target, Double tolerance) =>
         withinTolerance(value, target, tolerance)

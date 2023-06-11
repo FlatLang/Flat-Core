@@ -59,7 +59,7 @@ class extends Number<Int> implements Integer {
 
     public static numDigits(Int number) => Long.numDigits(number)
     public static toString(Int value) => Long.toString(value)
-    public static toJson(Int value) => toString(value)
+    public static toJson(Int value, Bool: format = false, String: tab = "\t") => toString(value)
     public static hashCodeLong(Int value) => Math.abs(value)
     public static plus(Int a, Long b) => a + b
 

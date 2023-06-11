@@ -60,7 +60,7 @@ class extends Number<Float> implements RealNumber {
 
     public static numDigits(Float number) => Double.numDigits(number)
     public static toString(Float value) => Double.toString(value)
-    public static toJson(Float value) => toString(value)
+    public static toJson(Float value, Bool: format = false, String: tab = "\t") => toString(value)
     public static hashCodeLong(Float value) => Math.abs((Long)value)
     public static plus(Float a, Double b) => a + b
 }
