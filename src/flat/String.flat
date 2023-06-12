@@ -94,12 +94,12 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
     public endsWith(Char search) => count > 0 && lastIndexOf(search) == count - 1
     public endsWith(String search) => count >= search.count && lastIndexOf(search) == count - search.count
 
-    public indexOf(Char search, Int start = 0, Int direction = 1, Int defaultReturnValue = -1) =>
-    	indexOf("#search", start, direction, defaultReturnValue)
+    public indexOf(
         Char search,
         Int start = 0,
         Int direction = 1,
         var Int searchCount = count,
+        Bool: invert = false,
         Int: defaultReturnValue = -1
     ) =>
     	indexOf(Array<Char>():add(search), start, direction, searchCount, invert, defaultReturnValue)
@@ -109,6 +109,7 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
         Int start = 0,
         Int direction = 1,
         var Int searchCount = count,
+        Bool: invert = false,
         Int: defaultReturnValue = -1
     ) => defaultReturnValue {
         var i = start
@@ -117,9 +118,7 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
             var Int j = 0
 
             while (j < searches.count) {
-                if (searches[j] == chars[i]) {
-                    return i
-                }
+                if ((searches[j] != chars[i]) == invert) return i
 
                 j++
             }
