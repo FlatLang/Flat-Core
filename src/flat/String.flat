@@ -96,11 +96,24 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
 
     public indexOf(Char search, Int start = 0, Int direction = 1, Int defaultReturnValue = -1) =>
     	indexOf("#search", start, direction, defaultReturnValue)
+        Char search,
+        Int start = 0,
+        Int direction = 1,
+        var Int searchCount = count,
+        Int: defaultReturnValue = -1
+    ) =>
+    	indexOf(Array<Char>():add(search), start, direction, searchCount, invert, defaultReturnValue)
 
-    public indexOf(Char[] searches, Int start = 0, Int direction = 1, Int defaultReturnValue = -1) => defaultReturnValue {
+    public indexOf(
+        Char[] searches,
+        Int start = 0,
+        Int direction = 1,
+        var Int searchCount = count,
+        Int: defaultReturnValue = -1
+    ) => defaultReturnValue {
         var i = start
 
-        while (i < count && i >= 0) {
+        while (searchCount > 0 && i < count && i >= 0) {
             var Int j = 0
 
             while (j < searches.count) {
@@ -111,31 +124,34 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
                 j++
             }
 
-
             i += direction
+            searchCount--
         }
     }
 
-    public indexOf(String search, Int start = 0, Int direction = 1, Int defaultReturnValue = -1) => defaultReturnValue {
+    public indexOf(
+        String search,
+        Int start = 0,
+        Int direction = 1,
+        var Int searchCount = count,
+        Int: defaultReturnValue = -1
+    ) => defaultReturnValue {
         var i = start
 
-        while (i < count && i + search.count <= count && i >= 0) {
+        while (searchCount > 0 && i < count && i + search.count <= count && i >= 0) {
             var found = true
             var Int j = 0
 
             while (j < search.count && i + j < count && found) {
-                if (search.chars[j] != chars[i + j]) {
-                    found = false
-                }
+                if (search.chars[j] != chars[i + j]) found = false
 
                 j++
             }
 
-            if (found) {
-                return i
-            }
+            if (found) return i
 
             i += direction
+            searchCount--
         }
     }
 
