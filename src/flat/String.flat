@@ -85,8 +85,8 @@ class implements Comparable<String>, PlusOperator<String, String>, MultiplyOpera
     public Bool isEmpty => count == 0
     public Bool isNotEmpty => count > 0
 
-    public startsWith(Char search) => indexOf(search) == 0
-    public startsWith(String search) => indexOf(search) == 0
+    public startsWith(Char search, Int start = 0) => this[start] = search
+    public startsWith(String search, Int start = 0) => indexOf(search, start, searchCount: 1) == start
 
     public contains(Char search) => indexOf(search) >= 0
     public contains(String search) => indexOf(search) >= 0
